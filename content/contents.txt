@@ -13,9 +13,9 @@ Footer
 			Invia
 
 	Sezione recapiti e social
-		Telefono: +39 342 781 9582
-		Email: rstefano99@gmail.com
-		Indirizzo: via Campana 13/a, Terrassa Padovana (PD).
+		<strong>Telefono</strong>: +39 342 781 9582
+		<strong>Email</strong>: rstefano99@gmail.com
+		<strong>Indirizzo</strong>: via Campana 13/a, Terrassa Padovana (PD).
 
 		Note
 			<strong>Si prega di chiamare prima di presentarsi di persona, onde evitare viaggi a vuoto.</strong>
