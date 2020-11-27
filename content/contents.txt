@@ -1,0 +1,108 @@
+In questo file sono trascritti i contenuti testuali presenti su
+rizzoguitars.it, suddivisi per pagina.
+
+Header
+	<span lang="en">Handmade guitars</span>
+
+Footer
+	Form contatti
+		Contattami
+			Nome
+			Email
+			Messaggio
+			Invia
+
+	Sezione recapiti e social
+		<strong>Telefono</strong>: +39 342 781 9582
+		<strong>Email</strong>: rstefano99@gmail.com
+		<strong>Indirizzo</strong>: via Campana 13/a, Terrassa Padovana (PD).
+
+		Note
+			<strong>Si prega di chiamare prima di presentarsi di persona, onde evitare viaggi a vuoto.</strong>
+
+Index
+		Cerchi un laboratorio di liuteria a Padova? Forse hai trovato quello giusto.
+
+		Rizzo <span lang="en">Guitars</span> vuol dire <em>strumenti artigianali</em>, fatti da zero con cura e passione, in ogni fase della loro costruzione. Vuol dire <em>riparazioni</em> e <em>personalizzazioni</em>, ma non solo. Rizzo <span lang="en">Guitars</span> è un <em>laboratorio</em>, un posto dove le idee prendono vita e diventano musica.
+
+		Servizi
+			<em lang="en">Set-up</em>, <em>modifiche</em>, <em>riparazioni</em> di strumenti elettrici ed acustici, <em>costruzione</em> di strumenti elettrici.
+
+		Strumenti
+			Una raccolta dei lavori eseguiti.
+
+		Come Trovarmi
+			Passa a trovarmi in laboratorio.
+
+		About
+			Il mio approccio alla liuteria.
+
+Servizi
+	Che ti serva una <em>riparazione</em>, un nuovo <em>strumento</em> o un semplice <em lang="en">set-up</em>, non ti preoccupare: qui c'è la soluzione giusta che fa per te.
+
+	Questi sono i servizi che offro nel mio laboratorio:
+
+	Riparazioni e modifiche:
+		Ti serve una <em>rettifica</em> oppure un <em>refret</em>? Vuoi montare un nuovo <em lang="en">pickup</em> oppure vuoi <em>riverniciare</em> la tua chitarre di quel colore che hai visto e ti è piaciuto tanto? Puoi contattarmi e provvederò a risponderti il prima possibile.
+
+	Strumenti su misura:
+		Lo sappiamo entrambi. I musicisti sanno essere molto schizzinosi quando si parla dei loro strumenti. Farsi realizzare uno <em>strumento su misura</em> è il modo migliore per ottenere quella sensazione di puro piacere quando si suona.
+
+	<span lang="en">Set-up</span>: La tua chitarra non suona più come quella di una volta. Capita. Magari le corde non sono più così scorrevoli, magari qualche <em>nota frigge</em> e forse quella chitarra viene usata più come fermacarte che come strumento. Che ti serva un <em lang="en">set-up</em> completo oppure giusto una regolazione del <span lang="en">truss rod</span>, qui sei nel posto giusto.
+
+Strumenti
+	Fatti gli occhi. In questa pagina troverai tutti gli strumenti che ho costruito fin'ora.
+
+	<span="en">T-Type</span>:
+	Un vecchio classico. Costruito alla vecchia maniera. Due <span lang="en">pick-up</span>, un ponte, sei corde. Forse anche troppe.
+
+	Non trovi quello che cerchi? Probabilmente non l'ho ancora costruito! Contattami per rendere un tuo sogno realtà!
+
+T-Type
+	Una semplicità disarmante ed un suono unico.
+	Il <i lang"en">body</i> è in <em>frassino europeo</em>, come europeo è l'<em>acero</em> del <i>manico</i>. Il progetto riprende quello delle telecaster fine degli anni '50. Verniciata alla <em>nitro</em>, quando la imbracci e la colleghi all'amplificatore
+	sai già che suono aspettarti. La cosa bella di questa chitarra? È una tele e suona come una tele. I <span lang="en">pickup vintage voiced</span> e i tasti sottili ricreano lo stesso <span lang="en">feel</span> che si avrebbe suonando un vero strumento <span lang="en">vintage</span>. E poi ogni aspetto della costruzione è <em>personalizzabile</em>. Il manico è costruito proprio come quello di una vecchia tele. <i lang="en">Skunkstripe</i> e <i lang="en">trussrod plug</i> in noce, con <i lang="en">trussrod single action</i> aggiustabile al tacco, proprio come ci si aspetta da una riproduzione d'epoca. La laccatura ambrata alla <em>nitro</em> dà alla vista il tocco caldo tipico di uno strumento <span lang="en">vintage</span>.
+
+	Nome	|	Descrizione
+	Body//da aggiungere lang="en" all'attributo td	|	Frassino europeo, <span lang="en">string through</span>. Cavità schermate. Laccatura lucida alla nitrocellulosa.
+	Manico	|	Acero europeo 1 pezzo, costruzione vintage, <span lang="en">bolt-on</span>. Laccatura lucida alla nitrocellulosa.
+	Capotasto	|	Osso, sagomato e lucidato a mano.
+	Tasti	|	Tasti <span lang="en">medium narrow</span>, <span lang="en">nickel-silver</span> 18%.
+	Hardware//da aggiungere lang="en" all'attributo td	|	Disponibile in configurazione demo.
+	Prezzo*	|	850€
+
+	//eventualmente valutare l'ipotesi di eliminare la descrizione tabellare
+
+	(*)Il prezzo è relativo alla costruzione di un nuovo strumento. Dal prezzo è escluso l'<span lang="en">hardware</span> ed eventuali modifiche nella costruzione, le quali possono essere liberamente richieste dal cliente e comunicate a priori della costruzione. Nel prezzo è compresa la garanzia a vita ed un periodo di 2 anni di sconti sui servizi di <span lang="en">set-up</span> e manutenzione. Vuoi informazioni più dettagliate? Contattami o inviami un messaggio su uno dei miei <span lang="en">social</span>!
+
+Contatti
+	Dove mi trovi? Presto detto.
+	Qui trovi tutti i miei recapiti:
+
+		Facebook
+		Instagram
+		telefono: +39 342 781 9582
+		e-mail: rstefano99@gmail.com
+		indirizzo: via Campana 13/a, Terrassa Padovana (PD).
+
+	Alcune cose importanti da sapere:
+		Contattami con discreto anticipo prima di passare! In laboratorio ricevo <em>solamente su appuntamento</em>. Fidati, è meglio così: in questa maniera posso accoglierti dedicandoti il <em>giusto tempo</em> che ti spetta. Inoltre, tieni conto che nella maggior parte dei laboratori di liuteria si alternano attività di manutenzione a quelle di costruzione. Questo vuol dire polvere, trucioli, ed elettroutensili potenzialmente pericolosi se sottovalutati. Vista la dimensione ridotta del laboratorio, prendendo <em>appuntamento</em>, posso farti trovare un ambiente pulito e sicuro per te e per i tuoi strumenti.
+
+		Come contattarmi?
+		Nonostante io provi ad essere sempre reperibile in orario lavorativo, a volte può capitare di <em>non</em> poter rispondere alle chiamate. Se devi contattarmi, <em>è preferibile farlo attraverso il form presente sul sito</em>, <em>oppure mediante un messaggio privato su Facebook, WhatsApp o Instagram</em>. In ogni caso, se preferisci parlarmi direttamente mediante una telefonata ma non ottieni risposta, non preoccuparti! Puoi chiedere di venire ricontattato attraverso uno dei mezzi sopra elencati.
+
+		Devo effettuare un determinato lavoro ma abito distante dal laboratorio. Come faccio per avere un preventivo?
+		Non c’è nessun problema. Puoi sempre contattarmi privatamente fornendo <em>informazioni dettagliate</em> ed allegando delle <em>foto</em>. Ricorda: una immagine vale più di mille parole. Tuttavia, non sempre è possibile fare un <em>preventivo</em> in questa maniera, soprattutto quando si tratta di riparazioni delicate. In queste circostanze mi riservo di darti più informazioni solamente dopo aver preso visione dello strumento.
+
+		Ok, ho preso appuntamento. Cosa metto nella custodia?
+		Ho visto persone portare di tutto e di più nelle loro custodie: cacciaviti, cavi, plettri, quaderni, batterie, accordatori e chi più ne ha più ne metta. <em>Cerca di portare meno cose possibili</em>. Più cose lasci nella tua custodia, più possibilità ci sono che qualcosa vada perso. Gli unici oggetti che consiglio di lasciarci dentro sono il tuo strumento, una o due mute di corde nuove e le eventuali chiavi per le regolazioni che ti sono state vendute insieme allo strumento.
+
+		Una muta di corde nuove?
+		Esatto. A parte pochissimi casi eccezionali, se lasciate la chitarra per una riparazione è <em>fondamentale</em> fornire anche la muta di <em>corde</em> nuove che vuoi sia montata. Quando bisogna rimuovere le corde per accedere alla tastiera, le corde vecchie subiscono molto stress per via di ripetuti cambi di tensione. Rimontare corde vecchie non solo ha ripercussioni sulla qualità del suono, ma anche sulla tenuta dell’accordatura e sull’intonazione. Una muta di corde nuove non costa tanto, e migliora notevolmente la suonabilità del tuo strumento. <strong>Io <em>non</em> fornisco garanzie sulla tenuta dell’accordatura, dell’intonazione e sulla pulizia del suono se a riparazione conclusa non vengono montate corde nuove</strong>.
+
+	About
+		Rizzo Guitars nasce come laboratorio "aperto al pubblico" nel 2019, ma la <em>passione</em> per la liuteria e la lavorazione del legno ce l'ho ormai da molti anni. Mi sono avvicinato a questa realtà da giovane, quando da chitarrista appena adolescente scoprii il laboratorio di <i>Bruno Barnes</i> a Monselice. Chi è della zona, conoscerà certamente questo nome molto bene. Con il tempo ho cominciato a perdere interesse nel suonare ed ho cominciato ad effettuare i primi lavori di <em>set-up</em>, per necessità, sui miei strumenti, e occasionalmente su quelli di alcuni tra i miei più cari amici. Da lì a qualche anno avrei rispolverato i vecchi attrezzi da falegname di mio padre per costruire la <em>mia prima chitarra elettrica</em>. In questi anni da liutaio mi sono "specializzato" nella <em>costruzione</em>, <em>riparazione</em>, <em>personalizzazione</em> e <em>messa a punto</em> di <em>chitarre</em> e <em>bassi elettrici</em>; Tuttavia, effettuo anche interventi su strumenti <em>classici</em> ed <em>acustici</em>. Inoltre, per via dell'epidemia di COVID-19 ho cominciato a studiare e a costruire chitarre <em>acustiche archtop</em> basate sui modelli Gibson anni '30, e Benedetto.
+
+		Ogni mio strumento è per lo più fatto interamente <em>a mano</em>, con il minimo impiego di elettroutensili possibile. Questo non rende i miei strumenti automaticamente “perfetti”, né li fa suonare “meglio”. L’utilizzo di lavorazioni manuali mi permette però di costruire strumenti a ritmi più lenti che si sposano bene con il mondo della liuteria: quando bisogna incollare le due parti di un piano armonico, la loro giunzione deve essere <em>perfetta</em>, qualunque altra approssimazione non è sufficiente. <em>Lavorare con attrezzi manuali mi permette di raggiungere questo traguardo in maniera più controllata e precisa.</em>
+
+		Da quando ho cominciato a costruire i miei primi strumenti, ho sempre avuto un'idea ben fissa in testa: <em>scegliere ed utilizzare solo materia prima locale</em>. Perché una decisione tanto drastica? Il legno è una materia prima molto particolare: <em>è viva</em>. A differenza dei metalli, due assi di legno della stessa specie possono essere molto diverse in termini di venatura, densità e lavorabilità. Per questo <em>quando costruisco uno strumento voglio essere sicuro che il materiale che sto utilizzando sia della migliore qualità possibile</em>, e questo si può fare solo andando di persona a comprare tavolame grezzo, in modo da selezionare fin dal primo momento il materiale più adatto alla costruzione di strumenti musicali.
