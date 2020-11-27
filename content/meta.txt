@@ -1,0 +1,26 @@
+In questo file sono presenti i tag meta che utilizzo sul mio sito. Da ricontrollare
+ed eventualmente aggiornare se vengono effettuate modifiche.
+
+Index:
+<meta name="keywords" content="Liutaio Padova", "Riparazioni", "Set-Up", "Rettifiche", "Refret", "Strumenti artigianali" />
+<meta name="description" content="Rizzo Guitars è un laboratorio di liuteria in provincia di Padova che si occupa di costruire, riparare e restaurare strumenti elettrici, classici ed acustici." />
+
+Servizi
+<meta name="keywords" content="Set-Up", "Rettifiche", "Refret", "Costruzione Chitarre", "Costruzione Bassi", "Padova", "riverniciatura chitarra" />
+<meta name="description" content="Rizzo Guitars effettua riparazioni e modifiche su strumenti già esistenti, come Set-Up, Rettifiche e Refret. Inoltre, si costruiscono bassi e chitarre elettriche con i migliori materiali disponibili." />
+
+Contatti
+<meta name="keywords" content="Liutaio", "Liuteria", "Padova", "contattare", "Servizi", "preventivo" />
+<meta name="description" content="Tutte le informazioni che ti servono per metterti in contatto con me." />
+
+About
+<meta name="keywords" content="Liuteria","Lavorazioni manuali", "chitarre", "Legno", "Passione", "fatto a mano", "qualità"/>
+<meta name="description" content="Liuteria significa ottimi materiali ed eccellente manodopera. Solo cura e attenzione al dettaglio creano strumenti musicali." />
+
+Strumenti
+<meta name="keywords" content="Liutaio", "Liuteria", "Padova", "Chitarre di liuteria", "Strumenti costruiti", "Strumenti" />
+<meta name="description" content="Rizzo Guitars Laboratorio di liuteria in provincia di Padova - Costruzione - Set Up - Riparazione Strumenti Musicali" />
+
+T-Type
+<meta name="keywords" content="Liutaio", "Liuteria", "Padova", "Tele", "Vintage", "Frassino", "Acero", "vernice nitro" />
+<meta name="description" content="T-Type Rizzo Guitars" />
