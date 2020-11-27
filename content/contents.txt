@@ -51,22 +51,23 @@ Servizi
 	<span lang="en">Set-up</span>: La tua chitarra non suona più come quella di una volta. Capita. Magari le corde non sono più così scorrevoli, magari qualche <em>nota frigge</em> e forse quella chitarra viene usata più come fermacarte che come strumento. Che ti serva un <em lang="en">set-up</em> completo oppure giusto una regolazione del <span lang="en">truss rod</span>, qui sei nel posto giusto.
 
 Strumenti
-	Fatti gli occhi. //probabilmente è il caso di toglierlo, potrebbe essere offensivo per chi non può vedere
+	Fatti gli occhi. In questa pagina troverai tutti gli strumenti che ho costruito fin'ora.
 
 	<span="en">T-Type</span>:
 	Un vecchio classico. Costruito alla vecchia maniera. Due <span lang="en">pick-up</span>, un ponte, sei corde. Forse anche troppe.
 
+	Non trovi quello che cerchi? Probabilmente non l'ho ancora costruito! Contattami per rendere un tuo sogno realtà!
+
 T-Type
 	Una semplicità disarmante ed un suono unico.
-	Il <i lang"en">body</i> è in <em>frassino europeo</em>, come europeo è l'<em>acero</em> per il <i>manico</i>. Il progetto riprende quello delle telecaster fine degli anni '50. Verniciata alla <em>nitro</em>, quando la imbracci e la colleghi all'amplificatore
-	sai già che suono aspettarti. La cosa bella di questa chitarra? È una tele e suona come una tele. I picku
-	p <span lang="en">vintage voiced</span> e i tasti sottili ricreano lo stesso <span lang="en">feel</span> che si avrebbe suonando un vero strumento <span lang="en">vintage</span>. E poi ogni aspetto della costruzione è <em>personalizzabile</em>. Il manico è costruito proprio come quello di una vecchia tele. <i lang="en">Skunkstripe</i> e <i lang="en">trussrod plug</i> in noce, con <i lang="en">trussrod single action</i> aggiustabile al tacco, proprio come ci si aspetta da una riproduzione d'epoca. La laccatura ambrata dà quel tocco caldo tipico di uno strumento <span lang="en">vintage</span>.
+	Il <i lang"en">body</i> è in <em>frassino europeo</em>, come europeo è l'<em>acero</em> del <i>manico</i>. Il progetto riprende quello delle telecaster fine degli anni '50. Verniciata alla <em>nitro</em>, quando la imbracci e la colleghi all'amplificatore
+	sai già che suono aspettarti. La cosa bella di questa chitarra? È una tele e suona come una tele. I <span lang="en">pickup vintage voiced</span> e i tasti sottili ricreano lo stesso <span lang="en">feel</span> che si avrebbe suonando un vero strumento <span lang="en">vintage</span>. E poi ogni aspetto della costruzione è <em>personalizzabile</em>. Il manico è costruito proprio come quello di una vecchia tele. <i lang="en">Skunkstripe</i> e <i lang="en">trussrod plug</i> in noce, con <i lang="en">trussrod single action</i> aggiustabile al tacco, proprio come ci si aspetta da una riproduzione d'epoca. La laccatura ambrata alla <em>nitro</em> dà alla vista il tocco caldo tipico di uno strumento <span lang="en">vintage</span>.
 
 	Nome	|	Descrizione
 	Body//da aggiungere lang="en" all'attributo td	|	Frassino europeo, <span lang="en">string through</span>. Cavità schermate. Laccatura lucida alla nitrocellulosa.
 	Manico	|	Acero europeo 1 pezzo, costruzione vintage, <span lang="en">bolt-on</span>. Laccatura lucida alla nitrocellulosa.
 	Capotasto	|	Osso, sagomato e lucidato a mano.
-	Tasti	|	Tasti <span lang="en">narrow</span>, <span lang="en">nickel-silver</span> 18%.
+	Tasti	|	Tasti <span lang="en">medium narrow</span>, <span lang="en">nickel-silver</span> 18%.
 	Hardware//da aggiungere lang="en" all'attributo td	|	Disponibile in configurazione demo.
 	Prezzo*	|	850€
 
