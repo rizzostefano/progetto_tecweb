@@ -11,5 +11,11 @@ footer {
 
 footer > section {
     text-align: center;
-    padding-bottom: 1.2em;
+    padding-bottom: 1.5em;
+    font-size: 1.1em;
+    font-weight: normal;
+}
+
+footer li {
+    padding: 0.4em;
 }
