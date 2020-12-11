@@ -1,0 +1,106 @@
+/*COLORI
+Nero: #101010
+Grigio Scuro: #303030
+Grigio: #aeaeae
+Grigio Chiaro: #eaeaea
+Bianco: #f9f9f9
+*/
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+header {
+    padding: 0.5em 2em 0.5em 2em;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    color: #303030;
+}
+
+header a {
+    text-decoration:none;
+}
+
+a:hover {
+    font-weight: bold;
+}
+
+a:active {
+    border: 2px #101010 solid;
+    border-radius: 3px;
+}
+
+a:visited {
+    color: #8a8a8a;
+}
+
+nav > ul li{
+    display: inline;
+    padding: 0.4em;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    font-weight: normal;
+}
+
+header img {
+    width: 8em;
+}
+
+main {
+    min-height: 500px;
+}
+
+h2 {
+
+}
+
+footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: #303030;
+    color: #f9f9f9;
+    text-align: right;
+    font-size: 1em;
+    padding: 1em 2em 1em 2em;
+    text-align: center;
+}
+
+footer > section {
+    grid-column-start: 3;
+    grid-column-end: 3;
+    text-align: left;
+}
+
+footer > small {
+    grid-column-start: 2;
+}
+
+footer a {
+    font-size: 1em;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    color: #f9f9f9;
+}
+
+footer a:hover {
+    font-weight: normal;
+}
+
+footer a:visited {
+    color: #aeaeae;
+}
+
+footer h2 {
+    font-size: 1.2em;
+    font-weight: normal;
+    text-transform: uppercase;
+}
