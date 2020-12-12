@@ -22,12 +22,13 @@ ul {
     list-style-type: none;
 }
 
-a {
+a{
     color: #303030;
 }
 
 header a {
     text-decoration:none;
+    border-bottom: thin #aeaeae solid;
 }
 
 a:hover {
@@ -51,16 +52,133 @@ nav > ul li{
     font-weight: normal;
 }
 
+form > ul li {
+    display: block;
+}
+
 header img {
     width: 8em;
 }
 
 main {
     min-height: 500px;
+    padding: 1em 2em 1em 4em;
 }
 
-h2 {
+main h1{
+    font-size: 2.3em;
+    padding-bottom: 0.5em;
+}
 
+main h2 {
+    font-size: 1.8em;
+    padding-bottom: 0.5em;
+}
+
+main h3 {
+    font-size: 1.5em;
+    padding-bottom: 0.5em;
+}
+
+dt {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 0 0 0.5em 1em;
+}
+
+dd {
+    font-size: 1em;
+    padding: 0 0 0.5em 2em;
+}
+
+section, article {
+    padding: 1em 2em 1em 2em;
+}
+
+p {
+    font-size: 1em;
+}
+
+.flex-container {
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.column {
+    width: 30%;
+    margin: 0 auto auto auto;
+}
+
+.column-content-aside {
+    width: 70%;
+    margin: 0 ;
+}
+
+.btn-container {
+    margin-top: 1em;
+    text-align: center;
+}
+iframe {
+    width: 100%;
+}
+
+.rectangle-image-cropper {
+    width: 18em;
+    height: 10em;
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.rectangle-image-cropper img {
+    display: inline;
+    margin: 0 auto;
+    height: auto;
+    width: 100%;
+}
+
+.circle-image-cropper {
+    width: 12em;
+    height: 12em;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.circle-image-cropper img{
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+.centered {
+    margin: auto;
+}
+
+main section p, main article p{
+    padding: 0.5em 2em 0em 2em;
+}
+
+input[type=text], input[type=email], textarea{
+    width: 100%;
+    padding: 0.5em;
+    margin: auto;
+    border: thin solid #aeaeae;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+input[type=submit], .button {
+    color: #f9f9f9;
+    background-color: #303030;
+    border: thin solid #aeaeae;
+    border-radius: 3px;
+    min-width: 50px;
+    width: 20%;
+    padding: 0.5em;
+    margin: auto;
+    text-transform: uppercase;
 }
 
 footer {
@@ -92,11 +210,12 @@ footer a {
 }
 
 footer a:hover {
-    font-weight: normal;
+    font-weight: bold;
+    color: #ffffff;
 }
 
-footer a:visited {
-    color: #aeaeae;
+footer a:visited, a:visited.button  {
+    color: #cfcfcf;
 }
 
 footer h2 {

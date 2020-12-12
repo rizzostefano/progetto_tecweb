@@ -19,3 +19,29 @@ footer > section {
 footer li {
     padding: 0.4em;
 }
+
+main {
+    padding: 1.5em;
+}
+
+h3, dt, dd {
+    padding: 0 0 1em 0;
+}
+
+section, article {
+    padding: 0.5em;
+}
+
+.column {
+    width: 100%;
+    margin: 0;
+    margin: auto;
+}
+
+.column-content-aside {
+    width: 100%;
+}
+
+main section p, main article p {
+    padding: 0.5em;
+}
