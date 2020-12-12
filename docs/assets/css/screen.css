@@ -169,6 +169,19 @@ input[type=text], input[type=email], textarea{
     box-sizing: border-box;
 }
 
+input[type=text], input[type=email], textarea{
+    width: 100%;
+    padding: 0.5em;
+    margin: auto;
+    border: thin solid #aeaeae;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+input[type=text].errored, input[type=email].errored, textarea.errored{
+    border: 2px solid red;
+}
+
 input[type=submit], .button {
     color: #f9f9f9;
     background-color: #303030;
