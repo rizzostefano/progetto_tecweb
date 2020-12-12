@@ -49,12 +49,14 @@
                     <h2>Contattami!</h2>
                     <form>
                         <ul>
-                            <li><label for="name">Nome</label></li>
-                            <li><input type="text" name="name" id="name"/></li>
-                            <li><label for="email">E-mail</label></li>
-                            <li><input type="email" name="email" id="email"/></li>
-                            <li><label for="message">Il tuo messaggio</label></li>
-                            <li><textarea name="message" id="message"></textarea></li>
+                            <!--usare class="errored" per segnare un input errato-->
+                            <li><label for="name">Nome*</label></li>
+                            <li><input type="text" name="name" id="name" required="required"/></li>
+                            <li><label for="email">E-mail*</label></li>
+                            <li><input type="email" name="email" id="email" required="required"/></li>
+                            <li><label for="message">Il tuo messaggio*</label></li>
+                            <li><textarea name="message" id="message" required="required"></textarea></li>
+                            <li>(* campo obbligatorio)</li>
                         </ul>
                         <div class="btn-container">
                             <input type="submit" value="invia" />
