@@ -7,14 +7,6 @@
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-.current {
-    display: inline;
-}
-
-img {
-    display: none;
-}
-
 nav > ul li{
     display: inline;
 }
@@ -32,26 +24,14 @@ a[href="https://www.instagram.com/rizzoguitars"]:after{
     content: ' (' attr(href) ')';
 }
 
-nav {
-    display: none;
-}
-
 a {
     color: black;
-}
-
-.material-icons {
-    display: none;
 }
 
 h2 {
     margin-top: 0.3cm;
 }
 
-.button {
-    display: none;
-}
-
-.print-remove{
+img, .button, .material-icons, nav, footer, form, iframe, .print-remove {
     display: none;
 }
