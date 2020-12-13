@@ -1,10 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: "Times New Roman";
 }
 
 nav > ul li{
