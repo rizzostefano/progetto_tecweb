@@ -1,153 +1,109 @@
 -- ****************** SqlDBM: MySQL ******************;
 -- ***************************************************;
+SET FOREIGN_KEY_CHECKS=0;
 
-DROP TABLE IF EXISTS `Amministrators`;
-DROP TABLE IF EXISTS `ArticleImages`;
-DROP TABLE IF EXISTS `Articles`;
-DROP TABLE IF EXISTS `ArticlesWriting`;
-DROP TABLE IF EXISTS `GuitarDetails`;
-DROP TABLE IF EXISTS `GuitarImages`;
-DROP TABLE IF EXISTS `Guitars`;
-DROP TABLE IF EXISTS `GuitarsModifi`;
-DROP TABLE IF EXISTS `Images`;
+DROP TABLE IF EXISTS GuitarsModify;
+DROP TABLE IF EXISTS ArticlesImages;
+DROP TABLE IF EXISTS ArticlesModify;
+DROP TABLE IF EXISTS Administrators;
+DROP TABLE IF EXISTS GuitarsImages;
+DROP TABLE IF EXISTS Articles;
+DROP TABLE IF EXISTS Guitars;
+DROP TABLE IF EXISTS Images;
 
+-- ************************************** Administrators
 
-
-DROP SCHEMA IF EXISTS `TecWebProject`;
-
-CREATE SCHEMA IF NOT EXISTS `TecWebProject`;
-
-
--- ************************************** `Amministrators`
-
-CREATE TABLE IF NOT EXISTS `Amministrators`
+CREATE TABLE IF NOT EXISTS Administrators
 (
- `Id`       int ai NOT NULL ,
- `Username` varchar(40) NOT NULL ,
- `Email`    varchar(40) NULL ,
- `Password` varchar(64) NOT NULL ,
-
-PRIMARY KEY (`Id`),
-UNIQUE KEY `UsernameUnique` (`Username`)
+ Id       int PRIMARY KEY AUTO_INCREMENT,
+ Username varchar(40) NOT NULL UNIQUE,
+ Email    varchar(40) NULL ,
+ Password varchar(64) NOT NULL
 );
 
--- ************************************** `ArticleImages`
+-- ************************************** Articles
 
-CREATE TABLE IF NOT EXISTS `ArticleImages`
+CREATE TABLE IF NOT EXISTS Articles
 (
- `IdImages`  int ai NOT NULL ,
- `IdArticle` int ai NOT NULL ,
+ Id                 int PRIMARY KEY AUTO_INCREMENT,
+ Title              text NOT NULL,
+ ArticleTextContent text NOT NULL,
+ InsertDate         datetime NOT NULL 
+ );
 
-PRIMARY KEY (`IdImages`, `IdArticle`),
-KEY `fkIdx_158` (`IdImages`),
-CONSTRAINT `FK_158` FOREIGN KEY `fkIdx_158` (`IdImages`) REFERENCES `Images` (`Id`),
-KEY `fkIdx_162` (`IdArticle`),
-CONSTRAINT `FK_162` FOREIGN KEY `fkIdx_162` (`IdArticle`) REFERENCES `Articles` (`Id`)
+ -- ************************************** Guitars
+
+CREATE TABLE IF NOT EXISTS Guitars
+(
+ Id         int PRIMARY KEY AUTO_INCREMENT,
+ Name       varchar(40) NOT NULL,
+ BasePrize  double NULL,
+ InsertDate datetime NOT NULL,
+ Decription text NOT NULL
 );
 
+-- ************************************** Images
 
--- ************************************** `Articles`
-
-CREATE TABLE IF NOT EXISTS `Articles`
+CREATE TABLE IF NOT EXISTS Images
 (
- `Id`                 int ai NOT NULL ,
- `Title`              tinytext NOT NULL ,
- `ArticleTextContent` longtext NOT NULL ,
- `InsertDate`         datetime NOT NULL ,
-
-PRIMARY KEY (`Id`),
-UNIQUE KEY `ArticleTitleUnique` (`Title`)
+ Id   int PRIMARY KEY AUTO_INCREMENT,
+ Name varchar(64) NOT NULL,
+ Alt text,
+ Url  varchar(128) NOT NULL
 );
 
+-- ************************************** ArticlesImages
 
-
--- ************************************** `ArticlesWriting`
-
-CREATE TABLE IF NOT EXISTS `ArticlesWriting`
+CREATE TABLE IF NOT EXISTS ArticlesImages
 (
- `IdArticle`       int ai NOT NULL ,
- `IdAmministrator` int ai NOT NULL ,
- `ModifiDate`      datetime NOT NULL ,
- `CommentChanges`  text NULL ,
+ IdImage  int NOT NULL ,
+ IdArticle int NOT NULL ,
 
-PRIMARY KEY (`IdArticle`, `IdAmministrator`, `ModifiDate`),
-KEY `fkIdx_142` (`IdArticle`),
-CONSTRAINT `FK_142` FOREIGN KEY `fkIdx_142` (`IdArticle`) REFERENCES `Articles` (`Id`),
-KEY `fkIdx_213` (`IdAmministrator`),
-CONSTRAINT `FK_213` FOREIGN KEY `fkIdx_213` (`IdAmministrator`) REFERENCES `Amministrators` (`Id`)
+ PRIMARY KEY (IdImage, IdArticle),
+ FOREIGN KEY (IdImage) REFERENCES Images(Id) ON DELETE CASCADE,
+ FOREIGN KEY (IdArticle) REFERENCES Articles(Id) ON DELETE CASCADE
 );
 
+-- ************************************** ArticlesModify
 
-
--- ************************************** `GuitarDetails`
-
-CREATE TABLE IF NOT EXISTS `GuitarDetails`
+CREATE TABLE IF NOT EXISTS ArticlesModify
 (
- `IdGuitars`  int ai NOT NULL ,
- `Decription` text NOT NULL ,
- `Name`       varchar(40) NOT NULL ,
+ IdArticle       int NOT NULL,
+ IdAdministrator int NOT NULL,
+ ModifyDate      datetime NOT NULL,
+ CommentChanges  text NULL,
 
-PRIMARY KEY (`IdGuitars`, `Name`),
-KEY `fkIdx_190` (`IdGuitars`),
-CONSTRAINT `FK_190` FOREIGN KEY `fkIdx_190` (`IdGuitars`) REFERENCES `Guitars` (`Id`)
+ PRIMARY KEY (IdArticle, IdAdministrator, ModifyDate),
+ FOREIGN KEY (IdArticle) REFERENCES Articles(Id) ON DELETE CASCADE,
+ FOREIGN KEY (IdAdministrator) REFERENCES Administrators(Id) ON DELETE CASCADE
 );
 
 
--- ************************************** `GuitarImages`
+-- ************************************** GuitarImages
 
-CREATE TABLE IF NOT EXISTS `GuitarImages`
+CREATE TABLE IF NOT EXISTS GuitarsImages
 (
- `IdGuitar` int ai NOT NULL ,
- `IdImage`  int ai NOT NULL ,
+ IdGuitar int NOT NULL,
+ IdImage  int NOT NULL,
 
-PRIMARY KEY (`IdGuitar`, `IdImage`),
-KEY `fkIdx_171` (`IdGuitar`),
-CONSTRAINT `FK_171` FOREIGN KEY `fkIdx_171` (`IdGuitar`) REFERENCES `Guitars` (`Id`),
-KEY `fkIdx_175` (`IdImage`),
-CONSTRAINT `FK_175` FOREIGN KEY `fkIdx_175` (`IdImage`) REFERENCES `Images` (`Id`)
+ PRIMARY KEY (IdGuitar, IdImage),
+ FOREIGN KEY (IdGuitar) REFERENCES Guitars(Id) ON DELETE CASCADE,
+ FOREIGN KEY (IdImage) REFERENCES Images(Id) ON DELETE CASCADE
 );
 
 
--- ************************************** `Guitars`
+-- ************************************** GuitarsModify
 
-CREATE TABLE IF NOT EXISTS `Guitars`
+CREATE TABLE IF NOT EXISTS GuitarsModify
 (
- `Id`         int ai NOT NULL ,
- `Name`       varchar(40) NOT NULL ,
- `BasePrize`  double precision NULL ,
- `InsertDate` datetime NOT NULL ,
+ IdGuitar        int NOT NULL,
+ IdAdministrator int NOT NULL,
+ ModifyDate      datetime NOT NULL,
+ CommentChanges  text NULL,
 
-PRIMARY KEY (`Id`)
+ PRIMARY KEY (IdGuitar, IdAdministrator, ModifyDate),
+ FOREIGN KEY (IdGuitar) REFERENCES Guitars(Id) ON DELETE CASCADE,
+ FOREIGN KEY (IdAdministrator) REFERENCES Administrators(Id) ON DELETE CASCADE
 );
 
-
-
--- ************************************** `GuitarsModifi`
-
-CREATE TABLE IF NOT EXISTS `GuitarsModifi`
-(
- `IdGuitar`        int ai NOT NULL ,
- `IdAmministrator` int ai NOT NULL ,
- `ModifiDate`      datetime NOT NULL ,
- `CommentChanges`  text NULL ,
-
-PRIMARY KEY (`IdGuitar`, `IdAmministrator`, `ModifiDate`),
-KEY `fkIdx_183` (`IdGuitar`),
-CONSTRAINT `FK_183` FOREIGN KEY `fkIdx_183` (`IdGuitar`) REFERENCES `Guitars` (`Id`),
-KEY `fkIdx_216` (`IdAmministrator`),
-CONSTRAINT `FK_216` FOREIGN KEY `fkIdx_216` (`IdAmministrator`) REFERENCES `Amministrators` (`Id`)
-);
-
-
-
--- ************************************** `Images`
-
-CREATE TABLE IF NOT EXISTS `Images`
-(
- `Id`   int ai NOT NULL ,
- `Name` varchar(64) NOT NULL ,
- `URL`  varchar(128) NOT NULL ,
-
-PRIMARY KEY (`Id`)
-);
-
+SET FOREIGN_KEY_CHECKS=1;
