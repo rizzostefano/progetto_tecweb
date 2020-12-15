@@ -1,0 +1,110 @@
+<DOCTYPE html>
+<html lang="it">
+    <head>
+        <title>Nuovo Articolo | ADMIN Rizzo Guitars</title>
+        <meta charset="UTF-8" />
+        <meta name="language" content="italian it" />
+        <meta name="author" content="Stefano Rizzo, Leonardo Tredese, Samuele Vanini, Michele Veronesi" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" type="text/css" href="assets/css/screen.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="assets/css/print.css" media="print" />
+        <link rel="stylesheet" type="text/css" href="assets/css/mobile.css" media="only screen and (max-width:640px)" />
+    </head>
+    <body>
+        <header>
+            <img src="assets/images/logo-no-bg-low-res.png" class="logo" alt="Rizzo"/>
+			<span>Amministrazione</span>
+            <nav>
+                <ul>
+                    <li><a href="index.html" lang="en">Home</a></li>
+                    <li><a href="admin-nuovo-articolo.html">Nuovo Articolo</a></li>
+                    <li>Nuovo Strumento</li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+			<!-- TODO: INSERIRE ACTION AGGIUNTA ARTICOLO --> 
+			<form method="POST" enctype="multipart/form-data" action="" name="nuovo-strumento">
+				<fieldset>
+					<legend>Contenuto Principale</legend>
+					<label for="nome-strumento">Nome</label>
+					<input type="text" id="nome-strumento" name="nome-strumento"
+                	       placeholder="Inserisci qui il nome dello strumento"
+						   required="required"
+                	       aria-required="true"
+                	       aria-label="Campo per l'inserimento del nome dello strumento"
+                	       data-msg-required="Per favore, inserisci un nome per questo strumento" /> 
+					<label for="contenuto-strumento">Lunga Descrizione</label>
+					<input type="textarea" id="contenuto-strumento" name="contenuto-strumento"
+						   rows="30" cols="100"
+                	       placeholder="Inserisci qui una lunga descrizione dello strumento"
+						   required="required"
+                	       aria-required="true"
+                	       aria-label="Campo per l'inserimento di una lunga descrizione per lo strumento"
+                	       data-msg-required="Per favore, inserisci la lunga descrizione" />
+				</fieldset>
+				<fieldset>
+					<legend>Dettagli Chitarra</legend>
+					<label for="body-strumento" lang="en">Body</label>
+					<input type="text" id="body-strumento" name="titlo-strumento"
+                	       placeholder="Inserisci qui il body dello strumento"
+						   required="required"
+                	       aria-required="true"
+                	       aria-label="Campo per l'inserimento del body dello"
+                	       data-msg-required="Per favore, inserisci un nome per questo strumento" /> 
+					<label for="manico-strumento">Manico</label>
+					<input type="text" id="manico-strumento" name="manico-strumento"
+                	       placeholder="Inserisci qui il manico dello strumento"
+						   required="required"
+                	       aria-required="true"
+                	       aria-label="Campo per l'inserimento del manico dello strumento"
+                	       data-msg-required="Per favore, inserisci un manico per questo strumento" /> 
+					<label for="capotasto-strumento">Capotasto</label>
+					<input type="text" id="capotasto-strumento" name="capotasto-strumento"
+                	       placeholder="Inserisci qui il capotasto dello strumento"
+						   required="required"
+                	       aria-required="true"
+                	       aria-label="Campo per l'inserimento del capotasto dello strumento"
+                	       data-msg-required="Per favore, inserisci un Capotasto per questo strumento" /> 
+					<label for="tasti-strumento">Tasti</label>
+					<input type="text" id="tast-strumento" name="tasti-strumento"
+                	       placeholder="Inserisci qui i tasti dello strumento"
+						   required="required"
+                	       aria-required="true"
+                	       aria-label="Campo per l'inserimento dei tasti dello strumento"
+                	       data-msg-required="Per favore, inserisci i tasti per questo strumento" /> 
+					<label for="hardware-strumento" lang="en">Hardware</label>
+					<input type="text" id="hardware-strumento" name="hardware-strumento"
+                	       placeholder="Inserisci qui l'hardware nome dello strumento"
+						   required="required"
+                	       aria-required="true"
+                	       aria-label="Campo per l'inserimento dell'hardware dello strumento"
+                	       data-msg-required="Per favore, inserisci l'hardware per questo strumento" /> 
+					<label for="prezzo-strumento">Prezzo in euro</label>
+					<input type="text" id="prezzo-strumento" name="prezzo-strumento"
+                	       placeholder="Inserisci qui il prezzo in euro dello strumento"
+						   required="required"
+                	       aria-required="true"
+                	       aria-label="Campo per l'inserimento del prezzo dello strumento"
+                	       data-msg-required="Per favore, inserisci un prezzo per questo strumento" /> 
+				</fieldset>
+				<fieldset>
+					<legend>Immagine</legend>
+					<label for="immagine-strumento">File</label>
+					<input type="file" id="immagine-strumento" name="immagine-strumento"/>
+					<label for="alt-immagine-strumento">Testo alternativo</label>
+					<input type="text" id="alt-immagine-strumento" name="alt-immagine-strumento"
+                	       placeholder="Inserisci qui il testo alternativo per l'immagine" 
+                	       aria-label="Campo per l'inserimento per il testo alternativo per l'immagine" 
+                	       data-msg-required="Per favore, inserisci un testo alternativo per l'immagine" /> 
+				</fieldset>
+				<input type="submit"/>
+			</form>
+        </main>
+        <footer>
+            <small lang="en">
+                &copy; Rizzo Guitars. All rights reserved.
+            </small>
+        </footer>
+    </body>
+</html>
