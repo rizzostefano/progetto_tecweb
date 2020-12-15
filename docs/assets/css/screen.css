@@ -152,6 +152,20 @@ iframe {
     width: auto;
 }
 
+.square-image-cropper {
+    width: 12em;
+    height: 12em;
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+.square-image-cropper img{
+    display: inline;
+    margin: auto;
+    height: 100%;
+    width: auto;
+}
+
 .centered {
     margin: auto;
 }
