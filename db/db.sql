@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS Articles
  Id                 int PRIMARY KEY AUTO_INCREMENT,
  Title              text NOT NULL,
  ArticleTextContent text NOT NULL,
+ Summary            text NOT NULL,
  InsertDate         datetime NOT NULL 
  );
 
