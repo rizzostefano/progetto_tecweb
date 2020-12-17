@@ -24,11 +24,12 @@
         </header>
         <main>
 			<!-- TODO: INSERIRE ACTION AGGIUNTA ARTICOLO --> 
-			<form method="POST" action="" name="nuovo-articolo">
+			<form method="POST" action="" id="nuovo-articolo" name="nuovo-articolo">
 				<fieldset>
 					<legend>Corpo dell'articolo</legend>	
 					<label for="titolo-articolo">Titolo</label>
 					<input type="text" id="titolo-articolo" name="titolo-articolo"
+                           minlength="1" maxlength="30"	
 						   placeholder="Inserisci qui il titolo dell'articolo che vuoi pubblicare"
 						   required="required"
 						   aria-required="true"
@@ -37,6 +38,7 @@
 					<label for="contenuto-articolo">Contenuto</label>
 					<input type="textarea" id="contenuto-articolo" name="contenuto-articolo"
 						   rows="30" cols="100"
+                           minlength="30"
 						   placeholder="Inserisci qui il corpo dell'articolo, puoi utilizzare il markup di HTML"
 						   required="required"
 						   aria-required="true"
@@ -49,6 +51,7 @@
 					<input type="file" id="immagine-strumento" name="immagine-strumento"/>
 					<label for="alt-immagine-strumento">Testo alternativo</label>
 					<input type="text" id="alt-immagine-strumento" name="alt-immagine-strumento"
+                           minlength="1" maxlength="70"	
                 	       placeholder="Inserisci qui il testo alternativo per l'immagine" 
                 	       aria-label="Campo per l'inserimento per il testo alternativo per l'immagine" 
                 	       data-msg-required="Per favore, inserisci un testo alternativo per l'immagine" /> 
