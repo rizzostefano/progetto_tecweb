@@ -45,69 +45,38 @@
                 	       aria-label="Campo per l'inserimento di una lunga descrizione per lo strumento"
                 	       data-msg-required="Per favore, inserisci la lunga descrizione" />
 				</fieldset>
-				<fieldset>
+				<fieldset id="attributi-strumento">
 					<legend>Dettagli Chitarra</legend>
-					<label for="body-strumento" lang="en">Body</label>
-					<input type="text" id="body-strumento" name="titlo-strumento"
+					<input type="button" id="aggiungi-attributo-strumento" value="Aggiungi attributo" />
+					<input type="button" id="rimuovi-attributo-strumento-1" value="Rimuovi attributo 1"/>
+					<label for="attributo-strumento-1" lang="en" data-msg-required="Per favore, inserisci un nome per questo strumento" >Nome Attributo 1</label>
+					<input type="text" id="dettaglio-strumento-1" name="dettaglio-strumento-1"
                        	   minlength="1"
-                	       placeholder="Inserisci qui il body dello strumento"
+                	       placeholder="Inserisci qui il nome dell'attributo 1 per lo strumento"
 						   required="required"
                 	       aria-required="true"
-                	       aria-label="Campo per l'inserimento del body dello"
-                	       data-msg-required="Per favore, inserisci un nome per questo strumento" /> 
-					<label for="manico-strumento">Manico</label>
-					<input type="text" id="manico-strumento" name="manico-strumento"
+                	       aria-label="Campo per nome dell'attributo 1 per lo strumento"/>
+					<label for="body-strumento" lang="en" data-msg-required="Per favore, inserisci una descrizione perl'attributo 1 dello strumento" >Descrizione Attributo 1</label>
+					<input type="textarea" id="descrizione-strumento-1" name="descrizione-strumento-1"
                        	   minlength="1"
-                	       placeholder="Inserisci qui il manico dello strumento"
+                	       placeholder="Inserisci qui una descrizione per l'attributo 1"
 						   required="required"
                 	       aria-required="true"
-                	       aria-label="Campo per l'inserimento del manico dello strumento"
-                	       data-msg-required="Per favore, inserisci un manico per questo strumento" /> 
-					<label for="capotasto-strumento">Capotasto</label>
-					<input type="text" id="capotasto-strumento" name="capotasto-strumento"
-                       	   minlength="1"
-                	       placeholder="Inserisci qui il capotasto dello strumento"
-						   required="required"
-                	       aria-required="true"
-                	       aria-label="Campo per l'inserimento del capotasto dello strumento"
-                	       data-msg-required="Per favore, inserisci un Capotasto per questo strumento" /> 
-					<label for="tasti-strumento">Tasti</label>
-					<input type="text" id="tasti-strumento" name="tasti-strumento"
-                       	   minlength="1"
-                	       placeholder="Inserisci qui i tasti dello strumento"
-						   required="required"
-                	       aria-required="true"
-                	       aria-label="Campo per l'inserimento dei tasti dello strumento"
-                	       data-msg-required="Per favore, inserisci i tasti per questo strumento" /> 
-					<label for="hardware-strumento" lang="en">Hardware</label>
-					<input type="text" id="hardware-strumento" name="hardware-strumento"
-                       	   minlength="1"
-                	       placeholder="Inserisci qui l'hardware nome dello strumento"
-						   required="required"
-                	       aria-required="true"
-                	       aria-label="Campo per l'inserimento dell'hardware dello strumento"
-                	       data-msg-required="Per favore, inserisci l'hardware per questo strumento" /> 
-					<label for="prezzo-strumento">Prezzo in euro</label>
-					<input type="text" id="prezzo-strumento" name="prezzo-strumento"
-                       	   minlength="1"
-                	       placeholder="Inserisci qui il prezzo in euro dello strumento"
-						   required="required"
-                	       aria-required="true"
-                	       aria-label="Campo per l'inserimento del prezzo dello strumento"
-                	       data-msg-required="Per favore, inserisci un prezzo per questo strumento"/> 
+                	       aria-label="Campo per l'inserimento della descrizione per l'attributo 1 dello strumento"/> 
 				</fieldset>
-				<fieldset>
-					<legend>Immagine</legend>
-					<label for="immagine-strumento">File</label>
-					<input type="file" id="immagine-strumento" name="immagine-strumento"/>
-					<label for="alt-immagine-strumento">Testo alternativo</label>
-					<input type="text" id="alt-immagine-strumento" name="alt-immagine-strumento"
+				<fieldset id="immagini-strumento">
+					<legend>Immagini Articolo</legend>
+					<input type="button" id="aggiungi-immagine-strumento" value="Aggiungi immagine"/>
+					<input type="button" id="rimuovi-immagine-strumento-1" value="Rimuovi immagine 1"/>
+					<label for="immagine-strumento-1" data-msg-required="Per favore, inserisci il file 1">File immagine 1</label>
+					<input type="file" id="immagine-strumento-1" name="immagine-strumento-1" required="required"/>
+					<label for="alt-immagine-strumento" data-msg-required="Per favore, inserisci un testo alternativo per l'immagine 1">Testo alternativo immagine 1</label>
+					<input type="text" id="alt-immagine-strumento-1" name="alt-immagine-strumento-1"
                            minlength="1" maxlength="70"	
-                	       placeholder="Inserisci qui il testo alternativo per l'immagine" 
-                	       aria-label="Campo per l'inserimento per il testo alternativo per l'immagine" 
-                	       data-msg-required="Per favore, inserisci un testo alternativo per l'immagine" /> 
+                	       placeholder="Inserisci qui il testo alternativo per l'immagine 1" 
+                	       aria-label="Campo per l'inserimento per il testo alternativo per l'immagine 1"/> 
 				</fieldset>
-				<input type="submit"/>
+			    <input type="submit" value="invia"/>
 			</form>
         </main>
         <footer>
