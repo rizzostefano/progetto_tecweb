@@ -27,34 +27,33 @@
 			<form method="POST" action="" id="nuovo-articolo" name="nuovo-articolo">
 				<fieldset>
 					<legend>Corpo dell'articolo</legend>	
-					<label for="titolo-articolo">Titolo</label>
+					<label for="titolo-articolo" data-msg-required="Per favore, inserisci un titolo per l'articolo">Titolo</label>
 					<input type="text" id="titolo-articolo" name="titolo-articolo"
                            minlength="1" maxlength="30"	
 						   placeholder="Inserisci qui il titolo dell'articolo che vuoi pubblicare"
 						   required="required"
 						   aria-required="true"
-						   aria-label="Campo per l'inserimento del titolo"
-						   data-msg-required="Per favore, inserisci un titolo per l'articolo" /> 
-					<label for="contenuto-articolo">Contenuto</label>
+						   aria-label="Campo per l'inserimento del titolo"/> 
+					<label for="contenuto-articolo" data-msg-required="Per favore, inserisci il corpo dell'articolo utilizzando HTML valido">Contenuto</label>
 					<input type="textarea" id="contenuto-articolo" name="contenuto-articolo"
 						   rows="30" cols="100"
                            minlength="30"
-						   placeholder="Inserisci qui il corpo dell'articolo, puoi utilizzare il markup di HTML"
+						   placeholder="Inserisci qui il corpo dell'articolo"
 						   required="required"
 						   aria-required="true"
-						   aria-label="Campo per l'inserimento del corpo dell'articolo  puoi utilizzare il markup di HTML"
-						   data-msg-required="Per favore, inserisci il corpo dell'articolo utilizzando HTML valido" />
+						   aria-label="Campo per l'inserimento del corpo dell'articolo  puoi utilizzare il markup di HTML"/>
 				</fieldset>
-				<fieldset>
-					<legend>Immagine</legend>
-					<label for="immagine-strumento">File</label>
-					<input type="file" id="immagine-strumento" name="immagine-strumento"/>
-					<label for="alt-immagine-strumento">Testo alternativo</label>
-					<input type="text" id="alt-immagine-strumento" name="alt-immagine-strumento"
+				<fieldset id="immagini-articolo">
+					<legend>Immagini Articolo</legend>
+					<input type="button" id="aggiungi-immagine-articolo" value="Aggiungi immagine"/>
+					<input type="button" id="rimuovi-immagine-articolo-1" value="Rimuovi immagine 1"/>
+					<label for="immagine-articolo-1" data-msg-required="Per favore, inserisci il file 1">File immagine 1</label>
+					<input type="file" id="immagine-articolo-1" name="immagine-articolo-1"/>
+					<label for="alt-immagine-articolo" data-msg-required="Per favore, inserisci un testo alternativo per l'immagine 1">Testo alternativo immagine 1</label>
+					<input type="text" id="alt-immagine-articolo-1" name="alt-immagine-articolo-1"
                            minlength="1" maxlength="70"	
-                	       placeholder="Inserisci qui il testo alternativo per l'immagine" 
-                	       aria-label="Campo per l'inserimento per il testo alternativo per l'immagine" 
-                	       data-msg-required="Per favore, inserisci un testo alternativo per l'immagine" /> 
+                	       placeholder="Inserisci qui il testo alternativo per l'immagine 1" 
+                	       aria-label="Campo per l'inserimento per il testo alternativo per l'immagine 1"/> 
 				</fieldset>
 				<input type="submit"/>
 			</form>
