@@ -62,7 +62,7 @@ class ArticleModel
      * @param: insertDate - data in cui è inserito un articolo
      * @return: true in caso la query abbia successo altrimenti false;
      */
-    public function add_conn($title, $content, $insertDate)
+    public function addConnection($title, $content, $insertDate)
     {
         return $this->conn->execute("insert into Articles (Title,ArticleTextContent,InsertDate) values ('$title','$content','$insertDate';");
     }
@@ -74,7 +74,7 @@ class ArticleModel
      * @param: concent - contenuto dell'articolo da modificare
      * @return: true in caso la query abbia successo altrimenti false;
      */
-    public function edit_conn($id, $title, $content)
+    public function editArticle($id, $title, $content)
     {
         return $this->conn->execute("update Articles set Title = '$title' , ArticleTextContent = '$content' where Id = $id");
     }
