@@ -41,7 +41,10 @@ CREATE TABLE IF NOT EXISTS Guitars
     Name       varchar(40) NOT NULL UNIQUE,
     BasePrize  double NULL,
     Summary text NOT NULL,
-    InsertDate datetime NOT NULL
+    InsertDate datetime NOT NULL,
+    CoverImage int,
+
+    FOREIGN KEY (CoverImage) REFERENCES Images(Id) ON DELETE SET NULL
 );
 
 -- ************************************** Images

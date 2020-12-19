@@ -14,7 +14,7 @@
      /* Il costruttore della classe tenta di effettuare una connessione al database. In caso di mancata riuscita ritorna a video un errore (non di php) */
      public function __construct()
      {
-         if (!($this->current_connection = @mysqli_connect(static::HOST, static::USERNAME, static::PASSWORD, static::DATABASE_NAME))) {
+         if (!($this->current_connection = mysqli_connect(static::HOST, static::USERNAME, static::PASSWORD, static::DATABASE_NAME))) {
              error_log("Debugging errno: " . mysqli_connect_errno()."Debugging error: " . mysqli_connect_error());
              echo "Momentaneamente i dati non sono disponibili. Riprovare più tardi.";
          }
@@ -24,17 +24,27 @@
      {
          return $this->current_connection;
      }
-     /* Il metodo esegue e ritorna il risultato di una query */
-     public function execute($query)
-     {
-         $result = @mysqli_query($this->current_connection, $query);
-         @mysqli_close($this->current_connection);
-         return $result;
+
+     public function prepareQuery($query) {
+        $stmt = mysqli_stmt_init($conn);
+        if(!mysqli_stmt_prepare($stmt, $query))
+        {
+            print "Failed to prepare statement\n";
+        }
+        return $stmt;
      }
+
+     public function executePreparedQuery($stmt)
+     {
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        return $result;         
+     }
+
      /* Il metodo esegue la disconnessione dal database */
      public function disconnect()
      {
-         @mysqli_close($this->current_connection);
+         mysqli_close($this->current_connection);
      }
  }
  ?>
