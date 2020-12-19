@@ -2,10 +2,10 @@
 require_once('dbConnection.php');
 
 class RepoGuitar{
-    private $conn = '';
+    private $conn;
 
-    public function __construct() {
-        $conn = new DbConnection();
+    public function __construct($DbConnection) {
+        $conn = $DbConnection;
     }
 
     /**
