@@ -24,6 +24,18 @@ class ArticleModel
     {
         return @mysqli_fetch_all($this->conn->execute("select * from Articles order by InsertDate"), MYSQLI_ASSOC);
     }
+
+    /**
+     * @summary: metodo che restituisce tutte le immagini relative ad un articolo dato il suo id
+     * @param: articleId - id dell'articolo di cui si vogliono le immagini
+     * @return: array associativo contenente tutte le immagini realtive ad un articolo
+     */
+    public function getArticleImages($articleId)
+    {
+        $result = mysqli_fetch_all($this->conn->execute("select * from ArticlesImages as ai join Images as i on ai.IdImage = i.Id where ai.IdArticle = $articleId"), MYSQLI_ASSOC);
+        var_dump($articleId);
+        return $result;
+    }
     
     /* 
      * @summary: effettua una ricerca di uno specifico articolo dato un id
