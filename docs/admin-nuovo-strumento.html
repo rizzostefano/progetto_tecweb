@@ -36,19 +36,18 @@
                 	       aria-label="Campo per l'inserimento del nome dello strumento"
                 	       data-msg-required="Per favore, inserisci un nome per questo strumento" /> 
 					<label for="contenuto-strumento">Lunga Descrizione</label>
-					<input type="textarea" id="contenuto-strumento" name="contenuto-strumento"
+					<textarea id="contenuto-strumento" name="contenuto-strumento"
                        	   minlength="10"
 						   rows="30" cols="100"
                 	       placeholder="Inserisci qui una lunga descrizione dello strumento"
 						   required="required"
                 	       aria-required="true"
                 	       aria-label="Campo per l'inserimento di una lunga descrizione per lo strumento"
-                	       data-msg-required="Per favore, inserisci la lunga descrizione" />
+                	       data-msg-required="Per favore, inserisci la lunga descrizione" /></textarea>
 				</fieldset>
 				<fieldset id="attributi-strumento">
 					<legend>Dettagli Chitarra</legend>
-					<input type="button" id="aggiungi-attributo-strumento" value="Aggiungi attributo" />
-					<input type="button" id="rimuovi-attributo-strumento-1" value="Rimuovi attributo 1"/>
+					<input type="button" id="aggiungi-attributo-strumento" class="add" value="Aggiungi attributo" />
 					<label for="attributo-strumento-1" lang="en" data-msg-required="Per favore, inserisci un nome per questo strumento" >Nome Attributo 1</label>
 					<input type="text" id="dettaglio-strumento-1" name="dettaglio-strumento-1"
                        	   minlength="1"
@@ -57,17 +56,17 @@
                 	       aria-required="true"
                 	       aria-label="Campo per nome dell'attributo 1 per lo strumento"/>
 					<label for="body-strumento" lang="en" data-msg-required="Per favore, inserisci una descrizione perl'attributo 1 dello strumento" >Descrizione Attributo 1</label>
-					<input type="textarea" id="descrizione-strumento-1" name="descrizione-strumento-1"
+					<textarea id="descrizione-strumento-1" name="descrizione-strumento-1"
                        	   minlength="1"
                 	       placeholder="Inserisci qui una descrizione per l'attributo 1"
 						   required="required"
                 	       aria-required="true"
-                	       aria-label="Campo per l'inserimento della descrizione per l'attributo 1 dello strumento"/> 
+                	       aria-label="Campo per l'inserimento della descrizione per l'attributo 1 dello strumento"/></textarea>
+					<input type="button" id="rimuovi-attributo-strumento-1" class="remove" value="Rimuovi attributo 1"/>
 				</fieldset>
 				<fieldset id="immagini-strumento">
 					<legend>Immagini Articolo</legend>
-					<input type="button" id="aggiungi-immagine-strumento" value="Aggiungi immagine"/>
-					<input type="button" id="rimuovi-immagine-strumento-1" value="Rimuovi immagine 1"/>
+					<input type="button" id="aggiungi-immagine-strumento"  class="add" value="Aggiungi immagine"/>
 					<label for="immagine-strumento-1" data-msg-required="Per favore, inserisci il file 1">File immagine 1</label>
 					<input type="file" id="immagine-strumento-1" name="immagine-strumento-1" required="required"/>
 					<label for="alt-immagine-strumento" data-msg-required="Per favore, inserisci un testo alternativo per l'immagine 1">Testo alternativo immagine 1</label>
@@ -75,6 +74,7 @@
                            minlength="1" maxlength="70"	
                 	       placeholder="Inserisci qui il testo alternativo per l'immagine 1" 
                 	       aria-label="Campo per l'inserimento per il testo alternativo per l'immagine 1"/> 
+					<input type="button" id="rimuovi-immagine-strumento-1" class="remove" value="Rimuovi immagine 1"/>
 				</fieldset>
 			    <input type="submit" value="invia"/>
 			</form>

@@ -35,18 +35,17 @@
 						   aria-required="true"
 						   aria-label="Campo per l'inserimento del titolo"/> 
 					<label for="contenuto-articolo" data-msg-required="Per favore, inserisci il corpo dell'articolo utilizzando HTML valido">Contenuto</label>
-					<input type="textarea" id="contenuto-articolo" name="contenuto-articolo"
+					<textarea id="contenuto-articolo" name="contenuto-articolo"
 						   rows="30" cols="100"
                            minlength="30"
 						   placeholder="Inserisci qui il corpo dell'articolo"
 						   required="required"
 						   aria-required="true"
-						   aria-label="Campo per l'inserimento del corpo dell'articolo  puoi utilizzare il markup di HTML"/>
+						   aria-label="Campo per l'inserimento del corpo dell'articolo  puoi utilizzare il markup di HTML"></textarea>
 				</fieldset>
 				<fieldset id="immagini-articolo">
 					<legend>Immagini Articolo</legend>
-					<input type="button" id="aggiungi-immagine-articolo" value="Aggiungi immagine"/>
-					<input type="button" id="rimuovi-immagine-articolo-1" value="Rimuovi immagine 1"/>
+					<input type="button" id="aggiungi-immagine-articolo" class="add" value="Aggiungi immagine"/>
 					<label for="immagine-articolo-1" data-msg-required="Per favore, inserisci il file 1">File immagine 1</label>
 					<input type="file" id="immagine-articolo-1" name="immagine-articolo-1"/>
 					<label for="alt-immagine-articolo" data-msg-required="Per favore, inserisci un testo alternativo per l'immagine 1">Testo alternativo immagine 1</label>
@@ -54,6 +53,7 @@
                            minlength="1" maxlength="70"	
                 	       placeholder="Inserisci qui il testo alternativo per l'immagine 1" 
                 	       aria-label="Campo per l'inserimento per il testo alternativo per l'immagine 1"/> 
+					<input type="button" id="rimuovi-immagine-articolo-1" class="remove" value="Rimuovi immagine 1"/>
 				</fieldset>
 				<input type="submit"/>
 			</form>

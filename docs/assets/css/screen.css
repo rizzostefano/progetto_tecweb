@@ -55,6 +55,9 @@ nav > ul li{
 form > ul li {
     display: block;
 }
+form label {
+    display: block;
+}
 
 header img {
     width: 8em;
@@ -171,7 +174,7 @@ input[type=text], input[type=email], input[type=password], textarea{
 
 
 label.required + input[type=text], label.required + input[type=email],
-label.required + input[type=password], label.required + textarea{
+label.required + input[type=submit], label.required + input[type=password], label.required + textarea{
 	border: 2px solid red;
 }
 
@@ -180,7 +183,15 @@ label.required::after{
 	color: red;
 }
 
-input[type=submit], .button {
+input[type=button].add {
+	background-color: #6D9fa0;
+}
+
+input[type=button].remove {
+	background-color: #d01110;
+}
+
+input[type=file], input[type=submit], input[type=button], .button {
     color: #f9f9f9;
     background-color: #303030;
     border: thin solid #aeaeae;
