@@ -24,21 +24,20 @@
         <main>
 			<!-- TODO: INSERIRE ACTION AGGIUNTA ARTICOLO --> 
 			<form method="POST" action="" autocomplete="autocomplete" id="login-admin" name="admin-login">
-				<label for="username-admin">Utente amministratore</label>
+				<label for="username-admin" data-msg-required="Per favore, inserisci l' username dell'admin">Utente amministratore</label>
 				<input type="text" id="username-admin" name="username-admin"
-                       minlength="1"
+                       minlength="1" class="required"
 					   placeholder="Inserisci qui lo username dell'admin" 
 					   required="required"
 					   aria-required="true"
-					   aria-label="Campo per l'inserimento dello username dell'admin"
-					   data-msg-required="Per favore, inserisci un username dell'admin" /> 
-				<label for="password-admin">Password amministratore</label>
+					   aria-label="Campo per l'inserimento dello username dell'admin"/> 
+				<label for="password-admin" data-msg-required="Per favore, inserisci la password">Password amministratore</label>
 				<input type="password" id="password-admin" name="password-admin"
                        minlength="1"
+					   placeholder="Inserisci qui la password dell'admin" 
 					   required="required"
 					   aria-required="true"
-					   aria-label="Campo per l'inserimento della password di amministrazione"
-					   data-msg-required="Per favore, inserisci la password" />
+					   aria-label="Campo per l'inserimento della password di amministrazione" />
 				<input type="submit"/>
 			</form>
         </main>

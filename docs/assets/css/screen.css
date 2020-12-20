@@ -160,7 +160,7 @@ main section p, main article p{
     padding: 0.5em 2em 0em 2em;
 }
 
-input[type=text], input[type=email], textarea{
+input[type=text], input[type=email], input[type=password], textarea{
     width: 100%;
     padding: 0.5em;
     margin: auto;
@@ -169,17 +169,15 @@ input[type=text], input[type=email], textarea{
     box-sizing: border-box;
 }
 
-input[type=text], input[type=email], textarea{
-    width: 100%;
-    padding: 0.5em;
-    margin: auto;
-    border: thin solid #aeaeae;
-    border-radius: 3px;
-    box-sizing: border-box;
+
+label.required + input[type=text], label.required + input[type=email],
+label.required + input[type=password], label.required + textarea{
+	border: 2px solid red;
 }
 
-input[type=text].errored, input[type=email].errored, textarea.errored{
-    border: 2px solid red;
+label.required::after{
+	content: " - " attr(data-msg-required);
+	color: red;
 }
 
 input[type=submit], .button {
