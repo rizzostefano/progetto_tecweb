@@ -35,7 +35,7 @@ class RepoGuitar{
         mysqli_stmt_bind_param($stmt, "s", $guitarId);
         $result = $conn->executePreparedQuery($stmt);
         $queryResult = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        $guitar = new Guitar($details[0]["Id"], $details[0]["Name"], $details[0]["BasePrize"], $details[0]["Summary"], $details[0]["InsertDate"], null, null);
+        $guitar = new Guitar($queryResult[0]["Id"], $queryResult[0]["Name"], $queryResult[0]["BasePrize"], $queryResult[0]["Summary"], $queryResult[0]["InsertDate"], null, null);
         $details = array(); 
         foreach($queryResult as $detail)
         {
