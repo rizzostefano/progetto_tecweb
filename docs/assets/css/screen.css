@@ -250,3 +250,16 @@ footer h2 {
     font-weight: normal;
     text-transform: uppercase;
 }
+
+.spaced {
+    margin: 0.2em;
+}
+
+div .flex-container, .gallery li:hover {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    transform:scale(1.2);
+    transition:0.2s;
+    z-index: 10;
+}
