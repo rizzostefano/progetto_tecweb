@@ -1,7 +1,7 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
     <head>
-        <title>Nuovo Articolo | ADMIN Rizzo Guitars</title>
+        <title>Nuovo Strumento | ADMIN Rizzo Guitars</title>
         <meta charset="UTF-8" />
         <meta name="language" content="italian it" />
         <meta name="author" content="Stefano Rizzo, Leonardo Tredese, Samuele Vanini, Michele Veronesi" />
@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/screen.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="assets/css/print.css" media="print" />
         <link rel="stylesheet" type="text/css" href="assets/css/mobile.css" media="only screen and (max-width:640px)" />
+		<script src="assets/scripts/form.js"></script>
     </head>
     <body>
         <header>
@@ -24,7 +25,7 @@
         </header>
         <main>
 			<!-- TODO: INSERIRE ACTION AGGIUNTA ARTICOLO --> 
-			<form method="POST" enctype="multipart/form-data" action="" name="nuovo-strumento">
+			<form method="POST" id="invio" enctype="multipart/form-data" action="" name="nuovo-strumento">
 				<fieldset>
 					<legend>Contenuto Principale</legend>
 					<label for="nome-strumento">Nome</label>
@@ -45,36 +46,13 @@
                 	       aria-label="Campo per l'inserimento di una lunga descrizione per lo strumento"
                 	       data-msg-required="Per favore, inserisci la lunga descrizione" /></textarea>
 				</fieldset>
-				<fieldset id="attributi-strumento">
+				<fieldset id="attributi">
 					<legend>Dettagli Chitarra</legend>
-					<input type="button" id="aggiungi-attributo-strumento" class="add" value="Aggiungi attributo" />
-					<label for="attributo-strumento-1" lang="en" data-msg-required="Per favore, inserisci un nome per questo strumento" >Nome Attributo 1</label>
-					<input type="text" id="dettaglio-strumento-1" name="dettaglio-strumento-1"
-                       	   minlength="1"
-                	       placeholder="Inserisci qui il nome dell'attributo 1 per lo strumento"
-						   required="required"
-                	       aria-required="true"
-                	       aria-label="Campo per nome dell'attributo 1 per lo strumento"/>
-					<label for="body-strumento" lang="en" data-msg-required="Per favore, inserisci una descrizione perl'attributo 1 dello strumento" >Descrizione Attributo 1</label>
-					<textarea id="descrizione-strumento-1" name="descrizione-strumento-1"
-                       	   minlength="1"
-                	       placeholder="Inserisci qui una descrizione per l'attributo 1"
-						   required="required"
-                	       aria-required="true"
-                	       aria-label="Campo per l'inserimento della descrizione per l'attributo 1 dello strumento"/></textarea>
-					<input type="button" id="rimuovi-attributo-strumento-1" class="remove" value="Rimuovi attributo 1"/>
+					<input type="button" id="aggiungi-attributo" class="add" value="Aggiungi attributo" />
 				</fieldset>
-				<fieldset id="immagini-strumento">
+				<fieldset id="immagini">
 					<legend>Immagini Articolo</legend>
-					<input type="button" id="aggiungi-immagine-strumento"  class="add" value="Aggiungi immagine"/>
-					<label for="immagine-strumento-1" data-msg-required="Per favore, inserisci il file 1">File immagine 1</label>
-					<input type="file" id="immagine-strumento-1" name="immagine-strumento-1" required="required"/>
-					<label for="alt-immagine-strumento" data-msg-required="Per favore, inserisci un testo alternativo per l'immagine 1">Testo alternativo immagine 1</label>
-					<input type="text" id="alt-immagine-strumento-1" name="alt-immagine-strumento-1"
-                           minlength="1" maxlength="70"	
-                	       placeholder="Inserisci qui il testo alternativo per l'immagine 1" 
-                	       aria-label="Campo per l'inserimento per il testo alternativo per l'immagine 1"/> 
-					<input type="button" id="rimuovi-immagine-strumento-1" class="remove" value="Rimuovi immagine 1"/>
+					<input type="button" id="aggiungi-immagine" class="add" value="Aggiungi immagine"/>
 				</fieldset>
 			    <input type="submit" value="invia"/>
 			</form>
