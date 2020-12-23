@@ -46,8 +46,11 @@ foreach($guitars as $guitar)
                             <a href='guitarDetails.php?guitar_id={$guitar->id}'class='button'>Esplora</a>
                         </div>
                     </article>
-                </div>"
+                </div>";
 }
+
+$repoImage->disconnect();
+$repoGuitar->disconnect();
 
 $content .= "</section>";
 

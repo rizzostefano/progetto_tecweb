@@ -1,11 +1,13 @@
 <?php
-require_once('dbConnection.php');
 
-class RepoGuitar{
+require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "dbConnection.php";
+
+class RepoImage{
+
     private $conn;
 
     public function __construct() {
-        $conn = new DbConnection();
+        $this->conn = new DbConnection();
     }
 
     /**
@@ -15,8 +17,8 @@ class RepoGuitar{
     public function getImages()
     {
         $query = "SELECT * FROM Images;";
-        $stmt = $conn->prepareQuery($query);
-        $result = $conn->executePreparedQuery($stmt);
+        $stmt = $this->conn->prepareQuery($query);
+        $result = $this->conn->executePreparedQuery($stmt);
         $images = mysql_fetch_all($result, MYSQLI_ASSOC);
         $result = array();
         foreach ($images as $image)
@@ -24,47 +26,41 @@ class RepoGuitar{
             $tmp = new Image($image["Id"], $image["FileName"], $image["Alt"], $image["Url"]);
             array_push($result, $tmp);
         }
-        $conn->disconnect();
         return $result;
     }
 
     public function findImageById($imageId)
     {
         $query = "SELECT * FROM Images WHERE Id = ?;";
-        $stmt = $conn->prepareQuery($query);
+        $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "s", $imageId);
-        $result = $conn->executePreparedQuery($stmt);
+        $result = $this->conn->executePreparedQuery($stmt);
         $result = mysqli_fetch_assoc($result);
-        $conn->disconnect();
         return new Image($result["Id"], $result["FileName"], $result["Alt"], $result["Url"]);
     }
 
     public function findImageByName($imageName)
     {
         $query = "SELECT * FROM Images WHERE Name = ?;";
-        $stmt = $conn->prepareQuery($query);
+        $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "s", $imageName);
-        $result = $conn->executePreparedQuery($stmt);
+        $result = $this->conn->executePreparedQuery($stmt);
         $result = mysqli_fetch_assoc($result);
-        $conn->disconnect();
         return new Image($result["Id"], $result["Name"], $result["Alt"], $result["Url"]);
     }
 
     public function addImage($image)
     {
         $query = "INSERT INTO Images (FileName, Alt, Url) VALUES (?, ?, ?);";
-        $stmt = $conn->prepareQuery($query);
+        $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "sss", $image->name, $image->alt, $image->url); 
-        $result = $conn->executePreparedQuery($stmt);
+        $result = $this->conn->executePreparedQuery($stmt);
         if($result === true) // CONTROLLA
         {
-            $insertedImage = findImageByName($image->name);
-            $conn->disconnect();
-            return $insertedImage["Id"];
+            return mysqli_insert_id($this->conn);
         }
         else
         {
-            $conn->disconnect();
             return false;
         }    
     }
@@ -72,19 +68,30 @@ class RepoGuitar{
     public function deleteImage($imageId)
     {
         $query = "DELETE FROM Images WHERE Id = ?;";
-        $stmt = $conn->prepareQuery($query);
+        $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "s", $imageId); 
-        $result = $conn->executePreparedQuery($stmt);
-        return $result;
+        return $this->conn->executePreparedQuery($stmt);
     }
 
-    public function addGuitarsImage($guitarId, $imageId)
+    public function addGuitarImage($guitarId, $imageId)
     {
         $query = "INSERT INTO GuitarImages (IdGuitar, IdImage) VALUES (?, ?);";
-        $stmt = $conn->prepareQuery($query);
+        $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "ss", $guitarId, $imageId); 
-        $result = $conn->executePreparedQuery($stmt);
-        return $result;
+        return $this->conn->executePreparedQuery($stmt);
+    }
+
+    public function addArticleImage($articleId, $imageId)
+    {
+        $query = "INSERT INTO ArticleImages (IdArticle, IdImage) VALUES (?, ?);";
+        $stmt = $this->conn->prepareQuery($query);
+        mysqli_stmt_bind_param($stmt, "ss", $articleId, $imageId); 
+        return $this->conn->executePreparedQuery($stmt);
+    }
+
+    public function disconnect()
+    {
+        $this->conn->disconnect();
     }
 
 }
