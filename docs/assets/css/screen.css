@@ -159,6 +159,8 @@ iframe {
     margin: auto;
 }
 
+
+
 main section p, main article p{
     padding: 0.5em 2em 0em 2em;
 }
@@ -173,15 +175,10 @@ input[type=text], input[type=email], input[type=password], textarea{
 }
 
 
-label.required + input[type=text], label.required + input[type=email],
-label.required + input[type=submit], label.required + input[type=password], label.required + textarea{
-	border: 2px solid red;
-}
-
-label.required::after{
-	content: " - " attr(data-msg-required);
+.error {
 	color: red;
 }
+
 
 input[type=button].add {
 	background-color: #6D9fa0;
