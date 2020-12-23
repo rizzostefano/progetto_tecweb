@@ -31,8 +31,8 @@ class MarkdownCorverter {
 
     private static function image($regs)
     {
-        $imageName = $regs[1];
-        return sprintf("<img src='(%s_URL)' alt='(%s_ALT)' />", $imageName);
+        $imageName = $regs[2];
+        return sprintf("<img src='%s_URL' alt='%s_ALT' />", $imageName, $imageName);
     }
     
     /**

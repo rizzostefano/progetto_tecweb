@@ -36,8 +36,8 @@ if($articleImages != null)
 {
     foreach($articleImages as $image)
     {
-        str_replace(sprintf("%s_URL", $image->name), $image->url, $content);
-        str_replace(sprintf("%s_ALT", $image->name), $image->alt, $content);
+        $content = str_replace(sprintf("%s_URL", $image->name), $image->url, $content);
+        $content = str_replace(sprintf("%s_ALT", $image->name), $image->alt, $content);
     }
 }
 
