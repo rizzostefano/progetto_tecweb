@@ -12,6 +12,7 @@ Bianco: #f9f9f9
     margin: 0;
     padding: 0;
     font-family: 'Source Sans Pro', sans-serif;
+    font-display: swap;
 }
 
 header {
@@ -58,6 +59,20 @@ form > ul li {
 
 header img {
     width: 8em;
+}
+
+.background-image-cropper {
+    width: 100%;
+    max-height: 15em;
+    position: relative;
+    overflow: hidden;
+}
+
+.background-image-cropper img {
+    display: inline;
+    margin: auto;
+    opacity: 0.75;
+    width: 100%;
 }
 
 main {
@@ -171,7 +186,7 @@ iframe {
     margin: auto;
 }
 
-main section p, main article p{
+main section p{
     padding: 0.5em 2em 0em 2em;
 }
 
