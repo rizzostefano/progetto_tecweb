@@ -252,10 +252,6 @@ footer h2 {
     text-transform: uppercase;
 }
 
-.spaced {
-    margin: 0.2em;
-}
-
 div .flex-container, .gallery ul {
     display: flex;
     flex-wrap: wrap;
@@ -266,6 +262,7 @@ div .flex-container, .gallery ul {
 .gallery li {
     width: 15em;
     height: 15em;
+    margin: 0.5em auto 0.5em auto;
 }
 
 .gallery li img{
