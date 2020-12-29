@@ -28,23 +28,21 @@
 			<form method="POST" id="invio" enctype="multipart/form-data" action="" name="nuovo-strumento">
 				<fieldset>
 					<legend>Contenuto Principale</legend>
-					<label for="nome-strumento">Nome</label>
+					<label for="nome-strumento" data-error-msg="il nome dello strumento è: obbligatorio, lungo tra gli 1 e i 30 caratteri e va scritto senza markdown">Nome</label>
 					<input type="text" id="nome-strumento" name="nome-strumento"
-                       	   minlength="1"
+                       	   minlength="1" maxlength="70"
                 	       placeholder="Inserisci qui il nome dello strumento"
 						   required="required"
                 	       aria-required="true"
-                	       aria-label="Campo per l'inserimento del nome dello strumento"
-                	       data-msg-required="Per favore, inserisci un nome per questo strumento" /> 
+                	       aria-label="Campo per l'inserimento del nome dello strumento" /> 
 					<label for="contenuto-strumento">Lunga Descrizione</label>
-					<textarea id="contenuto-strumento" name="contenuto-strumento"
+					<textarea id="contenuto-strumento" name="contenuto-strumento" data-error-msg="il contenuto dello strumento deve essere lungo almeno 10 caratteri e scritto secondo le regole del markdown"
                        	   minlength="10"
 						   rows="30" cols="100"
                 	       placeholder="Inserisci qui una lunga descrizione dello strumento"
 						   required="required"
                 	       aria-required="true"
-                	       aria-label="Campo per l'inserimento di una lunga descrizione per lo strumento"
-                	       data-msg-required="Per favore, inserisci la lunga descrizione" /></textarea>
+                	       aria-label="Campo per l'inserimento di una lunga descrizione per lo strumento" /></textarea>
 				</fieldset>
 				<fieldset id="attributi">
 					<legend>Dettagli Chitarra</legend>
