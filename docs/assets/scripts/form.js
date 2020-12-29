@@ -34,9 +34,16 @@ const entryAttribute =
 					+   '<input type="button" class="remove" value="Rimuovi attributo"/>'
 					+ '</div>'
 
-var formChecks = [ {"query": "input[type=text]", "validators": [validateRequired, validateLength, validateNoMarkdownButLanguage]},
-                   {"query": "input[type=file]", "validators": [validateRequired, validateImageFile]},
-				   {"query": "textarea",         "validators": [validateRequired, validateLength]}]
+var formChecks = [ {
+					"query": "input[type=text]",
+					"validators": [validateRequired, validateLength, validateNoMarkdownButLanguage]
+				   }, {
+					"query": "input[type=file]",
+					"validators": [validateRequired, validateImageFile]
+				   }, {
+					"query": "textarea, input[type=password]",
+					"validators": [validateRequired, validateLength]
+				   }]
 
 var regexes = [/(#+)(.*)/,                  // headers
 				/\[([^\[]+)\]\(([^\)]+)\)/, // links
@@ -128,7 +135,7 @@ function validateImageFile(input) {
 }
 
 function validateRequired(input) {
-	return input.hasAttribute("requied")? input.value != "" : true;
+	return input.hasAttribute("required")? input.value != "" : true;
 }
 
 

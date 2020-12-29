@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/screen.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="assets/css/print.css" media="print" />
         <link rel="stylesheet" type="text/css" href="assets/css/mobile.css" media="only screen and (max-width:640px)" />
+		<script src="assets/scripts/form.js"></script>
     </head>
     <body>
         <header>
@@ -23,15 +24,14 @@
         </header>
         <main>
 			<!-- TODO: INSERIRE ACTION AGGIUNTA ARTICOLO --> 
-			<form method="POST" action="" autocomplete="autocomplete" id="login-admin" name="admin-login">
-				<label for="username-admin" data-msg-required="Per favore, inserisci l' username dell'admin">Utente amministratore</label>
+			<form method="POST" action="" autocomplete="autocomplete" id="invio" name="admin-login">
+				<label for="username-admin" data-error-msg="Per favore, inserisci l'username dell'admin è necessario">Utente amministratore</label>
 				<input type="text" id="username-admin" name="username-admin"
-                       minlength="1" class="required"
 					   placeholder="Inserisci qui lo username dell'admin" 
 					   required="required"
 					   aria-required="true"
 					   aria-label="Campo per l'inserimento dello username dell'admin"/> 
-				<label for="password-admin" data-msg-required="Per favore, inserisci la password">Password amministratore</label>
+				<label for="password-admin" data-error-msg="Per favore, inserisci la password è necessaria">Password amministratore</label>
 				<input type="password" id="password-admin" name="password-admin"
                        minlength="1"
 					   placeholder="Inserisci qui la password dell'admin" 
