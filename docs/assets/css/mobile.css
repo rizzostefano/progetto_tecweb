@@ -45,3 +45,13 @@ section, article {
 main section p, main article p {
     padding: 0.5em;
 }
+
+div .flex-container, .gallery ul {
+    margin: 0;
+    max-width: 100%;
+}
+
+div .flex-container, .gallery li:hover {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}

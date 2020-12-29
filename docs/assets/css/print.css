@@ -33,15 +33,7 @@ img, .button, .material-icons, nav, footer, form, iframe, .print-remove {
     display: none;
 }
 
-table, td, tr, th {
-    border: 1px solid black;
-    border-collapse: collapse;    
-}
-
-td, th {
-    padding: 0.2cm;
-}
-
-table {
-    margin: 0.3cm;
+dt {
+    font-weight: bold;
+    margin-top: 0.2cm;
 }
