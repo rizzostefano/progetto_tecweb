@@ -71,7 +71,7 @@ function ready(callback){
 
 ready(function(){
 	document.getElementById('invio').onclick = function (event){
-			var t = event.target;
+			const t = event.target;
 			if (t.className=='remove') t.closest('.entry').remove();
 			else if (t.id=='aggiungi-immagine') addEntry('immagini', entryImage, progressiveId++);
 			else if (t.id=='aggiungi-attributo') addEntry('attributi', entryAttribute, progressiveId++);
@@ -80,26 +80,21 @@ ready(function(){
 })
 
 function validateForm (event){
-	deleteErrors();
+	deleteErrorMessages();
 	return formChecks.map((check) => executeCheck(check))
 					 .reduce((previous, current) => previous && current);
 }
 
 function executeCheck(check){
-	inputs = document.forms['invio'].querySelectorAll(check.query);
-	var checked= true;
-	for(var i = 0; i < inputs.length; ++i){
-		var validInput = check.validators.reduce((previousValidity, validator) => previousValidity && validator(inputs[i]),true);
-		if(!validInput){
-			showError(inputs[i]);
-			checked = false;
-		}
-	}
-	return checked;
+	// From nodelist to array
+	const inputs = Array.apply(null, document.forms['invio'].querySelectorAll(check.query));
+	const wrong_inputs = inputs.filter((input) => !checkInput(input, check.validators));
+	wrong_inputs.forEach(input => showErrorMessage(input));
+	return wrong_inputs.length === 0;
 
 }
 
-function showError(input){
+function showErrorMessage(input){
 	var label = document.querySelector("label[for=%s]".replace(/%s/, input.id));
 	if(label !== null && label.getElementsByClassName("error").length === 0) {
 		var error = document.createElement("strong");
@@ -110,9 +105,13 @@ function showError(input){
 		
 }
 
-function deleteErrors(){
+function deleteErrorMessages(){
 	var errors = document.getElementsByClassName("error");
 	while(0 < errors.length) errors[0].remove();
+}
+
+function checkInput(input, validators){
+	return validators.reduce((previousValidity, validator) => previousValidity && validator(input),true);
 }
 
 function validateNoMarkdownButLanguage(input){
@@ -121,14 +120,14 @@ function validateNoMarkdownButLanguage(input){
 }
 
 function validateLength(input){
-	var min = input.getAttribute("minlength");
-	var max = input.getAttribute("maxlength");
+	const min = input.getAttribute("minlength");
+	const max = input.getAttribute("maxlength");
 	return ((min === null) || (input.value.length >= min))
 		   && ((max === null) || (input.value.length <= max));
 }
 
 function validateImageFile(input) {
-	var files = input.files;
+	const files = input.files;
 	return (files.length === 1)
            && files[0].type.startsWith("image/")
            && files[0].size < 1000000; 
