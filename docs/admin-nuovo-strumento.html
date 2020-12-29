@@ -28,9 +28,9 @@
 			<form method="POST" id="invio" enctype="multipart/form-data" action="" name="nuovo-strumento">
 				<fieldset>
 					<legend>Contenuto Principale</legend>
-					<label for="nome-strumento" data-error-msg="il nome dello strumento è: obbligatorio, lungo tra gli 1 e i 30 caratteri e va scritto senza markdown">Nome</label>
+					<label for="nome-strumento" data-error-msg="il nome dello strumento è: obbligatorio, al massimo 30 caratteri e va scritto senza markdown">Nome</label>
 					<input type="text" id="nome-strumento" name="nome-strumento"
-                       	   minlength="1" maxlength="70"
+                       	   maxlength="70"
                 	       placeholder="Inserisci qui il nome dello strumento"
 						   required="required"
                 	       aria-required="true"

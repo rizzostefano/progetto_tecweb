@@ -28,9 +28,9 @@
 			<form method="POST" action="" id="invio" name="nuovo-articolo">
 				<fieldset>
 					<legend>Corpo dell'articolo</legend>	
-					<label for="titolo-articolo" data-error-msg="il titolo dell'articolo è: obbligatorio, lungo tra gli 1 e i 30 caratteri e va scritto senza markdown">Titolo</label>
+					<label for="titolo-articolo" data-error-msg="il titolo dell'articolo è: obbligatorio, al massimo 30 caratteri e va scritto senza markdown">Titolo</label>
 					<input type="text" id="titolo-articolo" name="titolo-articolo"
-                           minlength="1" maxlength="30"	
+                           maxlength="30"	
 						   placeholder="Inserisci qui il titolo dell'articolo che vuoi pubblicare"
 						   required="required"
 						   aria-required="true"
