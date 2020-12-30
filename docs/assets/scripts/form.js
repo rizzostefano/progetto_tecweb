@@ -58,19 +58,17 @@ var regexes = [/(#+)(.*)/,                  // headers
 				/\n-{5,}/,                  // horiziontal rule
 				/\n([^\n]+)\n/,             // add paragraphs
 				/(\(!)(.+)(\))/]            // image
+/**
+ * @param {*} callback 
+ */				
 function ready(callback){
     // in case the document is already rendered
     if (document.readyState!='loading') callback();
-    // modern browsers
-    else if (document.addEventListener) document.addEventListener('DOMContentLoaded', callback);
-    // IE <= 8
-    else document.attachEvent('onreadystatechange', function(){
-        if (document.readyState=='complete') callback();
-    });
+    else document.addEventListener('DOMContentLoaded', callback);
 }
 
 ready(function(){
-	document.getElementById('invio').onclick = function (event){
+	document.forms['invio'].onclick = function (event){
 			const t = event.target;
 			if (t.className=='remove') t.closest('.entry').remove();
 			else if (t.id=='aggiungi-immagine') addEntry('immagini', entryImage, progressiveId++);
@@ -86,8 +84,7 @@ function validateForm (event){
 }
 
 function executeCheck(check){
-	// From nodelist to array
-	const inputs = Array.apply(null, document.forms['invio'].querySelectorAll(check.query));
+	const inputs = Array.from(document.forms['invio'].querySelectorAll(check.query));
 	const wrong_inputs = inputs.filter((input) => !checkInput(input, check.validators));
 	wrong_inputs.forEach(input => showErrorMessage(input));
 	return wrong_inputs.length === 0;
@@ -102,7 +99,6 @@ function showErrorMessage(input){
 		error.appendChild(document.createTextNode(" - " +label.getAttribute("data-error-msg")));
 		label.appendChild(error);
 	}
-		
 }
 
 function deleteErrorMessages(){
@@ -130,7 +126,7 @@ function validateImageFile(input) {
 	const files = input.files;
 	return (files.length === 1)
            && files[0].type.startsWith("image/")
-           && files[0].size < 1000000; 
+		   && files[0].size < 1000000;
 }
 
 function validateRequired(input) {
@@ -140,7 +136,10 @@ function validateRequired(input) {
 
 function addEntry (framesetId, entryStructure, entryNumber) {
 	var frameset = document.getElementById(framesetId);
-	frameset.innerHTML += entryStructure.replace(/%s/g, entryNumber)
+	var entry = document.createElement("div");
+	entry.className = "entry";
+	entry.innerHTML = entryStructure.replace(/%s/g, entryNumber);
+	frameset.appendChild(entry);
 }
 
 
