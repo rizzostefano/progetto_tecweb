@@ -73,14 +73,6 @@ class RepoImage{
         return $this->conn->executePreparedQuery($stmt);
     }
 
-    public function addGuitarImage($guitarId, $imageId)
-    {
-        $query = "INSERT INTO GuitarImages (IdGuitar, IdImage) VALUES (?, ?);";
-        $stmt = $this->conn->prepareQuery($query);
-        mysqli_stmt_bind_param($stmt, "ss", $guitarId, $imageId); 
-        return $this->conn->executePreparedQuery($stmt);
-    }
-
     public function addArticleImage($articleId, $imageId)
     {
         $query = "INSERT INTO ArticleImages (IdArticle, IdImage) VALUES (?, ?);";
