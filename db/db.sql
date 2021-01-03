@@ -33,17 +33,6 @@ CREATE TABLE IF NOT EXISTS Articles
  InsertDate         datetime NOT NULL 
  );
 
- -- ************************************** Guitars
-
-CREATE TABLE IF NOT EXISTS Guitars
-(
-    Id         int PRIMARY KEY AUTO_INCREMENT,
-    Name       varchar(40) NOT NULL UNIQUE,
-    BasePrize  double NULL,
-    Summary text NOT NULL,
-    InsertDate datetime NOT NULL
-);
-
 -- ************************************** Images
 
 CREATE TABLE IF NOT EXISTS Images
@@ -54,15 +43,29 @@ CREATE TABLE IF NOT EXISTS Images
     Url  varchar(128) NOT NULL UNIQUE
 );
 
+ -- ************************************** Guitars
+
+CREATE TABLE IF NOT EXISTS Guitars
+(
+    Id         int PRIMARY KEY AUTO_INCREMENT,
+    Name       varchar(40) NOT NULL UNIQUE,
+    BasePrize  double NULL,
+    Summary text NOT NULL,
+    InsertDate datetime NOT NULL,
+    CoverImage int,
+
+    FOREIGN KEY (CoverImage) REFERENCES Images(Id) ON DELETE SET NULL
+);
+
 -- ************************************** GuitarsDetails
 
 CREATE TABLE IF NOT EXISTS GuitarsDetails
 (
     IdGuitar int NOT NULL,
-    Name varchar(64) NOT NULL,
+    DetailName varchar(64) NOT NULL,
     Description text NOT NULL,
 
-    PRIMARY KEY(IdGuitar, Name),
+    PRIMARY KEY(IdGuitar, DetailName),
     FOREIGN KEY (IdGuitar) REFERENCES Guitars(Id) ON DELETE CASCADE
 );
 

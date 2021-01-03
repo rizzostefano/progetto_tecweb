@@ -6,7 +6,8 @@ if (!isset($_GET['article_id']))
 }
 
 require_once('backend/escapeMarkdown.php');
-require_once('backend/articleModel.php');
+require_once('backend/article/repoArticle.php');
+require_once('backend/image/repoImage.php');
 
 $DOM = file_get_contents('../template.html');
 
@@ -21,19 +22,22 @@ $DOM = str_replace('<cs_meta_description/>', '<meta name="description" content="
 //TODO definire keyword per ogni articolo => aggiungerle al db?
 $DOM = str_replace('<cs_meta_keyword/>', '<meta name="keywords" content="Chitarra,Corde,Liuteria" />', $DOM);
 
-$articleModel = new ArticleModel();
-$article = $articleModel->findArticleById($_GET["article_id"]);
-$title = $article["Title"];
-$content = $article["ArticleTextContent"];
+$repoArticle = new RepoArticle();
+$repoImage = new RepoImage();
+$article = $repoArticle->findArticleById($_GET["article_id"]);
+$title = $article->title;
+$title = MarkdownCorverter::render($title);
+$content = $article->content;
 $content = MarkdownCorverter::render($content);
-$articleImages = $articleModel->getArticleImages($_GET["article_id"]);
-var_dump($articleImages);
+
+$articleImages = $repoArticle->getArticleImages($_GET["article_id"]);
+$repoArticle->disconnect();
 if($articleImages != null)
 {
     foreach($articleImages as $image)
     {
-        str_replace(sprintf("%s_URL", $image["Name"]), $image["URL"], $content);
-        str_replace(sprintf("%s_ALT", $image["Name"]), $image["ALT"], $content);
+        $content = str_replace(sprintf("%s_URL", $image->name), $image->url, $content);
+        $content = str_replace(sprintf("%s_ALT", $image->name), $image->alt, $content);
     }
 }
 
