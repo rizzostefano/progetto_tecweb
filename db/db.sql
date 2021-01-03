@@ -2,14 +2,9 @@
 -- ***************************************************;
 SET FOREIGN_KEY_CHECKS=0;
 
-DROP TABLE IF EXISTS GuitarsModify;
-DROP TABLE IF EXISTS ArticlesImages;
 DROP TABLE IF EXISTS ArticlesModify;
 DROP TABLE IF EXISTS Administrators;
-DROP TABLE IF EXISTS GuitarsImages;
-DROP TABLE IF EXISTS GuitarsDetails;
 DROP TABLE IF EXISTS Articles;
-DROP TABLE IF EXISTS Guitars;
 DROP TABLE IF EXISTS Images;
 
 -- ************************************** Administrators
@@ -22,6 +17,15 @@ CREATE TABLE IF NOT EXISTS Administrators
     Password varchar(64) NOT NULL
 );
 
+-- ************************************** Images
+
+CREATE TABLE IF NOT EXISTS Images
+(
+    FileName varchar(64) PRIMARY KEY,
+    Alt text,
+    Url  varchar(128) NOT NULL UNIQUE
+);
+
 -- ************************************** Articles
 
 CREATE TABLE IF NOT EXISTS Articles
@@ -30,56 +34,11 @@ CREATE TABLE IF NOT EXISTS Articles
  Title              text NOT NULL UNIQUE,
  ArticleTextContent text NOT NULL,
  Summary            text NOT NULL,
- InsertDate         datetime NOT NULL 
+ InsertDate         datetime NOT NULL,
+ Image              varchar(64),
+ FOREIGN KEY (Image) REFERENCES Images(FileName)
  );
 
- -- ************************************** Guitars
-
-CREATE TABLE IF NOT EXISTS Guitars
-(
-    Id         int PRIMARY KEY AUTO_INCREMENT,
-    Name       varchar(40) NOT NULL UNIQUE,
-    BasePrize  double NULL,
-    Summary text NOT NULL,
-    InsertDate datetime NOT NULL,
-    CoverImage int,
-
-    FOREIGN KEY (CoverImage) REFERENCES Images(Id) ON DELETE SET NULL
-);
-
--- ************************************** Images
-
-CREATE TABLE IF NOT EXISTS Images
-(
-    Id   int PRIMARY KEY AUTO_INCREMENT,
-    FileName varchar(64) NOT NULL UNIQUE,
-    Alt text,
-    Url  varchar(128) NOT NULL UNIQUE
-);
-
--- ************************************** GuitarsDetails
-
-CREATE TABLE IF NOT EXISTS GuitarsDetails
-(
-    IdGuitar int NOT NULL,
-    Name varchar(64) NOT NULL,
-    Description text NOT NULL,
-
-    PRIMARY KEY(IdGuitar, Name),
-    FOREIGN KEY (IdGuitar) REFERENCES Guitars(Id) ON DELETE CASCADE
-);
-
--- ************************************** ArticlesImages
-
-CREATE TABLE IF NOT EXISTS ArticlesImages
-(
-    IdImage  int NOT NULL,
-    IdArticle int NOT NULL,
-
-    PRIMARY KEY (IdImage, IdArticle),
-    FOREIGN KEY (IdImage) REFERENCES Images(Id) ON DELETE CASCADE,
-    FOREIGN KEY (IdArticle) REFERENCES Articles(Id) ON DELETE CASCADE
-);
 
 -- ************************************** ArticlesModify
 
@@ -93,17 +52,4 @@ CREATE TABLE IF NOT EXISTS ArticlesModify
     PRIMARY KEY (IdArticle, IdAdministrator, ModifyDate),
     FOREIGN KEY (IdArticle) REFERENCES Articles(Id) ON DELETE CASCADE,
     FOREIGN KEY (IdAdministrator) REFERENCES Administrators(Id) ON DELETE CASCADE
-);
-
-
--- ************************************** GuitarImages
-
-CREATE TABLE IF NOT EXISTS GuitarsImages
-(
- IdGuitar int NOT NULL,
- IdImage  int NOT NULL,
-
- PRIMARY KEY (IdGuitar, IdImage),
- FOREIGN KEY (IdGuitar) REFERENCES Guitars(Id) ON DELETE CASCADE,
- FOREIGN KEY (IdImage) REFERENCES Images(Id) ON DELETE CASCADE
 );

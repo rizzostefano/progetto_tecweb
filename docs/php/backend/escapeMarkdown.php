@@ -3,7 +3,7 @@
 /**
  * Classe per la conversione di codice Markdown in codice HTML
  */
-class MarkdownCorverter {
+class MarkdownConverter {
     
 
     // Per informazioni sul funzionamento delle regex, consultare: https://www.rexegg.com/regex-quickstart.html

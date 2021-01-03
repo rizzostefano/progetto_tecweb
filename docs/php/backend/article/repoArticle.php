@@ -67,21 +67,20 @@ class RepoArticle{
         return $result;
     }
 
-    public function addArticle($article)
+    public function addArticle($title, $content, $summary, $insertDate, $image)
     {
-        $query = "INSERT INTO Article (Id, Title, ArticleTextContent, Summary, InsertDate) VALUES (?, ?, ?, ?);";
+        $query = "INSERT INTO Article (Title, ArticleTextContent, Summary, InsertDate, Image) VALUES (?, ?, ?, ?, ?);";
         $stmt = $this->conn->prepareQuery($query);
-        mysqli_stmt_bind_param($stmt, "ssss", $article->title, $article->content, $article->summary, $article->insertDate); 
-        $result = $this->conn->executePreparedQuery($stmt);
-        if($result === true) // controlla l'esito della query
+        mysqli_stmt_bind_param($stmt, "ssss", $title, $content, $summary, $insertDate, $image); 
+        return $result = $this->conn->executePreparedQuery($stmt);
+        /*if($result === true) // controlla l'esito della query
         {
             return mysqli_insert_id($this->conn);
         }
         else
         {
             return false;
-        }
-        
+        }*/
     }
 
     public function deleteArticle($articleId)
@@ -89,14 +88,6 @@ class RepoArticle{
         $query = "DELETE FROM Articles WHERE Id = ?;";
         $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "s", $articleId); 
-        return $this->conn->executePreparedQuery($stmt);
-    }
-
-    public function addArticleImage($articleId, $imageId)
-    {
-        $query = "INSERT INTO ArticleImages (IdArticle, IdImage) VALUES (?, ?);";
-        $stmt = $this->conn->prepareQuery($query);
-        mysqli_stmt_bind_param($stmt, "ss", $articleId, $imageId); 
         return $this->conn->executePreparedQuery($stmt);
     }
 

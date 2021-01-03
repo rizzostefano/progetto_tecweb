@@ -1,39 +1,3 @@
-var progressiveId = 0;
-const entryImage =
-					   '<div class="entry">'
-					 +   '<label for="file-immagine-%s" data-error-msg="Il file va inserito obbligatoriamente e deve essere un immagine inferiore al megabyte">File immagine</label>'
-				 	 +	 '<input type="file" id="file-immagine-%s"'
-					 +      'required="required"'
-					 +  	'accept="image/*"'
-					 +      'name="file-immagine-%s"/>'
-				 	 +	 '<label for="alt-immagine-%s" data-error-msg="Il testo alternativo non può superare i 70 caratteri o contenere markup">Testo alternativo immagine</label>'
-				 	 +	 '<input type="text" id="alt-immagine-%s" name="alt-immagine-%s"'
-                 	 +	   'maxlength="70"'
-                 	 +	   'placeholder="Inserisci qui il testo alternativo per l\'immagine"'
-                 	 +	   'aria-label="Campo per l\'inserimento per il testo alternativo per l\'immagine"/>'
-				 	 +	 '<input type="button" class="remove" value="Rimuovi immagine"/>'
-					 + '</div>';
-
-
-const entryAttribute = 
-					  '<div class="entry">'
-					+   '<label for="nome-attributo-%s" data-error-msg="Il nome non può: essere vuoto, superare i 50 caratteri e contenere il markup" >Nome Attributo</label>'
-					+   '<input type="text" id="nome-attributo-%s" name="nome-attributo-%s"'
-                    +  	  'minlength="1" maxlength="50"'
-                	+     'placeholder="Inserisci qui il nome dell\'attributo"'
-					+	  'required="required"'
-                	+     'aria-required="true"'
-                	+     'aria-label="Campo per nome dell\'attributo"/>'
-					+   '<label for="descrizione-attributo-%s" data-error-msg="La descrizione non può essere vuota o superare i 200 caratteri">Descrizione Attributo</label>'
-					+   '<textarea id="descrizione-attributo-%s" name="descrizione-attributo-%s"'
-                    +     'maxlength="200"'
-                	+     'placeholder="Inserisci qui una descrizione per l\'attributo"'
-					+     'requied="required"'
-                	+     'aria-required="true"'
-                	+     'aria-label="Campo per l\'inserimento della descrizione per l\'attributo"/></textarea>'
-					+   '<input type="button" class="remove" value="Rimuovi attributo"/>'
-					+ '</div>'
-
 var formChecks = [ {
 					"query": "input[type=text]",
 					"validators": [validateRequired, validateLength, validateNoMarkdownButLanguage]
@@ -58,24 +22,13 @@ var regexes = [/(#+)(.*)/,                  // headers
 				/\n-{5,}/,                  // horiziontal rule
 				/\n([^\n]+)\n/,             // add paragraphs
 				/(\(!)(.+)(\))/]            // image
-/**
- * @param {*} callback 
- */				
 function ready(callback){
     // in case the document is already rendered
     if (document.readyState!='loading') callback();
     else document.addEventListener('DOMContentLoaded', callback);
 }
 
-ready(function(){
-	document.forms['invio'].onclick = function (event){
-			const t = event.target;
-			if (t.className=='remove') t.closest('.entry').remove();
-			else if (t.id=='aggiungi-immagine') addEntry('immagini', entryImage, progressiveId++);
-			else if (t.id=='aggiungi-attributo') addEntry('attributi', entryAttribute, progressiveId++);
-	}
-	document.onsubmit = validateForm;
-})
+ready(function(){document.onsubmit = validateForm;})
 
 function validateForm (event){
 	deleteErrorMessages();
@@ -99,7 +52,7 @@ function showErrorMessage(input){
 		error.appendChild(document.createTextNode(" - " +label.getAttribute("data-error-msg")));
 		label.appendChild(error);
 	}
-}
+}u
 
 function deleteErrorMessages(){
 	var errors = document.getElementsByClassName("error");
@@ -131,15 +84,6 @@ function validateImageFile(input) {
 
 function validateRequired(input) {
 	return input.hasAttribute("required")? input.value != "" : true;
-}
-
-
-function addEntry (framesetId, entryStructure, entryNumber) {
-	var frameset = document.getElementById(framesetId);
-	var entry = document.createElement("div");
-	entry.className = "entry";
-	entry.innerHTML = entryStructure.replace(/%s/g, entryNumber);
-	frameset.appendChild(entry);
 }
 
 

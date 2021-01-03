@@ -49,20 +49,14 @@ class RepoImage{
         return new Image($result["Id"], $result["Name"], $result["Alt"], $result["Url"]);
     }
 
-    public function addImage($image)
+    public function addImage($fileImage, $alt)
     {
+        $filePath = "/assets/images/" . $fileImage['name'];
+        move_uploaded_file($fileImage["tmp_name"], $filePath);
         $query = "INSERT INTO Images (FileName, Alt, Url) VALUES (?, ?, ?);";
         $stmt = $this->conn->prepareQuery($query);
-        mysqli_stmt_bind_param($stmt, "sss", $image->name, $image->alt, $image->url); 
-        $result = $this->conn->executePreparedQuery($stmt);
-        if($result === true) // CONTROLLA
-        {
-            return mysqli_insert_id($this->conn);
-        }
-        else
-        {
-            return false;
-        }    
+        mysqli_stmt_bind_param($stmt, "sss", $fileImage["name"], $alt, $filePath); 
+        return $this->conn->executePreparedQuery($stmt);
     }
 
     public function deleteImage($imageId)
