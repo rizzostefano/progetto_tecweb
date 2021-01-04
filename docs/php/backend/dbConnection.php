@@ -3,12 +3,12 @@
  *  Classe per la gestione del database
  *  Implementa metodi per la connessione e gestione delle query
  */
- class DbConnection
+class DbConnection
  {
     private const HOST = 'localhost';
     private const USERNAME = 'root';
     private const PASSWORD = '';
-    private const DATABASE_NAME = 'rizzo_guitars';
+    private const DATABASE_NAME = 'test';
     private $current_connection;
 
     /* Il costruttore della classe tenta di effettuare una connessione al database. In caso di mancata riuscita ritorna a video un errore (non di php) */
@@ -47,5 +47,4 @@
         mysqli_close($this->current_connection);
     }
  }
-
  ?>
