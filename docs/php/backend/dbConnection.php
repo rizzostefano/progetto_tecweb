@@ -35,10 +35,15 @@ class DbConnection
         return $stmt;
     }
 
-    public function executePreparedQuery($stmt)
+    public function executePreparedQuery($stmt) // select
     {
         mysqli_stmt_execute($stmt);
         return mysqli_stmt_get_result($stmt);
+    }
+
+    public function executePreparedQueryDML($stmt) // insert e update
+    {
+        return mysqli_stmt_execute($stmt);
     }
 
     /* Il metodo esegue la disconnessione dal database */

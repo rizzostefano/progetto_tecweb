@@ -3,7 +3,23 @@ require_once("backend/escapeMarkdown.php");
 require_once("backend/article/repoArticle.php");
 require_once("backend/image/repoImage.php");
 
+session_start();
+if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === true)) {
+	header('Location: adminLogin.php');
+}
+
+
 $html = file_get_contents("../admin/admin-nuovo-articolo.html");
+
+$errorMessageTitolo = "Il titolo dell'articolo è: obbligatorio, al massimo 30 caratteri e va scritto senza markdown";
+$errorMessageContenuto = "Il corpo dell'articolo deve essere lungo almeno 30 caratteri e scritto secondo le regole del markdown";
+$errorMessageSommario = "Il sommario dell'articolo è: obbligatorio, al massimo 200 caratteri e scritto secondo le regole del markdown";
+$errorMessageFile = "Il file va inserito obbligatoriamente e deve essere un immagine inferiore al megabyte";
+$errorMessageFileDuplicate = "Un file con questo nome è gia stato inserit nella piattaforma";
+$errorMessageAlt = "Il testo alternativo non può superare i 70 caratteri o contenere markup";
+
+$repoImage = new RepoImage();
+$repoArticle = new RepoArticle();
 
 if(isset($_POST["submit"])){
 	// check titolo aritcolo (niente markdown, lunghezza massima e required)
@@ -16,7 +32,7 @@ if(isset($_POST["submit"])){
 		$validTitolo = false;
 		$titolo = "";
 	}
-	$html = substituteError($validTitolo, "%error-titolo%", "o no sbaliato", $html);
+	$html = substituteError($validTitolo, "%error-titolo%", errorElement($errorMessageTitolo), $html);
 	$html = str_replace("%value-titolo%", $titolo, $html);
 	
 	// check contenuto articolo (lunghezza minima e required)
@@ -28,7 +44,7 @@ if(isset($_POST["submit"])){
 		$contenuto = "";
 		$validContenuto = false;
 	}
-	$html = substituteError($validContenuto, "%error-contenuto%", "o no sbaliato", $html);
+	$html = substituteError($validContenuto, "%error-contenuto%", $errorMessageContenuto, $html);
 	$html = str_replace("%value-contenuto%", $contenuto, $html);
 	
 		// check summary articolo (lunghezza massima e required)
@@ -40,19 +56,23 @@ if(isset($_POST["submit"])){
 		$sommario = "";
 		$validSommario = false;
 	}
-	$html = substituteError($validSommario, "%error-sommario%", "o no sbaliato", $html);
+	$html = substituteError($validSommario, "%error-sommario%", $errorMessageSommario, $html);
 	$html = str_replace("%value-sommario%", $sommario, $html);
 	
 	// check file immagine caricato (dimensione e tipo file)
 	if(isset($_FILES["file-immagine"])){
 		$file = $_FILES["file-immagine"];
+		$isDuplicate = $repoImage->checkDouble($file["name"]);
 		$validFile = $file["size"] <= 1000000
 				&& $file["error"] === 0
-				&& substr_compare($file["type"], "image/", 0, strlen("image/")) === 0;
+				&& substr_compare($file["type"], "image/", 0, strlen("image/")) === 0
+				&& !$isDuplicate;
+
 	} else {
 		$validFile = false;
+		$isDuplicate = false;
 	}
-	$html = substituteError($validFile, "%error-file%", "o no sbaliato", $html);
+	$html = substituteError($validFile, "%error-file%", $isDuplicate ? $errorMessageFileDuplicate : $errorMessageFile , $html);
 	
 	// check alt immagine (lunghezza massima e niente markdown)
 	if(isset($_POST["alt-immagine"])){
@@ -63,17 +83,19 @@ if(isset($_POST["submit"])){
 		$validAlt = true;
 		$alt = "";
 	}
-	$html = substituteError($validAlt, "%error-alt%", "o no sbaliato", $html);
+	$html = substituteError($validAlt, "%error-alt%", $errorMessageAlt, $html);
 	$html = str_replace("%value-alt%", $alt, $html);
 	
 	if($validTitolo && $validContenuto && $validFile && $validAlt && $validSommario){
-		$repoImage = new RepoImage();
 		$resultInsImage = $repoImage->addImage($file, $alt);
 		if($resultInsImage === true) {
-			$repoArticle = new RepoArticle();
-			$resultInsArticle = $repoArticle->addArticle($titolo, $contenuto, NULL, date("Y-m-d"), $file["name"]);
+			$insertedImage = $repoImage->findImageByName($file["name"]);
+			$resultInsArticle = $repoArticle->addArticle($titolo, $contenuto, $sommario, $insertedImage->id);
+			echo "Articolo inserito";
 		}
-		echo "ole";
+		else {
+			echo "IMMAGINE NON INSERITA";
+		}
 	}else{
 		echo $html;
 	}
@@ -84,6 +106,8 @@ if(isset($_POST["submit"])){
 	echo str_replace($substitutions, "",$html);
 }
 
+$repoImage->disconnect();
+$repoArticle->disconnect();
 
 function validateNoMarkdown($input){
 	$valid = true;
@@ -108,4 +132,8 @@ function substituteError($valid, $pattern, $error, $context){
 	} else {
 		return str_replace($pattern, $error, $context);
 	}
+}
+
+function errorElement($message){
+	return '<strong class="error">' . $message . '</strong>';
 }

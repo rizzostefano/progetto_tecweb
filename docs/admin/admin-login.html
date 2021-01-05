@@ -24,7 +24,8 @@
         </header>
         <main>
 			<!-- TODO: INSERIRE ACTION AGGIUNTA ARTICOLO --> 
-			<form method="POST" action="" autocomplete="autocomplete" id="invio" name="admin-login">
+			<form method="POST" action="adminLogin.php" autocomplete="autocomplete" id="invio" name="admin-login">
+                <strong class="error">%error-login%</strong>
 				<label for="username-admin" data-error-msg="Per favore, inserisci l'username dell'admin è necessario">Utente amministratore</label>
 				<input type="text" id="username-admin" name="username-admin"
 					   placeholder="Inserisci qui lo username dell'admin" 
@@ -38,7 +39,7 @@
 					   required="required"
 					   aria-required="true"
 					   aria-label="Campo per l'inserimento della password di amministrazione" />
-				<input type="submit"/>
+				<input name="submit" type="submit"/>
 			</form>
         </main>
         <footer>

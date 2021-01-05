@@ -17,17 +17,6 @@ CREATE TABLE IF NOT EXISTS Administrators
     Password varchar(64) NOT NULL
 );
 
--- ************************************** Articles
-
-CREATE TABLE IF NOT EXISTS Articles
-(
- Id                 int PRIMARY KEY AUTO_INCREMENT,
- Title              text NOT NULL UNIQUE,
- ArticleTextContent text NOT NULL,
- Summary            text NOT NULL,
- InsertDate         datetime NOT NULL 
- );
-
 -- ************************************** Images
 
 CREATE TABLE IF NOT EXISTS Images
@@ -47,8 +36,8 @@ CREATE TABLE IF NOT EXISTS Articles
  ArticleTextContent text NOT NULL,
  Summary            text NOT NULL,
  InsertDate         datetime NOT NULL,
- Image              varchar(64),
- FOREIGN KEY (Image) REFERENCES Images(FileName)
+ Image              int,
+ FOREIGN KEY (Image) REFERENCES Images(Id)
  );
 
 
@@ -65,3 +54,5 @@ CREATE TABLE IF NOT EXISTS ArticlesModify
     FOREIGN KEY (IdArticle) REFERENCES Articles(Id) ON DELETE CASCADE,
     FOREIGN KEY (IdAdministrator) REFERENCES Administrators(Id) ON DELETE CASCADE
 );
+
+SET FOREIGN_KEY_CHECKS=1;

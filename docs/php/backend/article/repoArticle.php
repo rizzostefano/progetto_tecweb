@@ -33,7 +33,7 @@ class RepoArticle{
 
     public function findArticleById($articleId)
     {
-        $query = "SELECT * FROM Articles WHERE Id = ?;";
+        $query = "SELECT * FROM Articles WHERE Id = ?";
         $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "s", $articleId);
         $result = $this->conn->executePreparedQuery($stmt);
@@ -43,7 +43,7 @@ class RepoArticle{
 
     public function findArticleByTitle($articleTitle)
     {
-        $query = "SELECT * FROM Articles WHERE Title = ?;";
+        $query = "SELECT * FROM Articles WHERE Title = ?";
         $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "s", $articleTitle);
         $result = $this->conn->executePreparedQuery($stmt);
@@ -67,28 +67,21 @@ class RepoArticle{
         return $result;
     }
 
-    public function addArticle($title, $content, $summary, $insertDate, $image)
+    public function addArticle($title, $content, $summary, $imageId)
     {
-        $query = "INSERT INTO Article (Title, ArticleTextContent, Summary, InsertDate, Image) VALUES (?, ?, ?, ?, ?);";
+        $query = "INSERT INTO Articles (Title, ArticleTextContent, Summary, Image, InsertDate) VALUES (?, ?, ?, ?, CURDATE())";
         $stmt = $this->conn->prepareQuery($query);
-        mysqli_stmt_bind_param($stmt, "ssss", $title, $content, $summary, $insertDate, $image); 
-        return $result = $this->conn->executePreparedQuery($stmt);
-        /*if($result === true) // controlla l'esito della query
-        {
-            return mysqli_insert_id($this->conn);
-        }
-        else
-        {
-            return false;
-        }*/
+        print_r($stmt);
+        mysqli_stmt_bind_param($stmt, "sssi", $title, $content, $summary, $imageId); 
+        return $this->conn->executePreparedQueryDML($stmt);
     }
 
     public function deleteArticle($articleId)
     {
-        $query = "DELETE FROM Articles WHERE Id = ?;";
+        $query = "DELETE FROM Articles WHERE Id = ?";
         $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "s", $articleId); 
-        return $this->conn->executePreparedQuery($stmt);
+        return $this->conn->executePreparedQueryDML($stmt);
     }
 
     public function editArticle($article)

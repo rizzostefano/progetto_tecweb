@@ -5,7 +5,8 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "dbCon
 class RepoImage{
 
     private $conn;
-
+    private $path = "../../../assets/images/";
+    
     public function __construct() {
         $this->conn = new DbConnection();
     }
@@ -16,7 +17,7 @@ class RepoImage{
      */
     public function getImages()
     {
-        $query = "SELECT * FROM Images;";
+        $query = "SELECT * FROM Images";
         $stmt = $this->conn->prepareQuery($query);
         $result = $this->conn->executePreparedQuery($stmt);
         $images = mysql_fetch_all($result, MYSQLI_ASSOC);
@@ -31,48 +32,65 @@ class RepoImage{
 
     public function findImageById($imageId)
     {
-        $query = "SELECT * FROM Images WHERE Id = ?;";
+        $query = "SELECT * FROM Images WHERE Id = ?";
         $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "s", $imageId);
         $result = $this->conn->executePreparedQuery($stmt);
-        $result = mysqli_fetch_assoc($result);
-        return new Image($result["Id"], $result["FileName"], $result["Alt"], $result["Url"]);
+        if(mysqli_num_rows($result) === 0) {
+            return false;
+        } else{
+            $result = mysqli_fetch_assoc($result);
+            return new Image($result["Id"], $result["FileName"], $result["Alt"], $result["Url"]);
+        }
     }
 
     public function findImageByName($imageName)
     {
-        $query = "SELECT * FROM Images WHERE Name = ?;";
+        $query = "SELECT * FROM Images WHERE FileName = ?";
         $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "s", $imageName);
         $result = $this->conn->executePreparedQuery($stmt);
-        $result = mysqli_fetch_assoc($result);
-        return new Image($result["Id"], $result["Name"], $result["Alt"], $result["Url"]);
+        if(mysqli_num_rows($result) === 0) {
+            return false;
+        } else{
+            $result = mysqli_fetch_assoc($result);
+            return new Image($result["Id"], $result["FileName"], $result["Alt"], $result["Url"]);
+        }
     }
 
     public function addImage($fileImage, $alt)
     {
-        $filePath = "/assets/images/" . $fileImage['name'];
-        move_uploaded_file($fileImage["tmp_name"], $filePath);
-        $query = "INSERT INTO Images (FileName, Alt, Url) VALUES (?, ?, ?);";
+        $filePath = $this->path . $fileImage['name'];
+        $query = "INSERT INTO Images (FileName, Alt, Url) VALUES (?, ?, ?)";
         $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "sss", $fileImage["name"], $alt, $filePath); 
-        return $this->conn->executePreparedQuery($stmt);
+        $result = $this->conn->executePreparedQueryDML($stmt);
+        if($result === true) {
+            $resultMove = move_uploaded_file($fileImage["tmp_name"], $filePath);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function checkDouble($imageName) {
+        return false !== $this->findImageByName($imageName);
     }
 
     public function deleteImage($imageId)
     {
-        $query = "DELETE FROM Images WHERE Id = ?;";
+        $query = "DELETE FROM Images WHERE Id = ?";
         $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "s", $imageId); 
-        return $this->conn->executePreparedQuery($stmt);
+        return $this->conn->executePreparedQueryDML($stmt);
     }
 
     public function addArticleImage($articleId, $imageId)
     {
-        $query = "INSERT INTO ArticleImages (IdArticle, IdImage) VALUES (?, ?);";
+        $query = "INSERT INTO ArticleImages (IdArticle, IdImage) VALUES (?, ?)";
         $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "ss", $articleId, $imageId); 
-        return $this->conn->executePreparedQuery($stmt);
+        return $this->conn->executePreparedQueryDML($stmt);
     }
 
     public function disconnect()

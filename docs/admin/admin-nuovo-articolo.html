@@ -17,8 +17,8 @@
 			<span>Amministrazione</span>
             <nav>
                 <ul>
-                    <li><a href="index.html" lang="en">Home</a></li>
                     <li>Nuovo Articolo</li>
+                    <li><a href="logout.php" lang="en">Logout</a></li>
                 </ul>
             </nav>
         </header>
@@ -37,7 +37,7 @@
                            aria-label="Campo per l'inserimento del titolo"/>
                     <label for="sommario-articolo" data-error-msg="Il sommario dell'articolo è: obbligatorio, al massimo 200 caratteri e scritto secondo le regole del markdown">Sommario %error-sommario%</label>
                     <textarea id="sommario-articolo" name="sommario-articolo"
-                                  rows="30" cols="100"
+                                  rows="5" cols="100"
                                   maxlength="200"	
                                   placeholder="Inserisci qui il sommario dell'articolo che vuoi pubblicare"
                                   required="required"
