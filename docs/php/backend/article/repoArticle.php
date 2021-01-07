@@ -25,7 +25,7 @@ class RepoArticle{
         $result = array();
         foreach ($articles as $article)
         {
-            $tmp = new Article($article["Id"], $article["Title"], $article["ArticleTextContent"], $article["Summary"], $article["InsertDate"]);
+            $tmp = new Article($article["Id"], $article["Title"], $article["ArticleTextContent"], $article["Summary"], $article["InsertDate"], $article["Image"]);
             array_push($result, $tmp);
         }
         return $result;
@@ -38,7 +38,7 @@ class RepoArticle{
         mysqli_stmt_bind_param($stmt, "s", $articleId);
         $result = $this->conn->executePreparedQuery($stmt);
         $result = mysqli_fetch_assoc($result);
-        return new Article($result["Id"], $result["Title"], $result["ArticleTextContent"], $result["Summary"], $result["InsertDate"]);
+        return new Article($result["Id"], $result["Title"], $result["ArticleTextContent"], $result["Summary"], $result["InsertDate"], $result["Image"]);
     }
 
     public function findArticleByTitle($articleTitle)
@@ -47,24 +47,13 @@ class RepoArticle{
         $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "s", $articleTitle);
         $result = $this->conn->executePreparedQuery($stmt);
-        $result = mysqli_fetch_assoc($result);
-        return new Article($result["Id"], $result["Title"], $result["ArticleTextContent"], $result["Summary"], $result["InsertDate"]);
-    }
-
-    public function getArticleImages($articleId)
-    {
-        $query = "select * from ArticlesImages as ai join Images as i on ai.IdImage = i.Id where ai.IdArticle = ?";
-        $stmt = $this->conn->prepareQuery($query);
-        mysqli_stmt_bind_param($stmt, "s", $articleId);
-        $result = $this->conn->executePreparedQuery($stmt);
-        $images = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        $result = array();
-        foreach ($images as $image)
-        {
-            $tmp = new Image($image["Id"], $image["Name"], $image["Alt"], $image["Url"]);
-            array_push($result, $tmp);
+        if(mysqli_num_rows($result) === 0) {
+            return false;
         }
-        return $result;
+        else{
+            $result = mysqli_fetch_assoc($result);
+            return new Article($result["Id"], $result["Title"], $result["ArticleTextContent"], $result["Summary"], $result["InsertDate"], $result["Image"]);
+        }
     }
 
     public function addArticle($title, $content, $summary, $imageId)
@@ -90,6 +79,10 @@ class RepoArticle{
         $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "sss", $article->title, $article->content, $article->id); 
         return $this->conn->executePreparedQuery($stmt);
+    }
+
+    public function checkDouble($titolo){
+        return false !== $this->findArticleByTitle($titolo);
     }
 
     public function disconnect()

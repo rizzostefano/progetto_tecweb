@@ -26,9 +26,9 @@ $repoArticle = new RepoArticle();
 $repoImage = new RepoImage();
 $article = $repoArticle->findArticleById($_GET["article_id"]);
 $title = $article->title;
-$title = MarkdownCorverter::render($title);
+$title = MarkdownConverter::render($title);
 $content = $article->content;
-$content = MarkdownCorverter::render($content);
+$content = MarkdownConverter::render($content);
 
 $articleImages = $repoArticle->getArticleImages($_GET["article_id"]);
 $repoArticle->disconnect();

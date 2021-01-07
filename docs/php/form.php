@@ -2,7 +2,7 @@
 require_once("backend/escapeMarkdown.php");
 require_once("backend/article/repoArticle.php");
 require_once("backend/image/repoImage.php");
-
+header('Content-type: text/html; charset=utf-8');
 session_start();
 if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === true)) {
 	header('Location: adminLogin.php');
@@ -15,50 +15,87 @@ $errorMessageTitolo = "Il titolo dell'articolo è: obbligatorio, al massimo 30 c
 $errorMessageContenuto = "Il corpo dell'articolo deve essere lungo almeno 30 caratteri e scritto secondo le regole del markdown";
 $errorMessageSommario = "Il sommario dell'articolo è: obbligatorio, al massimo 200 caratteri e scritto secondo le regole del markdown";
 $errorMessageFile = "Il file va inserito obbligatoriamente e deve essere un immagine inferiore al megabyte";
-$errorMessageFileDuplicate = "Un file con questo nome è gia stato inserit nella piattaforma";
+$errorMessageFileDuplicate = "Un file con questo nome è gia stato inserito nella piattaforma";
 $errorMessageAlt = "Il testo alternativo non può superare i 70 caratteri o contenere markup";
 
 $repoImage = new RepoImage();
 $repoArticle = new RepoArticle();
 
+/**
+ * @field: valore del campo
+ * @validity: booleano che indica la validità del contenuto del campo
+ * @error_substitution: valore da cercare in html da sostituire con il messaggio di errore
+ * @error_message: messaggio di errore da visualizzare
+ * @value_content: contenuto da inserire nel campo
+ */
+function handleField($validity, $error_substitution, $error_message, $value_substitution, $field){
+	$html = substituteError($validity, $error_substitution, errorElement($error_message), $html);
+	$html = str_replace($value_substitution, $field, $html);
+}
+
+function validateTextField($field, $minlen, $maxlen, $hasMarkdown, $isNotRequired){
+	$field  = isset($field) ? $field : "";
+	return ($hasMarkdown || validateNoMarkdown($field))
+			&& validateLength($field, NULL, 30)
+			&& ($isNotRequired || (validateRequired($field));
+}
+
+
+function validaContenuto($contenuto) {
+	handleField(validateTextField($contenuto, 30, NULL, true, false),
+				"%error-contenuto%", errorElement($errorMessageContenuto), "%value-contenuto%", $contenuto);
+}
+
+function validaTitolo($titolo) {
+	// TODO: permettere di inserire markdown lingua
+	handleField(validateTextField($titolo, NULL, 30, false, false),
+				"%error-titolo%", errorElement($errorMessageTitolo), "%value-titolo%", $titolo);
+}
+
+function validaSommario($sommario) {
+	handleField(validateTextField($sommario, NULL, 200, true, false),
+				"%error-contenuto%", errorElement($errorMessageSommario), "%value-contenuto%", $sommario);
+}
+
+function validaAltImmagine($altImmagine) {
+	handleField(validateTextField($altImmagine, NULL, 70, false, true),
+				"%error-alt%", errorElement($errorMessageAlt), "%value-alt%", $altImmagine);
+}
+
+/*
 if(isset($_POST["submit"])){
 	// check titolo aritcolo (niente markdown, lunghezza massima e required)
 	if(isset($_POST["titolo-articolo"])){
 		$titolo = $_POST["titolo-articolo"];
+		$isDuplicate = $repoArticle->checkDouble($titolo);
 		$validTitolo = validateNoMarkdown($titolo)
 				&& validateLength($titolo, NULL, 30)
-				&& validateRequired($titolo);
+				&& validateRequired($titolo)
+				&& !$isDuplicate;
 	} else {
 		$validTitolo = false;
 		$titolo = "";
 	}
-	$html = substituteError($validTitolo, "%error-titolo%", errorElement($errorMessageTitolo), $html);
-	$html = str_replace("%value-titolo%", $titolo, $html);
+	handleField($validTitolo, "%error-titolo%", errorElement($errorMessageTitolo), "%value-titolo%", $titolo);
 	
 	// check contenuto articolo (lunghezza minima e required)
-	if(isset($_POST["contenuto-articolo"])){
-		$contenuto = $_POST["contenuto-articolo"];
-		$validContenuto = validateLength($contenuto, 30, NULL)
-					&& validateRequired($contenuto);
-	} else {
-		$contenuto = "";
-		$validContenuto = false;
-	}
-	$html = substituteError($validContenuto, "%error-contenuto%", $errorMessageContenuto, $html);
+	
+	$html = substituteError($validContenuto, "%error-contenuto%", errorElement($errorMessageContenuto), $html);
 	$html = str_replace("%value-contenuto%", $contenuto, $html);
 	
-		// check summary articolo (lunghezza massima e required)
+	// check summary articolo (lunghezza massima e required)
 	if(isset($_POST["sommario-articolo"])){
 		$sommario = $_POST["sommario-articolo"];
+		print_r(utf8_strlen($sommario));
 		$validSommario = validateLength($sommario, NULL, 200)
 					&& validateRequired($sommario);
 	} else {
 		$sommario = "";
 		$validSommario = false;
 	}
-	$html = substituteError($validSommario, "%error-sommario%", $errorMessageSommario, $html);
+	$html = substituteError($validSommario, "%error-sommario%", errorElement($errorMessageSommario), $html);
 	$html = str_replace("%value-sommario%", $sommario, $html);
-	
+	*/
 	// check file immagine caricato (dimensione e tipo file)
 	if(isset($_FILES["file-immagine"])){
 		$file = $_FILES["file-immagine"];
@@ -72,8 +109,8 @@ if(isset($_POST["submit"])){
 		$validFile = false;
 		$isDuplicate = false;
 	}
-	$html = substituteError($validFile, "%error-file%", $isDuplicate ? $errorMessageFileDuplicate : $errorMessageFile , $html);
-	
+	$html = substituteError($validFile, "%error-file%",errorElement($isDuplicate ? $errorMessageFileDuplicate : $errorMessageFile) , $html);
+	/*
 	// check alt immagine (lunghezza massima e niente markdown)
 	if(isset($_POST["alt-immagine"])){
 		$alt = $_POST["alt-immagine"];
@@ -85,17 +122,12 @@ if(isset($_POST["submit"])){
 	}
 	$html = substituteError($validAlt, "%error-alt%", $errorMessageAlt, $html);
 	$html = str_replace("%value-alt%", $alt, $html);
-	
+	*/
 	if($validTitolo && $validContenuto && $validFile && $validAlt && $validSommario){
-		$resultInsImage = $repoImage->addImage($file, $alt);
-		if($resultInsImage === true) {
-			$insertedImage = $repoImage->findImageByName($file["name"]);
-			$resultInsArticle = $repoArticle->addArticle($titolo, $contenuto, $sommario, $insertedImage->id);
-			echo "Articolo inserito";
-		}
-		else {
-			echo "IMMAGINE NON INSERITA";
-		}
+		$repoImage->addImage($file, $alt);
+		$insertedImage = $repoImage->findImageByName($file["name"]);
+		$resultInsArticle = $repoArticle->addArticle($titolo, $contenuto, $sommario, $insertedImage->id);
+		echo "Articolo inserito";
 	}else{
 		echo $html;
 	}
@@ -135,5 +167,5 @@ function substituteError($valid, $pattern, $error, $context){
 }
 
 function errorElement($message){
-	return '<strong class="error">' . $message . '</strong>';
+	return '<strong class="error"> - ' . $message . '</strong>';
 }

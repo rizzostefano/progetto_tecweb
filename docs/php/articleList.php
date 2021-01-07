@@ -27,8 +27,8 @@ $content = '<section>
 
 foreach($articles as $article)
 {
-    $article->title = MarkdownCorverter::render($article->title);
-    $article->summary = MarkdownCorverter::render($article->summary);
+    $article->title = MarkdownConverter::render($article->title);
+    $article->summary = MarkdownConverter::render($article->summary);
     $content .= "<div class='flex-container'>
                     <article class='column'>
                         <h2>{$article->title}</h2>

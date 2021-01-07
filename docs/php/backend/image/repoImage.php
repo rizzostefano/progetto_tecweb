@@ -5,7 +5,7 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "dbCon
 class RepoImage{
 
     private $conn;
-    private $path = "../../../assets/images/";
+    private $path = "../assets/images/";
     
     public function __construct() {
         $this->conn = new DbConnection();
