@@ -8,30 +8,25 @@ if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === true)) {
 	header('Location: adminLogin.php');
 }
 
-
 $html = file_get_contents("../admin/admin-nuovo-articolo.html");
-
-$errorMessageTitolo = "Il titolo dell'articolo è: obbligatorio, al massimo 30 caratteri e va scritto senza markdown";
-$errorMessageContenuto = "Il corpo dell'articolo deve essere lungo almeno 30 caratteri e scritto secondo le regole del markdown";
-$errorMessageSommario = "Il sommario dell'articolo è: obbligatorio, al massimo 200 caratteri e scritto secondo le regole del markdown";
-$errorMessageFile = "Il file va inserito obbligatoriamente e deve essere un immagine inferiore al megabyte";
-$errorMessageFileDuplicate = "Un file con questo nome è gia stato inserito nella piattaforma";
-$errorMessageAlt = "Il testo alternativo non può superare i 70 caratteri o contenere markup";
 
 $repoImage = new RepoImage();
 $repoArticle = new RepoArticle();
 
-if(validaTitolo($_POST["titolo-articolo"]) &&
-   validaContenuto($_POST["contenuto-articolo"]) && 
-   validaImmagine($_FILE["file-immagine"]) &&
-   validaAltImmagine($_POST["alt-immagine"]) &&
-   validaSommario($_POST["sommario-articolo"]))
-{
-	$repoImage->addImage($file, $alt);
-	$insertedImage = $repoImage->findImageByName($file["name"]);
-	$resultInsArticle = $repoArticle->addArticle($titolo, $contenuto, $sommario, $insertedImage->id);
-	echo "Articolo inserito";
-}else{
+if(isset($_POST["submit"])){
+	if(validaTitolo($_POST["titolo-articolo"]) &&
+	validaContenuto($_POST["contenuto-articolo"]) && 
+	validaImmagine($_FILE["file-immagine"]) &&
+	validaAltImmagine($_POST["alt-immagine"]) &&
+	validaSommario($_POST["sommario-articolo"]))
+	{
+		$repoImage->addImage($file, $alt);
+		$insertedImage = $repoImage->findImageByName($file["name"]);
+		$resultInsArticle = $repoArticle->addArticle($titolo, $contenuto, $sommario, $insertedImage->id);
+		echo "Articolo inserito";
+	}
+} else {
+	$html = preg_replace("/%(.*)%/", "", $html);
 	echo $html;
 }
 
@@ -46,6 +41,7 @@ $repoArticle->disconnect();
  * @value_content: contenuto da inserire nel campo
  */
 function handleField($validity, $error_substitution, $error_message, $value_substitution, $field){
+	global $html;
 	$html = substituteError($validity, $error_substitution, errorElement($error_message), $html);
 	$html = str_replace($value_substitution, $field, $html);
 }
@@ -59,27 +55,33 @@ function validateTextField($field, $minlen, $maxlen, $hasMarkdown, $isNotRequire
 
 
 function validaContenuto($contenuto) {
+	$errorMessageContenuto = "Il corpo dell'articolo deve essere lungo almeno 30 caratteri e scritto secondo le regole del markdown";
 	handleField(validateTextField($contenuto, 30, NULL, true, false),
 				"%error-contenuto%", errorElement($errorMessageContenuto), "%value-contenuto%", $contenuto);
 }
 
 function validaTitolo($titolo) {
-	// TODO: permettere di inserire markdown lingua
+	// TODO: permettere di inserire markdown lingua nel titolo
+	$errorMessageTitolo = "Il titolo dell'articolo è: obbligatorio, al massimo 30 caratteri e va scritto senza markdown";
 	handleField(validateTextField($titolo, NULL, 30, false, false),
 				"%error-titolo%", errorElement($errorMessageTitolo), "%value-titolo%", $titolo);
 }
 
 function validaSommario($sommario) {
+	$errorMessageSommario = "Il sommario dell'articolo è: obbligatorio, al massimo 200 caratteri e scritto secondo le regole del markdown";
 	handleField(validateTextField($sommario, NULL, 200, true, false),
 				"%error-contenuto%", errorElement($errorMessageSommario), "%value-contenuto%", $sommario);
 }
 
 function validaAltImmagine($altImmagine) {
+	$errorMessageAlt = "Il testo alternativo non può superare i 70 caratteri o contenere markup";
 	handleField(validateTextField($altImmagine, NULL, 70, false, true),
 				"%error-alt%", errorElement($errorMessageAlt), "%value-alt%", $altImmagine);
 }
 
 function validaImmagine($fileImmagine) {
+	$errorMessageFile = "Il file va inserito obbligatoriamente e deve essere un immagine inferiore al megabyte";
+	$errorMessageFileDuplicate = "Un file con questo nome è gia stato inserito nella piattaforma";
 	$valid = false;
 	$isDuplicate = false;
 	if(isset($_FILES["file-immagine"])){
