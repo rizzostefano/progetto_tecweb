@@ -80,7 +80,7 @@ header img {
 
 main {
     min-height: 500px;
-    padding: 1em 2em 1em 4em;
+    padding: 1em 2em 1em 2em;
 }
 
 main h1{
@@ -315,4 +315,27 @@ div .flex-container, .gallery ul {
 
 .gallery li:hover::after {
     opacity: 1;
+}
+
+
+
+
+
+
+
+.text-right {
+    display: inline-grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1em;
+}
+
+.text-left {
+    display: inline-grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 1em;
+}
+
+.grid-item {
+    grid-column-start: 1;
+    grid-column-end: 2;
 }
