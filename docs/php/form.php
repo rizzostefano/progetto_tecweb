@@ -21,6 +21,23 @@ $errorMessageAlt = "Il testo alternativo non può superare i 70 caratteri o cont
 $repoImage = new RepoImage();
 $repoArticle = new RepoArticle();
 
+if(validaTitolo($_POST["titolo-articolo"]) &&
+   validaContenuto($_POST["contenuto-articolo"]) && 
+   validaImmagine($_FILE["file-immagine"]) &&
+   validaAltImmagine($_POST["alt-immagine"]) &&
+   validaSommario($_POST["sommario-articolo"]))
+{
+	$repoImage->addImage($file, $alt);
+	$insertedImage = $repoImage->findImageByName($file["name"]);
+	$resultInsArticle = $repoArticle->addArticle($titolo, $contenuto, $sommario, $insertedImage->id);
+	echo "Articolo inserito";
+}else{
+	echo $html;
+}
+
+$repoImage->disconnect();
+$repoArticle->disconnect();
+
 /**
  * @field: valore del campo
  * @validity: booleano che indica la validità del contenuto del campo
@@ -37,7 +54,7 @@ function validateTextField($field, $minlen, $maxlen, $hasMarkdown, $isNotRequire
 	$field  = isset($field) ? $field : "";
 	return ($hasMarkdown || validateNoMarkdown($field))
 			&& validateLength($field, NULL, 30)
-			&& ($isNotRequired || (validateRequired($field));
+			&& ($isNotRequired || (validateRequired($field)));
 }
 
 
@@ -62,84 +79,24 @@ function validaAltImmagine($altImmagine) {
 				"%error-alt%", errorElement($errorMessageAlt), "%value-alt%", $altImmagine);
 }
 
-/*
-if(isset($_POST["submit"])){
-	// check titolo aritcolo (niente markdown, lunghezza massima e required)
-	if(isset($_POST["titolo-articolo"])){
-		$titolo = $_POST["titolo-articolo"];
-		$isDuplicate = $repoArticle->checkDouble($titolo);
-		$validTitolo = validateNoMarkdown($titolo)
-				&& validateLength($titolo, NULL, 30)
-				&& validateRequired($titolo)
-				&& !$isDuplicate;
-	} else {
-		$validTitolo = false;
-		$titolo = "";
-	}
-	handleField($validTitolo, "%error-titolo%", errorElement($errorMessageTitolo), "%value-titolo%", $titolo);
-	
-	// check contenuto articolo (lunghezza minima e required)
-	
-	$html = substituteError($validContenuto, "%error-contenuto%", errorElement($errorMessageContenuto), $html);
-	$html = str_replace("%value-contenuto%", $contenuto, $html);
-	
-	// check summary articolo (lunghezza massima e required)
-	if(isset($_POST["sommario-articolo"])){
-		$sommario = $_POST["sommario-articolo"];
-		print_r(utf8_strlen($sommario));
-		$validSommario = validateLength($sommario, NULL, 200)
-					&& validateRequired($sommario);
-	} else {
-		$sommario = "";
-		$validSommario = false;
-	}
-	$html = substituteError($validSommario, "%error-sommario%", errorElement($errorMessageSommario), $html);
-	$html = str_replace("%value-sommario%", $sommario, $html);
-	*/
-	// check file immagine caricato (dimensione e tipo file)
+function validaImmagine($fileImmagine) {
+	$valid = false;
+	$isDuplicate = false;
 	if(isset($_FILES["file-immagine"])){
 		$file = $_FILES["file-immagine"];
 		$isDuplicate = $repoImage->checkDouble($file["name"]);
-		$validFile = $file["size"] <= 1000000
+		$valid = $file["size"] <= 1000000
 				&& $file["error"] === 0
 				&& substr_compare($file["type"], "image/", 0, strlen("image/")) === 0
 				&& !$isDuplicate;
 
-	} else {
-		$validFile = false;
-		$isDuplicate = false;
 	}
-	$html = substituteError($validFile, "%error-file%",errorElement($isDuplicate ? $errorMessageFileDuplicate : $errorMessageFile) , $html);
-	/*
-	// check alt immagine (lunghezza massima e niente markdown)
-	if(isset($_POST["alt-immagine"])){
-		$alt = $_POST["alt-immagine"];
-		$validAlt = validateNoMarkdown($alt)
-				&& validateLength($alt, NULL, 70);
-	} else {
-		$validAlt = true;
-		$alt = "";
-	}
-	$html = substituteError($validAlt, "%error-alt%", $errorMessageAlt, $html);
-	$html = str_replace("%value-alt%", $alt, $html);
-	*/
-	if($validTitolo && $validContenuto && $validFile && $validAlt && $validSommario){
-		$repoImage->addImage($file, $alt);
-		$insertedImage = $repoImage->findImageByName($file["name"]);
-		$resultInsArticle = $repoArticle->addArticle($titolo, $contenuto, $sommario, $insertedImage->id);
-		echo "Articolo inserito";
-	}else{
-		echo $html;
-	}
-	
-} else {
-	$substitutions = array("%error-alt%", "%error-file%", "%error-contenuto%", "%error-titolo%","%error-sommario%", 
-	                       "%value-alt%", "%value-contenuto%", "%value-titolo%", "%value-sommario%");
-	echo str_replace($substitutions, "",$html);
+	$html = substituteError($valid,
+							"%error-file%",
+							errorElement($isDuplicate ? $errorMessageFileDuplicate : $errorMessageFile),
+							$html);
+	return $valid;
 }
-
-$repoImage->disconnect();
-$repoArticle->disconnect();
 
 function validateNoMarkdown($input){
 	$valid = true;
