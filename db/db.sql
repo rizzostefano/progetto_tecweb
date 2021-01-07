@@ -55,4 +55,7 @@ CREATE TABLE IF NOT EXISTS ArticlesModify
     FOREIGN KEY (IdAdministrator) REFERENCES Administrators(Id) ON DELETE CASCADE
 );
 
+INSERT INTO Administrators(Username, Email, Password) 
+VALUES ("admin", "admin@mail.com", "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918");
+
 SET FOREIGN_KEY_CHECKS=1;
