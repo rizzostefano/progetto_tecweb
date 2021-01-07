@@ -56,6 +56,9 @@ nav > ul li{
 form > ul li {
     display: block;
 }
+form label {
+    display: block;
+}
 
 header img {
     width: 8em;
@@ -190,7 +193,7 @@ main section p{
     padding: 0.5em 2em 0em 2em;
 }
 
-input[type=text], input[type=email], textarea{
+input[type=text], input[type=email], input[type=password], textarea{
     width: 100%;
     padding: 0.5em;
     margin: auto;
@@ -199,20 +202,21 @@ input[type=text], input[type=email], textarea{
     box-sizing: border-box;
 }
 
-input[type=text], input[type=email], textarea{
-    width: 100%;
-    padding: 0.5em;
-    margin: auto;
-    border: thin solid #aeaeae;
-    border-radius: 3px;
-    box-sizing: border-box;
+
+.error {
+	color: red;
 }
 
-input[type=text].errored, input[type=email].errored, textarea.errored{
-    border: 2px solid red;
+
+input[type=button].add {
+	background-color: #6D9fa0;
 }
 
-input[type=submit], .button {
+input[type=button].remove {
+	background-color: #d01110;
+}
+
+input[type=file], input[type=submit], input[type=button], .button {
     color: #f9f9f9;
     background-color: #303030;
     border: thin solid #aeaeae;

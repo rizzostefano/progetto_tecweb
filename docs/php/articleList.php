@@ -1,6 +1,7 @@
 <?php
 
-require_once('backend/articleModel.php');
+require_once('backend/article/repoArticle.php');
+require_once('backend/escapeMarkdown.php');
 
 $DOM = file_get_contents('../template.html');
 
@@ -15,8 +16,8 @@ $DOM = str_replace('<cs_meta_description/>', '<meta name="description" content="
 //TODO definire keyword per ogni articolo => aggiungerle al db?
 $DOM = str_replace('<cs_meta_keyword/>', '<meta name="keywords" content="Chitarra,Corde,Liuteria" />', $DOM);
 
-$articleModel = new ArticleModel();
-$articles = $articleModel->getArticles();
+$repo = new RepoArticle();
+$articles = $repo->getArticles();
 
 $content = '<section>
                 <h1>Sei un musicista interessato alla liuteria?</h1>
@@ -26,12 +27,14 @@ $content = '<section>
 
 foreach($articles as $article)
 {
+    $article->title = MarkdownCorverter::render($article->title);
+    $article->summary = MarkdownCorverter::render($article->summary);
     $content .= "<div class='flex-container'>
                     <article class='column'>
-                        <h2>{$article["Title"]}</h2>
-                        <p>{$article["Summary"]}</p>
+                        <h2>{$article->title}</h2>
+                        <p>{$article->summary}</p>
                         <div class='btn-container'>
-                            <a href='articleDetails.php?article_id={$article["Id"]}' class='button'>Leggi!</a>
+                            <a href='articleDetails.php?article_id={$article->id}' class='button'>Leggi!</a>
                         </div>
                     </article>
                 </div>";
