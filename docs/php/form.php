@@ -1,37 +1,4 @@
 <?php
-require_once("backend/escapeMarkdown.php");
-require_once("backend/article/repoArticle.php");
-require_once("backend/image/repoImage.php");
-header('Content-type: text/html; charset=utf-8');
-session_start();
-if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === true)) {
-	header('Location: adminLogin.php');
-}
-
-$html = file_get_contents("../admin/admin-nuovo-articolo.html");
-
-$repoImage = new RepoImage();
-$repoArticle = new RepoArticle();
-
-if(isset($_POST["submit"])){
-	if(validaTitolo($_POST["titolo-articolo"]) &&
-	validaContenuto($_POST["contenuto-articolo"]) && 
-	validaImmagine($_FILE["file-immagine"]) &&
-	validaAltImmagine($_POST["alt-immagine"]) &&
-	validaSommario($_POST["sommario-articolo"]))
-	{
-		$repoImage->addImage($file, $alt);
-		$insertedImage = $repoImage->findImageByName($file["name"]);
-		$resultInsArticle = $repoArticle->addArticle($titolo, $contenuto, $sommario, $insertedImage->id);
-		echo "Articolo inserito";
-	}
-} else {
-	$html = preg_replace("/%(.*)%/", "", $html);
-	echo $html;
-}
-
-$repoImage->disconnect();
-$repoArticle->disconnect();
 
 /**
  * @field: valore del campo
@@ -128,3 +95,39 @@ function substituteError($valid, $pattern, $error, $context){
 function errorElement($message){
 	return '<strong class="error"> - ' . $message . '</strong>';
 }
+
+
+require_once("backend/escapeMarkdown.php");
+require_once("backend/article/repoArticle.php");
+require_once("backend/image/repoImage.php");
+header('Content-type: text/html; charset=utf-8');
+session_start();
+if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === true)) {
+	header('Location: adminLogin.php');
+}
+
+$html = file_get_contents("../admin/admin-nuovo-articolo.html");
+
+$repoImage = new RepoImage();
+$repoArticle = new RepoArticle();
+
+if(isset($_POST["submit"])){
+	if(validaTitolo($_POST["titolo-articolo"]) &&
+	validaContenuto($_POST["contenuto-articolo"]) && 
+	validaImmagine($_FILE["file-immagine"]) &&
+	validaAltImmagine($_POST["alt-immagine"]) &&
+	validaSommario($_POST["sommario-articolo"]))
+	{
+		$repoImage->addImage($file, $alt);
+		$insertedImage = $repoImage->findImageByName($file["name"]);
+		$resultInsArticle = $repoArticle->addArticle($titolo, $contenuto, $sommario, $insertedImage->id);
+		echo "Articolo inserito";
+	}
+} else {
+	$html = preg_replace("/%(.*)%/", "", $html);
+}
+
+echo $html;
+
+$repoImage->disconnect();
+$repoArticle->disconnect();
