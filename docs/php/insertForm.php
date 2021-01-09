@@ -2,6 +2,7 @@
 
 require_once("backend/escapeMarkdown.php");
 require_once("backend/article/repoArticle.php");
+require_once("backend/article/article.php");
 require_once("backend/image/repoImage.php");
 header('Content-type: text/html; charset=utf-8');
 session_start();
@@ -9,103 +10,67 @@ if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === true)) {
 	header('Location: adminLogin.php');
 }
 
-$html = file_get_contents("../admin/admin-nuovo-articolo.html");
+$html = file_get_contents("../admin/admin-inserisci-articolo.html");
 
 $repoImage = new RepoImage();
 $repoArticle = new RepoArticle();
 
-print_r($_POST);
-print_r($_GET);
+if(isset($_GET["new"])){
+	unset($_SESSION["article"]);
+}
 
-if(isset($_GET["article_id"]) || isset($_POST["articleId"]))
-{
-	$article = $repoArticle->findArticleById(isset($_GET["article_id"]) ? $_GET["article_id"] : $_POST["articleId"]);
+if(isset($_GET["article_id"])){
+	$article = $repoArticle->findArticleById($_GET["article_id"]);
+	if($article !== false){
+		$_SESSION["article"] = $article;
+	} 
+}
+
+$isEditing = isset($_SESSION["article"]);
+if(isset($_POST["submit"])){
+	$validateTitle = validateTitle($_POST["titolo-articolo"]);
+	$validateContent = validateContent($_POST["contenuto-articolo"]);
+	$validateImageAlt = validateImageAlt($_POST["alt-immagine"]);
+	$validateSummary = validateSummary($_POST["sommario-articolo"]);
+	$isImageNotChanging = $isEditing && $_FILES["file-immagine"]["error"] !== 0 ;
+	echo !isset($_FILES["file-immagine"]["name"]);
+	$validateImage =  $isImageNotChanging ? true : validateImage($_FILES["file-immagine"]);
+	if ($validateTitle && $validateContent && $validateImage && $validateImageAlt && $validateSummary){
+		$imageId = $isImageNotChanging ? $_SESSION["article"]->image : $repoImage->addImage($_FILES["file-immagine"], $_POST["alt-immagine"])->id; 
+		$articleId = $isEditing ? $_SESSION["article"]->id : -1;
+		$article = new Article($articleId, $_POST["titolo-articolo"], $_POST["contenuto-articolo"], $_POST["sommario-articolo"], $imageId);
+		if ($isEditing && !$isImageNotChanging){
+			$repoImage->deleteImage($_SESSION["article"]->image);
+		}$_SESSION["article"] = $article;
+		$result = $isEditing ? $repoArticle->editArticle($article) : $repoArticle->addArticle($article->title,$article->content,$article->summary,$article->image);
+		if($result !== false){
+			unset($_SESSION["article"]);
+			header('Location: editArticles.php');
+		}
+	}
+
+} 
+
+$html = preg_replace("/%error-\w*%/", "", $html);
+
+if($isEditing){
+	$article = $_SESSION["article"];
 	$image = $repoImage->findImageById($article->image);
-	if($article === false){
-		header('Location: insertForm.php');
-	}
-	if(isset($_POST["submit"])){
-		// caso modifica articolo submit premuto
-		$validaTitolo = validaTitolo($_POST["titolo-articolo"]);
-		$validaContenuto = validaContenuto($_POST["contenuto-articolo"]);
-		$validaAltImmagine = validaAltImmagine($_POST["alt-immagine"]);
-		$validaSommario = validaSommario($_POST["sommario-articolo"]);
-		$validaImmagine = true;
-		$imageIsChanging = false;
-		if(isset($_FILES)){
-			$validaImmagine = validaImmagine($_FILES["file-immagine"]);
-			$imageIsChanging = true;
-		}
-		if($validaTitolo && $validaContenuto && $validaImmagine &&
-				$validaAltImmagine && $validaSommario && $validaSommario)
-		{
-			if($imageIsChanging === true) {
-				$repoImage->deleteImage($image->id);
-				$repoImage->addImage($_FILES["file-immagine"], $_POST["alt-immagine"]);
-				$image = $repoImage->findImageByName($_FILES["file-immagine"]["name"]);
-				$article->image = $image->id;
-			}
-			else{
-				$repoImage->editAltImage($image->id, $_POST["alt-immagine"]);
-			}
-			
-			$repoArticle->editArticle($article);
-			echo "inserimento non andato";
-		} else {
-			echo $html;
-		}
-	}
-	else{
-		// CASO MODIFICA ARTICOLO submit non premuto
-		$html = str_replace("%article-id%", '<input type="hidden" name="articleId" value="'. $_GET["article_id"].'"/>', $html);
-		$html = str_replace("%image-required%", "", $html);
-		$html = str_replace("%edit-file-msg%", "Se non si inserisce l'immagine, rimarrà quella inserita precedentemente.", $html);
-		$html = preg_replace("/%error-(.*)%/", "", $html);
-		$html = str_replace("%value-titolo%",$article->title, $html);
-		$html = str_replace("%value-contenuto%",$article->content, $html);
-		$html = str_replace("%value-sommario%",$article->summary, $html);
-		$html = str_replace("%value-file%",$image->name, $html);
-		$html = str_replace("%value-alt%",$image->alt, $html);
-		echo $html;
-	}
-}
-else{
-
-	if(isset($_POST["submit"])){
-		echo "1";
-	// CASO INSERIMENTO ARTICOLO SUBMIT PREMUTO
-		$validaTitolo = validaTitolo($_POST["titolo-articolo"]);
-		$validaContenuto = validaContenuto($_POST["contenuto-articolo"]);
-		$validaImmagine = validaImmagine($_FILES["file-immagine"]);
-		$validaAltImmagine = validaAltImmagine($_POST["alt-immagine"]);
-		$validaSommario = validaSommario($_POST["sommario-articolo"]);
-
-		if($validaTitolo && $validaContenuto && $validaImmagine &&
-				$validaAltImmagine && $validaSommario && $validaSommario)
-		{
-			$file = $_FILES["file-immagine"];
-			$repoImage->addImage($file, $_POST["alt-immagine"]);
-			$insertedImage = $repoImage->findImageByName($file["name"]);
-			$resultInsArticle = $repoArticle->addArticle($_POST["titolo-articolo"],
-															$_POST["contenuto-articolo"], 
-															$_POST["sommario-articolo"], 
-															$insertedImage->id);
-			echo "Articolo inserito con successo";
-		}
-		else {
-			// qualcosa va storto in inserimento, stampo errori
-			echo $html;
-		}
-	}
-	else{
-		echo "2";
-		// caso inserimento submit non premuto
-		$html = str_replace("%image-required%", 'required="required"', $html);
-		$html = preg_replace("/%(.*)%/", "", $html);
-		echo $html;
-	}
+	$html = str_replace("%add-or-modify%", "Modifica di :" . $article->title , $html);
+	$html = str_replace("%image-required%", "", $html);
+	$html = str_replace("%edit-file-msg%", "Se non si inserisce l'immagine, rimarrà quella inserita precedentemente.", $html);
+	$html = str_replace("%value-titolo%",$article->title, $html);
+	$html = str_replace("%value-contenuto%",$article->content, $html);
+	$html = str_replace("%value-sommario%",$article->summary, $html);
+	$html = str_replace("%value-alt%",$image->alt, $html);
+} else {
+	$html = str_replace("%add-or-modify%", "Nuovo articolo", $html);
+	$html = str_replace("%image-required%", 'required="required"', $html);
+	$html = str_replace("%edit-file-msg%", "", $html);
+	$html = preg_replace("/%value-\w*%/", "", $html);
 }
 
+echo $html;
 $repoImage->disconnect();
 $repoArticle->disconnect();
 
@@ -129,14 +94,14 @@ function validateTextField($field, $minlen, $maxlen, $hasMarkdown, $isNotRequire
 			&& ($isNotRequired || (validateRequired($field)));
 }
 
-function validaContenuto($contenuto) {
+function validateContent($contenuto) {
 	$errorMessageContenuto = "Il corpo dell'articolo deve essere lungo almeno 30 caratteri e scritto secondo le regole del markdown";
 	$valid = validateTextField($contenuto, 30, NULL, true, false);
 	handleField($valid, "%error-contenuto%", errorElement($errorMessageContenuto), "%value-contenuto%", $contenuto);
 	return $valid;
 }
 
-function validaTitolo($titolo) {
+function validateTitle($titolo) {
 	// TODO: permettere di inserire markdown lingua nel titolo
 	$errorMessageTitolo = "Il titolo dell'articolo è: obbligatorio, al massimo 30 caratteri e va scritto senza markdown";
 	$valid = validateTextField($titolo, NULL, 30, false, false);
@@ -144,21 +109,21 @@ function validaTitolo($titolo) {
 	return $valid;
 }
 
-function validaSommario($sommario) {
+function validateSummary($sommario) {
 	$errorMessageSommario = "Il sommario dell'articolo è: obbligatorio, al massimo 200 caratteri e scritto secondo le regole del markdown";
 	$valid = validateTextField($sommario, NULL, 200, true, false);
 	handleField($valid, "%error-sommario%", errorElement($errorMessageSommario), "%value-sommario%", $sommario);
 	return $valid;
 }
 
-function validaAltImmagine($altImmagine) {
+function validateImageAlt($altImmagine) {
 	$errorMessageAlt = "Il testo alternativo non può superare i 70 caratteri o contenere markup";
 	$valid = validateTextField($altImmagine, NULL, 70, false, true);
 	handleField($valid, "%error-alt%", errorElement($errorMessageAlt), "%value-alt%", $altImmagine);
 	return $valid; 
 }
 
-function validaImmagine($file) {
+function validateImage($file) {
 	global $html;
 	global $repoImage;
 	$errorMessageFile = "Il file va inserito obbligatoriamente se non precedentemente inserito e deve essere un'immagine inferiore al megabyte";

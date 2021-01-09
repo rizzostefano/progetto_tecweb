@@ -46,6 +46,10 @@ class DbConnection
         return mysqli_stmt_execute($stmt);
     }
 
+    public function getInsertId(){
+        return  mysqli_insert_id($this->current_connection);
+    }
+
     /* Il metodo esegue la disconnessione dal database */
     public function disconnect()
     {

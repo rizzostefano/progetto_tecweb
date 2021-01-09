@@ -25,7 +25,7 @@ class RepoArticle{
         $result = array();
         foreach ($articles as $article)
         {
-            $tmp = new Article($article["Id"], $article["Title"], $article["ArticleTextContent"], $article["Summary"], $article["InsertDate"], $article["Image"]);
+            $tmp = new Article($article["Id"], $article["Title"], $article["ArticleTextContent"], $article["Summary"], $article["Image"]);
             array_push($result, $tmp);
         }
         return $result;
@@ -42,7 +42,7 @@ class RepoArticle{
         }
         else {
             $result = mysqli_fetch_assoc($result);
-            return new Article($result["Id"], $result["Title"], $result["ArticleTextContent"], $result["Summary"], $result["InsertDate"], $result["Image"]);
+            return new Article($result["Id"], $result["Title"], $result["ArticleTextContent"], $result["Summary"], $result["Image"]);
         }
     }
 
@@ -57,15 +57,15 @@ class RepoArticle{
         }
         else{
             $result = mysqli_fetch_assoc($result);
-            return new Article($result["Id"], $result["Title"], $result["ArticleTextContent"], $result["Summary"], $result["InsertDate"], $result["Image"]);
+            return new Article($result["Id"], $result["Title"], $result["ArticleTextContent"], $result["Summary"], $result["Image"]);
         }
     }
 
-    public function addArticle($title, $content, $summary, $imageId)
+    public function addArticle($title, $content, $summary, $image)
     {
         $query = "INSERT INTO Articles (Title, ArticleTextContent, Summary, Image, InsertDate) VALUES (?, ?, ?, ?, CURDATE())";
         $stmt = $this->conn->prepareQuery($query);
-        mysqli_stmt_bind_param($stmt, "sssi", $title, $content, $summary, $imageId); 
+        mysqli_stmt_bind_param($stmt, "sssi", $title, $content, $summary, $image); 
         return $this->conn->executePreparedQueryDML($stmt);
     }
 
@@ -81,8 +81,8 @@ class RepoArticle{
     {
         $query = "UPDATE Articles SET Title = ?, ArticleTextContent = ?, Summary = ?, Image = ? WHERE Id = ?";
         $stmt = $this->conn->prepareQuery($query);
-        mysqli_stmt_bind_param($stmt, "ssss", $article->title, $article->content, $article->summary, $article->image, $article->id); 
-        return $this->conn->executePreparedQuery($stmt);
+        mysqli_stmt_bind_param($stmt, "ssssi", $article->title, $article->content, $article->summary, $article->image, $article->id); 
+        return $this->conn->executePreparedQueryDML($stmt);
     }
 
     public function checkDouble($titolo){

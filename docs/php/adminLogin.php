@@ -16,7 +16,7 @@ if(isset($_POST['submit'])){
             session_set_cookie_params(3600);
             session_start();
             $_SESSION['admin'] = true;
-            header('Location: insertForm.php');
+            header('Location: insertForm.php?new=1');
         }
     } else {
         echo str_replace("%error-login%", "Credenziali non valide", $html);

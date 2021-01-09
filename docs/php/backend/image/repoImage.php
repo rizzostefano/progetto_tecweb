@@ -66,8 +66,8 @@ class RepoImage{
         mysqli_stmt_bind_param($stmt, "sss", $fileImage["name"], $alt, $filePath); 
         $result = $this->conn->executePreparedQueryDML($stmt);
         if($result === true) {
-            $resultMove = move_uploaded_file($fileImage["tmp_name"], $filePath);
-            return true;
+            move_uploaded_file($fileImage["tmp_name"], $filePath);
+            return new Image($this->conn->getInsertID(), $fileImage["name"], $alt, $filePath);
         } else {
             return false;
         }
