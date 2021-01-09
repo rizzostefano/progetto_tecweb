@@ -25,7 +25,7 @@
         </header>
         <main>
 			<!-- TODO: INSERIRE ACTION AGGIUNTA ARTICOLO --> 
-            <form method="POST" action="form.php" id="invio" name="nuovo-articolo" enctype="multipart/form-data">
+            <form method="POST" action="insertForm.php" id="invio" name="nuovo-articolo" enctype="multipart/form-data">
 				<fieldset>
 					<legend>Corpo dell'articolo</legend>	
 					<label for="titolo-articolo" data-error-msg="il titolo dell'articolo è: obbligatorio, al massimo 30 caratteri e va scritto senza markdown">Titolo %error-titolo%</label>
@@ -39,7 +39,7 @@
                     <label for="sommario-articolo" data-error-msg="Il sommario dell'articolo è: obbligatorio, al massimo 200 caratteri e scritto secondo le regole del markdown">Sommario %error-sommario%</label>
                     <textarea id="sommario-articolo" name="sommario-articolo"
                                   rows="5" cols="100"
-                                  maxlength="200"	
+                                  maxlength="200"
                                   placeholder="Inserisci qui il sommario dell'articolo che vuoi pubblicare"
                                   required="required"
                                   aria-required="true"

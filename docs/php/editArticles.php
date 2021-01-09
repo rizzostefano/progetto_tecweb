@@ -8,7 +8,7 @@ if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === true)) {
 	header('Location: adminLogin.php');
 }
 
-$html = file_get_contents("../admin/admin-modifica-articoli.html");
+$html = file_get_contents("../admin/admin-lista-articoli.html");
 
 $repoArticle = new RepoArticle();
 $repoImage = new RepoImage();
