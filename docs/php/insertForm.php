@@ -14,25 +14,96 @@ $html = file_get_contents("../admin/admin-nuovo-articolo.html");
 $repoImage = new RepoImage();
 $repoArticle = new RepoArticle();
 
-if(isset($_POST["submit"])){
-	if(validaTitolo($_POST["titolo-articolo"]) &&
-			validaContenuto($_POST["contenuto-articolo"]) &&
-			validaImmagine($_FILES["file-immagine"]) &&
-			validaAltImmagine($_POST["alt-immagine"]) &&
-			validaSommario($_POST["sommario-articolo"]))
-	{
-		$file = $_FILES["file-immagine"];
-		$repoImage->addImage($file, $_POST["alt-immagine"]);
-		$insertedImage = $repoImage->findImageByName($file["name"]);
-		$resultInsArticle = $repoArticle->addArticle($_POST["titolo-articolo"],
-													 $_POST["contenuto-articolo"], 
-													 $_POST["sommario-articolo"], 
-													 $insertedImage->id);
-		echo "Articolo inserito con successo";
+print_r($_POST);
+print_r($_GET);
+
+if(isset($_GET["article_id"]) || isset($_POST["articleId"]))
+{
+	$article = $repoArticle->findArticleById(isset($_GET["article_id"]) ? $_GET["article_id"] : $_POST["articleId"]);
+	$image = $repoImage->findImageById($article->image);
+	if($article === false){
+		header('Location: insertForm.php');
 	}
-} else {
-	$html = preg_replace("/%(.*)%/", "", $html);
-	echo $html;
+	if(isset($_POST["submit"])){
+		// caso modifica articolo submit premuto
+		$validaTitolo = validaTitolo($_POST["titolo-articolo"]);
+		$validaContenuto = validaContenuto($_POST["contenuto-articolo"]);
+		$validaAltImmagine = validaAltImmagine($_POST["alt-immagine"]);
+		$validaSommario = validaSommario($_POST["sommario-articolo"]);
+		$validaImmagine = true;
+		$imageIsChanging = false;
+		if(isset($_FILES)){
+			$validaImmagine = validaImmagine($_FILES["file-immagine"]);
+			$imageIsChanging = true;
+		}
+		if($validaTitolo && $validaContenuto && $validaImmagine &&
+				$validaAltImmagine && $validaSommario && $validaSommario)
+		{
+			if($imageIsChanging === true) {
+				$repoImage->deleteImage($image->id);
+				$repoImage->addImage($_FILES["file-immagine"], $_POST["alt-immagine"]);
+				$image = $repoImage->findImageByName($_FILES["file-immagine"]["name"]);
+				$article->image = $image->id;
+			}
+			else{
+				$repoImage->editAltImage($image->id, $_POST["alt-immagine"]);
+			}
+			
+			$repoArticle->editArticle($article);
+			echo "inserimento non andato";
+		} else {
+			echo $html;
+		}
+	}
+	else{
+		// CASO MODIFICA ARTICOLO submit non premuto
+		$html = str_replace("%article-id%", '<input type="hidden" name="articleId" value="'. $_GET["article_id"].'"/>', $html);
+		$html = str_replace("%image-required%", "", $html);
+		$html = str_replace("%edit-file-msg%", "Se non si inserisce l'immagine, rimarrà quella inserita precedentemente.", $html);
+		$html = preg_replace("/%error-(.*)%/", "", $html);
+		$html = str_replace("%value-titolo%",$article->title, $html);
+		$html = str_replace("%value-contenuto%",$article->content, $html);
+		$html = str_replace("%value-sommario%",$article->summary, $html);
+		$html = str_replace("%value-file%",$image->name, $html);
+		$html = str_replace("%value-alt%",$image->alt, $html);
+		echo $html;
+	}
+}
+else{
+
+	if(isset($_POST["submit"])){
+		echo "1";
+	// CASO INSERIMENTO ARTICOLO SUBMIT PREMUTO
+		$validaTitolo = validaTitolo($_POST["titolo-articolo"]);
+		$validaContenuto = validaContenuto($_POST["contenuto-articolo"]);
+		$validaImmagine = validaImmagine($_FILES["file-immagine"]);
+		$validaAltImmagine = validaAltImmagine($_POST["alt-immagine"]);
+		$validaSommario = validaSommario($_POST["sommario-articolo"]);
+
+		if($validaTitolo && $validaContenuto && $validaImmagine &&
+				$validaAltImmagine && $validaSommario && $validaSommario)
+		{
+			$file = $_FILES["file-immagine"];
+			$repoImage->addImage($file, $_POST["alt-immagine"]);
+			$insertedImage = $repoImage->findImageByName($file["name"]);
+			$resultInsArticle = $repoArticle->addArticle($_POST["titolo-articolo"],
+															$_POST["contenuto-articolo"], 
+															$_POST["sommario-articolo"], 
+															$insertedImage->id);
+			echo "Articolo inserito con successo";
+		}
+		else {
+			// qualcosa va storto in inserimento, stampo errori
+			echo $html;
+		}
+	}
+	else{
+		echo "2";
+		// caso inserimento submit non premuto
+		$html = str_replace("%image-required%", 'required="required"', $html);
+		$html = preg_replace("/%(.*)%/", "", $html);
+		echo $html;
+	}
 }
 
 $repoImage->disconnect();
@@ -62,9 +133,6 @@ function validaContenuto($contenuto) {
 	$errorMessageContenuto = "Il corpo dell'articolo deve essere lungo almeno 30 caratteri e scritto secondo le regole del markdown";
 	$valid = validateTextField($contenuto, 30, NULL, true, false);
 	handleField($valid, "%error-contenuto%", errorElement($errorMessageContenuto), "%value-contenuto%", $contenuto);
-	if($valid === false){
-		echo "SOMETHING WENT WRONG: CONTENUTO";
-	}
 	return $valid;
 }
 
@@ -73,19 +141,13 @@ function validaTitolo($titolo) {
 	$errorMessageTitolo = "Il titolo dell'articolo è: obbligatorio, al massimo 30 caratteri e va scritto senza markdown";
 	$valid = validateTextField($titolo, NULL, 30, false, false);
 	handleField($valid, "%error-titolo%", errorElement($errorMessageTitolo), "%value-titolo%", $titolo);
-	if($valid === false){
-		echo "SOMETHING WENT WRONG: TITOLO";
-	}
 	return $valid;
 }
 
 function validaSommario($sommario) {
 	$errorMessageSommario = "Il sommario dell'articolo è: obbligatorio, al massimo 200 caratteri e scritto secondo le regole del markdown";
 	$valid = validateTextField($sommario, NULL, 200, true, false);
-	handleField($valid, "%error-contenuto%", errorElement($errorMessageSommario), "%value-contenuto%", $sommario);
-	if($valid === false){
-		echo "SOMETHING WENT WRONG: SOMMARIO";
-	}
+	handleField($valid, "%error-sommario%", errorElement($errorMessageSommario), "%value-sommario%", $sommario);
 	return $valid;
 }
 
@@ -93,35 +155,27 @@ function validaAltImmagine($altImmagine) {
 	$errorMessageAlt = "Il testo alternativo non può superare i 70 caratteri o contenere markup";
 	$valid = validateTextField($altImmagine, NULL, 70, false, true);
 	handleField($valid, "%error-alt%", errorElement($errorMessageAlt), "%value-alt%", $altImmagine);
-	if($valid === false){
-		echo "SOMETHING WENT WRONG: ALT";
-	}
 	return $valid; 
 }
 
-function validaImmagine($fileImmagine) {
+function validaImmagine($file) {
 	global $html;
 	global $repoImage;
-	$errorMessageFile = "Il file va inserito obbligatoriamente e deve essere un immagine inferiore al megabyte";
+	$errorMessageFile = "Il file va inserito obbligatoriamente se non precedentemente inserito e deve essere un'immagine inferiore al megabyte";
 	$errorMessageFileDuplicate = "Un file con questo nome è gia stato inserito nella piattaforma";
 	$valid = false;
 	$isDuplicate = false;
-	if(isset($_FILES["file-immagine"])){
-		$file = $_FILES["file-immagine"];
+	if(isset($file)){
 		$isDuplicate = $repoImage->checkDouble($file["name"]);
 		$valid = $file["size"] <= 1000000
 				&& $file["error"] === 0
 				&& substr_compare($file["type"], "image/", 0, strlen("image/")) === 0
 				&& !$isDuplicate;
-
 	}
 	$html = substituteError($valid,
-							"%error-file%",
-							errorElement($isDuplicate ? $errorMessageFileDuplicate : $errorMessageFile),
-							$html);
-	if($valid === false){
-		echo "SOMETHING WENT WRONG: IMMAGINE";
-	}
+						"%error-file%",
+						errorElement($isDuplicate ? $errorMessageFileDuplicate : $errorMessageFile),
+						$html);
 	return $valid;
 }
 

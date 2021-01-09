@@ -73,6 +73,13 @@ class RepoImage{
         }
     }
 
+    public function editAltImage($id, $alt) {
+        $query = "UPDATE Images SET Alt = ? WHERE Id = ?";
+        $stmt = $this->conn->prepareQuery($query);
+        mysqli_stmt_bind_param($stmt, "ss", $alt, $id);
+        return $this->conn->executePreparedQuery($stmt);
+    }
+
     public function checkDouble($imageName) {
         return false !== $this->findImageByName($imageName);
     }

@@ -55,19 +55,20 @@
 				</fieldset>
 				<fieldset>
                     <legend>Immagine Articolo</legend>
-                    <label for="file-immagine" data-error-msg="Il file va inserito obbligatoriamente e deve essere un immagine inferiore al megabyte">File immagine %error-file%</label>
+                    <label for="file-immagine" data-error-msg="Il file va inserito obbligatoriamente e deve essere un immagine inferiore al megabyte.">File immagine %error-file% %edit-file-msg%</label>
                     <input type="file" id="file-immagine"
-                            required="required"
                             accept="image/*"
-                            name="file-immagine"/>
+                            name="file-immagine"
+                            %image-required%/>
                     <label for="alt-immagine" data-error-msg="Il testo alternativo non può superare i 70 caratteri o contenere markup">Testo alternativo immagine %error-alt%</label>
                     <input type="text" id="alt-immagine" name="alt-immagine"
                            value="%value-alt%"
                            maxlength="70"
                            placeholder="Inserisci qui il testo alternativo per l'immagine"
                            aria-label="Campo per l'inserimento per il testo alternativo per l'immagine"/>
-				</fieldset>
-				<input name="submit" type="submit"/>
+                </fieldset>
+                %article-id%
+				<input name="submit" type="submit" value="submit"/>
             </form>
         </main>
         <footer>

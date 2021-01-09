@@ -37,8 +37,13 @@ class RepoArticle{
         $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "s", $articleId);
         $result = $this->conn->executePreparedQuery($stmt);
-        $result = mysqli_fetch_assoc($result);
-        return new Article($result["Id"], $result["Title"], $result["ArticleTextContent"], $result["Summary"], $result["InsertDate"], $result["Image"]);
+        if(mysqli_num_rows($result) === 0){
+            return false;
+        }
+        else {
+            $result = mysqli_fetch_assoc($result);
+            return new Article($result["Id"], $result["Title"], $result["ArticleTextContent"], $result["Summary"], $result["InsertDate"], $result["Image"]);
+        }
     }
 
     public function findArticleByTitle($articleTitle)
@@ -74,9 +79,9 @@ class RepoArticle{
 
     public function editArticle($article)
     {
-        $query = "UPDATE Articles SET Title = ?, ArticleTextContent = ? WHERE Id = ?";
+        $query = "UPDATE Articles SET Title = ?, ArticleTextContent = ?, Summary = ?, Image = ? WHERE Id = ?";
         $stmt = $this->conn->prepareQuery($query);
-        mysqli_stmt_bind_param($stmt, "sss", $article->title, $article->content, $article->id); 
+        mysqli_stmt_bind_param($stmt, "ssss", $article->title, $article->content, $article->summary, $article->image, $article->id); 
         return $this->conn->executePreparedQuery($stmt);
     }
 

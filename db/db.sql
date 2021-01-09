@@ -41,20 +41,6 @@ CREATE TABLE IF NOT EXISTS Articles
  );
 
 
--- ************************************** ArticlesModify
-
-CREATE TABLE IF NOT EXISTS ArticlesModify
-(
-    IdArticle       int NOT NULL,
-    IdAdministrator int NOT NULL,
-    ModifyDate      datetime NOT NULL,
-    CommentChanges  text,
-
-    PRIMARY KEY (IdArticle, IdAdministrator, ModifyDate),
-    FOREIGN KEY (IdArticle) REFERENCES Articles(Id) ON DELETE CASCADE,
-    FOREIGN KEY (IdAdministrator) REFERENCES Administrators(Id) ON DELETE CASCADE
-);
-
 INSERT INTO Administrators(Username, Email, Password) 
 VALUES ("admin", "admin@mail.com", "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918");
 

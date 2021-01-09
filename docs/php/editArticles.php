@@ -21,13 +21,13 @@ foreach($articles as $article)
 {
 	$article->title = MarkdownConverter::render($article->title);
 	$article->summary = MarkdownConverter::render($article->summary);
-	$content .= "<div class='flex-container'>
-					<article class='column'>
+	$content .= "<div class=\"flex-container\">
+					<article class=\"column\">
 						<h2>{$article->title}</h2>
 						<p>{$article->summary}</p>
-						<div class='btn-container'>
-							<a href='editForm.php?article_id={$article->id}' class='button'>Modifica</a>
-							<a href='deleteArticle.php?article_id={$article->id}' class='button'>Elimina</a>
+						<div class=\"btn-container\">
+							<a href=\"insertForm.php?article_id={$article->id}\" class=\"button\">Modifica</a>
+							<a href=\"deleteArticle.php?article_id={$article->id}\" class=\"button\">Elimina</a>
 						</div>
 					</article>
 				</div>";

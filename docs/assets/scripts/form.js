@@ -52,7 +52,7 @@ function showErrorMessage(input){
 		error.appendChild(document.createTextNode(" - " +label.getAttribute("data-error-msg")));
 		label.appendChild(error);
 	}
-}u
+}
 
 function deleteErrorMessages(){
 	var errors = document.getElementsByClassName("error");
@@ -77,9 +77,10 @@ function validateLength(input){
 
 function validateImageFile(input) {
 	const files = input.files;
-	return (files.length === 1)
-           && files[0].type.startsWith("image/")
-		   && files[0].size < 1000000;
+	return ((files.length === 1)
+     	      && files[0].type.startsWith("image/")
+		   	  && files[0].size < 1000000) 
+		   || (files.length === 0);
 }
 
 function validateRequired(input) {
