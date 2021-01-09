@@ -79,6 +79,8 @@ class RepoImage{
 
     public function deleteImage($imageId)
     {
+        $image = $this->findImageById($imageId);
+        unlink($image->url);
         $query = "DELETE FROM Images WHERE Id = ?";
         $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "s", $imageId); 
