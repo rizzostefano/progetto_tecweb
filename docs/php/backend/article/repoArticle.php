@@ -65,6 +65,7 @@ class RepoArticle{
     {
         $query = "INSERT INTO Articles (Title, ArticleTextContent, Summary, Image, InsertDate, Keywords) VALUES (?, ?, ?, ?, CURDATE(), ?)";
         $stmt = $this->conn->prepareQuery($query);
+        var_dump($stmt, $title, $content, $summary, $image, $keywords);
         mysqli_stmt_bind_param($stmt, "sssis", $title, $content, $summary, $image, $keywords); 
         return $this->conn->executePreparedQueryDML($stmt);
     }

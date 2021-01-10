@@ -26,19 +26,16 @@ $repoArticle = new RepoArticle();
 $repoImage = new RepoImage();
 $article = $repoArticle->findArticleById($_GET["article_id"]);
 $title = $article->title;
-$title = MarkdownConverter::render($title);
+$title = MarkdownConverter::renderOnlyLanguage($title);
 $content = $article->content;
 $content = MarkdownConverter::render($content);
 
-$articleImages = $repoArticle->getArticleImages($_GET["article_id"]);
+$articleImage = $repoImage->findImageById($article->image);
 $repoArticle->disconnect();
-if($articleImages != null)
+if($articleImage != null)
 {
-    foreach($articleImages as $image)
-    {
-        $content = str_replace(sprintf("%s_URL", $image->name), $image->url, $content);
-        $content = str_replace(sprintf("%s_ALT", $image->name), $image->alt, $content);
-    }
+    $content = str_replace(sprintf("%s_URL", $articleImage->name), $articleImage->url, $content);
+    $content = str_replace(sprintf("%s_ALT", $articleImage->name), $articleImage->alt, $content);
 }
 
 $article = "<section>

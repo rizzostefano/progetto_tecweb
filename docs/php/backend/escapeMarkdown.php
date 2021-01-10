@@ -154,5 +154,19 @@ class MarkdownConverter {
 			}
     }
 		return trim ($input);
-	}
+  }
+  
+  /**
+	 * @summary: trasforma l'input dato in markdown in codice html usando solo la regola
+   * per la lingue
+   * @param: stringa contente codice markdown
+   * @return: stringa con codice html 
+	*/
+  public static function renderOnlyLanguage($input)
+  {
+    $input = "\n" . $input . "\n";
+    $regex = array_search("self::language", self::$customRules);
+    $input = preg_replace_callback ($regex, "self::language", $input);
+    return trim ($input);
+  }
 }
