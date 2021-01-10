@@ -30,12 +30,12 @@ a{
 header a {
     text-decoration:none;
     padding : 0.2em;
-    //border-bottom: thin #aeaeae solid;
 }
 
 header a:hover {
     background-color: #303030;
     color: #f9f9f9;
+    -webkit-transition: 0.2s ease-in;
     transition: 0.2s ease-in;
 }
 
@@ -325,8 +325,12 @@ div .flex-container, .gallery ul {
 
 @media (prefers-reduced-motion) {
     .gallery li::after {
-        -webkit-transition: 0.5s;
+        -webkit-transition: 0s;
         transition:0s;
+    }
+
+    header a:hover {
+        transition: 0s;
     }
 }
 
