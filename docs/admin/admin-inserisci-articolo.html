@@ -36,6 +36,14 @@
 						   required="required"
 						   aria-required="true"
                            aria-label="Campo per l'inserimento del titolo"/>
+                    <label for="keywords-articolo" data-error-msg="le parole chiave dell'articolo sono: obbligatorie, al massimo 50 caratteri e senza markdown, separate da una virgola senza spazi">Parole chiave %error-keywords%</label>
+                    <input type="text" id="keywords-articolo" name="keywords-articolo"
+                           value = "%value-keywords%"
+                           maxlength="50"
+                           placeholder="Inserisci qui le parole chiave dell'articolo che vuoi pubblicare"
+                           required="required"
+                           aria-required="true"
+                           aria-label="Campo per l'inserimento delle parole chiave"/>
                     <label for="sommario-articolo" data-error-msg="Il sommario dell'articolo è: obbligatorio, al massimo 200 caratteri e scritto secondo le regole del markdown">Sommario %error-sommario%</label>
                     <textarea id="sommario-articolo" name="sommario-articolo"
                                   rows="5" cols="100"

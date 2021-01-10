@@ -32,17 +32,18 @@ if(isset($_POST["submit"])){
 	$validateContent = validateContent($_POST["contenuto-articolo"]);
 	$validateImageAlt = validateImageAlt($_POST["alt-immagine"]);
 	$validateSummary = validateSummary($_POST["sommario-articolo"]);
+	$validateKeywords = validateKeywords($_POST["keywords-articolo"]);
 	$isImageNotChanging = $isEditing && $_FILES["file-immagine"]["error"] !== 0 ;
 	echo !isset($_FILES["file-immagine"]["name"]);
 	$validateImage =  $isImageNotChanging ? true : validateImage($_FILES["file-immagine"]);
-	if ($validateTitle && $validateContent && $validateImage && $validateImageAlt && $validateSummary){
+	if ($validateTitle && $validateContent && $validateImage && $validateImageAlt && $validateSummary && $validateKeywords){
 		$imageId = $isImageNotChanging ? $_SESSION["article"]->image : $repoImage->addImage($_FILES["file-immagine"], $_POST["alt-immagine"])->id; 
 		$articleId = $isEditing ? $_SESSION["article"]->id : -1;
-		$article = new Article($articleId, $_POST["titolo-articolo"], $_POST["contenuto-articolo"], $_POST["sommario-articolo"], $imageId);
+		$article = new Article($articleId, $_POST["titolo-articolo"], $_POST["contenuto-articolo"], $_POST["sommario-articolo"], $imageId, $_POST["keywords-articolo"]);
 		if ($isEditing && !$isImageNotChanging){
 			$repoImage->deleteImage($_SESSION["article"]->image);
 		}$_SESSION["article"] = $article;
-		$result = $isEditing ? $repoArticle->editArticle($article) : $repoArticle->addArticle($article->title,$article->content,$article->summary,$article->image);
+		$result = $isEditing ? $repoArticle->editArticle($article) : $repoArticle->addArticle($article->title,$article->content,$article->summary,$article->image, $article->keywords);
 		if($result !== false){
 			unset($_SESSION["article"]);
 			header('Location: editArticles.php');
@@ -63,6 +64,7 @@ if($isEditing){
 	$html = str_replace("%value-contenuto%",$article->content, $html);
 	$html = str_replace("%value-sommario%",$article->summary, $html);
 	$html = str_replace("%value-alt%",$image->alt, $html);
+	$html = str_replace("%value-keywords%", $article->keywords, $html);
 } else {
 	$html = str_replace("%add-or-modify%", "Nuovo articolo", $html);
 	$html = str_replace("%image-required%", 'required="required"', $html);
@@ -92,6 +94,13 @@ function validateTextField($field, $minlen, $maxlen, $hasMarkdown, $isNotRequire
 	return ($hasMarkdown || validateNoMarkdown($field))
 			&& validateLength($field, $minlen, $maxlen)
 			&& ($isNotRequired || (validateRequired($field)));
+}
+
+function validateKeywords($keywords) {
+	$errorMessageKeywords = "Le parole chiave sono obbligatorie, devono essere lunghe al massimo 50 caratteri e scritte senza markdown, separate da una virgola e senza spazi";
+	$valid = validateTextField($keywords, NULL, 50, false, false) && preg_match("/^(?:\w+,)*\w+$/", $keywords); // regex per il controllo delle keyword inserite
+	handleField($valid, "error-keywords", errorElement($errorMessageKeywords), "%value-keywords", $keywords);
+	return $valid;
 }
 
 function validateContent($contenuto) {

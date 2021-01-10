@@ -25,7 +25,7 @@ class RepoArticle{
         $result = array();
         foreach ($articles as $article)
         {
-            $tmp = new Article($article["Id"], $article["Title"], $article["ArticleTextContent"], $article["Summary"], $article["Image"]);
+            $tmp = new Article($article["Id"], $article["Title"], $article["ArticleTextContent"], $article["Summary"], $article["Image"], $article["Keywords"]);
             array_push($result, $tmp);
         }
         return $result;
@@ -42,7 +42,7 @@ class RepoArticle{
         }
         else {
             $result = mysqli_fetch_assoc($result);
-            return new Article($result["Id"], $result["Title"], $result["ArticleTextContent"], $result["Summary"], $result["Image"]);
+            return new Article($result["Id"], $result["Title"], $result["ArticleTextContent"], $result["Summary"], $result["Image"], $result["Keywords"]);
         }
     }
 
@@ -57,15 +57,15 @@ class RepoArticle{
         }
         else{
             $result = mysqli_fetch_assoc($result);
-            return new Article($result["Id"], $result["Title"], $result["ArticleTextContent"], $result["Summary"], $result["Image"]);
+            return new Article($result["Id"], $result["Title"], $result["ArticleTextContent"], $result["Summary"], $result["Image"], $result["Keywords"]);
         }
     }
 
-    public function addArticle($title, $content, $summary, $image)
+    public function addArticle($title, $content, $summary, $image, $keywords)
     {
-        $query = "INSERT INTO Articles (Title, ArticleTextContent, Summary, Image, InsertDate) VALUES (?, ?, ?, ?, CURDATE())";
+        $query = "INSERT INTO Articles (Title, ArticleTextContent, Summary, Image, InsertDate, Keywords) VALUES (?, ?, ?, ?, CURDATE(), ?)";
         $stmt = $this->conn->prepareQuery($query);
-        mysqli_stmt_bind_param($stmt, "sssi", $title, $content, $summary, $image); 
+        mysqli_stmt_bind_param($stmt, "sssis", $title, $content, $summary, $image, $keywords); 
         return $this->conn->executePreparedQueryDML($stmt);
     }
 
@@ -79,9 +79,9 @@ class RepoArticle{
 
     public function editArticle($article)
     {
-        $query = "UPDATE Articles SET Title = ?, ArticleTextContent = ?, Summary = ?, Image = ? WHERE Id = ?";
+        $query = "UPDATE Articles SET Title = ?, ArticleTextContent = ?, Summary = ?, Image = ?, Keywords = ? WHERE Id = ?";
         $stmt = $this->conn->prepareQuery($query);
-        mysqli_stmt_bind_param($stmt, "ssssi", $article->title, $article->content, $article->summary, $article->image, $article->id); 
+        mysqli_stmt_bind_param($stmt, "sssssi", $article->title, $article->content, $article->summary, $article->image, $article->keywords, $article->id); 
         return $this->conn->executePreparedQueryDML($stmt);
     }
 

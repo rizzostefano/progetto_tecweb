@@ -2,7 +2,6 @@
 -- ***************************************************;
 SET FOREIGN_KEY_CHECKS=0;
 
-DROP TABLE IF EXISTS ArticlesModify;
 DROP TABLE IF EXISTS Administrators;
 DROP TABLE IF EXISTS Articles;
 DROP TABLE IF EXISTS Images;
@@ -31,15 +30,16 @@ CREATE TABLE IF NOT EXISTS Images
 
 CREATE TABLE IF NOT EXISTS Articles
 (
- Id                 int PRIMARY KEY AUTO_INCREMENT,
- Title              text NOT NULL UNIQUE,
- ArticleTextContent text NOT NULL,
- Summary            text NOT NULL,
- InsertDate         datetime NOT NULL,
- Image              int,
- FOREIGN KEY (Image) REFERENCES Images(Id)
- );
+    Id                 int PRIMARY KEY AUTO_INCREMENT,
+    Title              text NOT NULL UNIQUE,
+    ArticleTextContent text NOT NULL,
+    Summary            text NOT NULL,
+    InsertDate         datetime NOT NULL,
+    Image              int,
+    Keywords           text,
 
+    FOREIGN KEY (Image) REFERENCES Images(Id)
+ );
 
 INSERT INTO Administrators(Username, Email, Password) 
 VALUES ("admin", "admin@mail.com", "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918");
