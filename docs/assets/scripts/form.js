@@ -21,7 +21,9 @@ var regexes = [/(#+)(.*)/,                  // headers
 				/\n(&gt;|\>)(.*)/,          // blockquotea
 				/\n-{5,}/,                  // horiziontal rule
 				/\n([^\n]+)\n/,             // add paragraphs
-				/(\(!)(.+)(\))/]            // image
+				/(\(!)(.+)(\))/,            // image
+				/^(?:\w+,)*\w+$/]			// keywords (comma separated, no blank spaces)
+
 function ready(callback){
     // in case the document is already rendered
     if (document.readyState!='loading') callback();
