@@ -12,7 +12,7 @@ Bianco: #f9f9f9
     margin: 0;
     padding: 0;
     font-family: 'Source Sans Pro', sans-serif;
-    font-display: swap;
+    font-display: swap
 }
 
 header {
@@ -29,12 +29,34 @@ a{
 
 header a {
     text-decoration:none;
-    border-bottom: thin #aeaeae solid;
+    padding : 0.2em;
+    //border-bottom: thin #aeaeae solid;
 }
 
-a:hover {
-    font-weight: bold;
+header a:hover {
+    background-color: #303030;
+    color: #f9f9f9;
+    transition: 0.2s ease-in;
 }
+
+
+
+/*header a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #000;
+    transition: width .3s;
+}
+
+//header a:hover::after {
+    width: 100%;
+    //transition: width .3s;
+}*/
+
+
+
 
 a:active {
     border: 2px #101010 solid;
@@ -80,7 +102,7 @@ header img {
 
 main {
     min-height: 500px;
-    padding: 1em 2em 1em 4em;
+    padding: 1em 2em 1em 2em;
 }
 
 main h1{
@@ -315,4 +337,22 @@ div .flex-container, .gallery ul {
 
 .gallery li:hover::after {
     opacity: 1;
+}
+
+
+
+
+
+
+
+.text-right {
+    display: inline-grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1em;
+}
+
+.text-left {
+    display: inline-grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 1em;
 }

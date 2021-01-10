@@ -55,3 +55,7 @@ div .flex-container, .gallery li:hover {
   -webkit-transform: scale(1.2);
   transform: scale(1.2);
 }
+
+.text-right, .text-left{
+    display: block;
+}
