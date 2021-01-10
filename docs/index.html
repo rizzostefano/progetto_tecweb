@@ -12,10 +12,11 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/screen.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="assets/css/print.css" media="print" />
         <link rel="stylesheet" type="text/css" href="assets/css/mobile.css" media="only screen and (max-width:640px)" />
+        <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
     </head>
     <body>
         <header>
-            <img src="assets/images/logo-no-bg-low-res.png" alt="Rizzo"/>
+            <img src="assets/images/logo-no-bg-low-res-small.png" srcset="assets/images/logo-no-bg-low-res-small.png 150w, assets/images/logo-no-bg-low-res.png 300w" sizes="only sceen and (max-width: 640px) 100%, 100%" alt="Rizzo"/>
             <nav>
                 <ul>
                     <li lang="en">Home</li>
@@ -28,7 +29,8 @@
             </nav>
         </header>
         <div class="background-image-cropper">
-            <img src="assets/images/widescreen-min.jpg" alt="" class="background"/>
+            <!-- TODO: chiedere alla prof se l'utilizzo di immagini reattive è cosa buona e giusta dal momento che mescolano comportamento e presentazione-->
+            <img src="assets/images/widescreen-small-min.jpg" srcset="assets/images/widescreen-small-min.jpg 400w, assets/images/widescreen-min.jpg 1081w" sizes="only screen and (max-width: 640px) 100%, 100%" alt="" class="background"/>
         </div>
         <main>
             <section>
