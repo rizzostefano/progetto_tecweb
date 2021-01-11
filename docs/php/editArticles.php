@@ -19,7 +19,7 @@ $content = '<div class="flex-container">';
 
 foreach($articles as $article)
 {
-	$article->title = MarkdownConverter::render($article->title);
+	$article->title = MarkdownConverter::renderOnlyLanguage($article->title);
 	$article->summary = MarkdownConverter::render($article->summary);
 	$content .= "<div class=\"flex-container\">
 					<article class=\"column\">
