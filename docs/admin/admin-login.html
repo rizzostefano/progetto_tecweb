@@ -18,29 +18,34 @@
             <nav>
                 <ul>
                     <li><a href="../index.html" lang="en">Home</a></li>
-                	<li>login</li>    
+                	<li>login</li>
                 </ul>
             </nav>
         </header>
         <main>
-			<!-- TODO: INSERIRE ACTION AGGIUNTA ARTICOLO --> 
-			<form method="POST" action="adminLogin.php" autocomplete="autocomplete" id="invio" name="admin-login">
-                <strong class="error">%error-login%</strong>
-				<label for="username-admin" data-error-msg="Per favore, inserisci l'username dell'admin è necessario">Utente amministratore</label>
-				<input type="text" id="username-admin" name="username-admin"
-					   placeholder="Inserisci qui lo username dell'admin" 
-					   required="required"
-					   aria-required="true"
-					   aria-label="Campo per l'inserimento dello username dell'admin"/> 
-				<label for="password-admin" data-error-msg="Per favore, inserisci la password è necessaria">Password amministratore</label>
-				<input type="password" id="password-admin" name="password-admin"
-                       minlength="1"
-					   placeholder="Inserisci qui la password dell'admin" 
-					   required="required"
-					   aria-required="true"
-					   aria-label="Campo per l'inserimento della password di amministrazione" />
-				<input name="submit" type="submit"/>
-			</form>
+			<!-- TODO: INSERIRE ACTION AGGIUNTA ARTICOLO -->
+            <section class="form">
+                <h2>Effettua l'accesso a Rizzo Guitars</h2>
+                <form method="POST" action="adminLogin.php" autocomplete="autocomplete" id="invio" name="admin-login" class="centered">
+                    <strong class="error">%error-login%</strong>
+    				<label for="username-admin" data-error-msg="Per favore, inserisci l'username dell'admin è necessario">Username</label>
+    				<input type="text" id="username-admin" name="username-admin"
+    					   placeholder="admin"
+    					   required="required"
+    					   aria-required="true"
+    					   aria-label="Campo per l'inserimento dello username dell'admin"/>
+    				<label for="password-admin" data-error-msg="Per favore, inserisci la password è necessaria">Password</label>
+    				<input type="password" id="password-admin" name="password-admin"
+                           minlength="1"
+    					   placeholder="admin"
+    					   required="required"
+    					   aria-required="true"
+    					   aria-label="Campo per l'inserimento della password di amministrazione" />
+                    <div class="btn-container">
+                        <input name="submit" type="submit"/>
+                    </div>
+    			</form>
+            </section>
         </main>
         <footer>
             <small lang="en">
