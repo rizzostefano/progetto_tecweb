@@ -40,10 +40,11 @@ if(isset($_POST["submit"])){
 		$imageId = $isImageNotChanging ? $_SESSION["article"]->image : $repoImage->addImage($_FILES["file-immagine"], $_POST["alt-immagine"])->id; 
 		$articleId = $isEditing ? $_SESSION["article"]->id : -1;
 		$article = new Article($articleId, $_POST["titolo-articolo"], $_POST["contenuto-articolo"], $_POST["sommario-articolo"], $imageId, $_POST["keywords-articolo"]);
+		$_SESSION["article"] = $article;
+		$result = $isEditing ? $repoArticle->editArticle($article) : $repoArticle->addArticle($article->title,$article->content,$article->summary,$article->image, $article->keywords);
 		if ($isEditing && !$isImageNotChanging){
 			$repoImage->deleteImage($_SESSION["article"]->image);
-		}$_SESSION["article"] = $article;
-		$result = $isEditing ? $repoArticle->editArticle($article) : $repoArticle->addArticle($article->title,$article->content,$article->summary,$article->image, $article->keywords);
+		}
 		if($result !== false){
 			unset($_SESSION["article"]);
 			header('Location: editArticles.php');
@@ -99,7 +100,7 @@ function validateTextField($field, $minlen, $maxlen, $isNotRequired, $hasMarkdow
 function validateKeywords($keywords) {
 	$errorMessageKeywords = "Le parole chiave sono obbligatorie, devono essere lunghe al massimo 50 caratteri e scritte senza markdown, separate da una virgola e senza spazi";
 	$valid = validateTextField($keywords, NULL, 50, false, false, false) && preg_match("/^(?:\w+,)*\w+$/", $keywords); // regex per il controllo delle keyword inserite
-	handleField($valid, "error-keywords", errorElement($errorMessageKeywords), "%value-keywords", $keywords);
+	handleField($valid, "%error-keywords%", errorElement($errorMessageKeywords), "%value-keywords%", $keywords);
 	return $valid;
 }
 
