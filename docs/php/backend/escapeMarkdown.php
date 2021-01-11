@@ -24,7 +24,7 @@ class MarkdownConverter {
     '/<\/blockquote><blockquote>/' => "\n"                    // fix extra blockquote
   );
 
-  public static $languageRule = array (
+  public static $customRules = array (
       '/(\(?)(.+)(\))/' => 'self::language'                   // lang
   );
 

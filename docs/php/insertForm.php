@@ -162,7 +162,7 @@ function validateNoMarkdown($input, $hasMarkdown, $hasLanguage){
 	}
 
 	if($hasLanguage === false) {
-		foreach(array_keys(MarkdownConverter::$languageRule) as $regex) {
+		foreach(array_keys(MarkdownConverter::$customRules) as $regex) {
 			$valid = $valid && !preg_match($regex, $input);
 		}
 	}
