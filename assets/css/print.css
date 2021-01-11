@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Times New Roman";
+}
+
+nav > ul li{
+    display: inline;
+}
+
+section {
+    margin-top: 0.7cm;
+}
+
+article {
+    margin-top: 0.5cm;
+}
+
+a[href="https://www.facebook.com/rizzoguitars"]:after,
+a[href="https://www.instagram.com/rizzoguitars"]:after{
+    content: ' (' attr(href) ')';
+}
+
+a {
+    color: black;
+}
+
+h2 {
+    margin-top: 0.3cm;
+}
+
+img, .button, .material-icons, nav, footer, form, iframe, .print-remove {
+    display: none;
+}
+
+dt {
+    font-weight: bold;
+    margin-top: 0.2cm;
+}

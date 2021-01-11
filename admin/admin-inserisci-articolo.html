@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <title>%add-or-modify% | ADMIN Rizzo Guitars</title>
+        <meta charset="UTF-8" />
+        <meta name="language" content="italian it" />
+        <meta name="author" content="Stefano Rizzo, Leonardo Tredese, Samuele Vanini, Michele Veronesi" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" type="text/css" href="../assets/css/screen.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../assets/css/print.css" media="print" />
+        <link rel="stylesheet" type="text/css" href="../assets/css/mobile.css" media="only screen and (max-width:640px)" />
+		<script src="../assets/scripts/form.js"></script>
+    </head>
+    <body>
+        <header>
+            <img src="../assets/images/logo-no-bg-low-res.png" class="logo" alt="Rizzo"/>
+			<span>Amministrazione</span>
+            <nav>
+                <ul>
+                    <li>%add-or-modify%</li>
+                    <li><a href="editArticles.php">Modifica articoli</a></li>
+                    <li><a href="logout.php" lang="en">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+			<!-- TODO: INSERIRE ACTION AGGIUNTA ARTICOLO -->
+            <form method="POST" action="insertForm.php" id="invio" name="nuovo-articolo" enctype="multipart/form-data" class="centered">
+				<fieldset>
+					<legend>Corpo dell'articolo</legend>	
+					<label for="titolo-articolo" data-error-msg="il titolo dell'articolo è: obbligatorio, al massimo 30 caratteri l'unica regola di markdown che si può applicare è quella della lingua">Titolo %error-titolo%</label>
+                    <input type="text" id="titolo-articolo" name="titolo-articolo"
+                           value="%value-titolo%"
+                           maxlength="30"
+			   placeholder="Inserisci qui il titolo dell'articolo che vuoi pubblicare"
+			   required="required"
+			   aria-required="true"
+                           aria-label="Campo per l'inserimento del titolo"/>
+                    <label for="keywords-articolo" data-error-msg="le parole chiave dell'articolo sono: obbligatorie, al massimo 50 caratteri e senza markdown, separate da una virgola senza spazi">Parole chiave %error-keywords%</label>
+                    <input type="text" id="keywords-articolo" name="keywords-articolo"
+                           value = "%value-keywords%"
+                           maxlength="50"
+                           placeholder="Inserisci qui le parole chiave dell'articolo che vuoi pubblicare"
+                           required="required"
+                           aria-required="true"
+                           aria-label="Campo per l'inserimento delle parole chiave"/>
+                    <label for="sommario-articolo" data-error-msg="Il sommario dell'articolo è: obbligatorio, al massimo 200 caratteri e scritto secondo le regole del markdown">Sommario %error-sommario%</label>
+                    <textarea id="sommario-articolo" name="sommario-articolo"
+                                  rows="5" cols="100"
+                                  maxlength="200"
+                                  placeholder="Inserisci qui il sommario dell'articolo che vuoi pubblicare"
+                                  required="required"
+                                  aria-required="true"
+                                  aria-label="Campo per l'inserimento del sommario">%value-sommario%</textarea>
+					<label for="contenuto-articolo" data-error-msg="il corpo dell'articolo deve essere lungo almeno 30 caratteri e scritto secondo le regole del markdown">Contenuto %error-contenuto%</label>
+					<textarea id="contenuto-articolo" name="contenuto-articolo"
+						   rows="30" cols="100"
+                           minlength="30"
+						   placeholder="Inserisci qui il corpo dell'articolo"
+						   required="required"
+						   aria-required="true"
+						   aria-label="Campo per l'inserimento del corpo dell'articolo  puoi utilizzare il markdown">%value-contenuto%</textarea>
+				</fieldset>
+				<fieldset>
+                    <legend>Immagine Articolo</legend>
+                    <label for="file-immagine" data-error-msg="Il file va inserito obbligatoriamente e deve essere un immagine inferiore al megabyte.">File immagine %error-file% %edit-file-msg%</label>
+                    <input type="file" id="file-immagine"
+                            accept="image/*"
+                            name="file-immagine"
+                            %image-required%/>
+                    <label for="alt-immagine" data-error-msg="Il testo alternativo non può superare i 70 caratteri o contenere markup">Testo alternativo immagine %error-alt%</label>
+                    <input type="text" id="alt-immagine" name="alt-immagine"
+                           value="%value-alt%"
+                           maxlength="70"
+                           placeholder="Inserisci qui il testo alternativo per l'immagine"
+                           aria-label="Campo per l'inserimento per il testo alternativo per l'immagine"/>
+                </fieldset>
+				<input name="submit" type="submit" value="submit"/>
+            </form>
+        </main>
+        <footer>
+            <small lang="en">
+                &copy; Rizzo Guitars. All rights reserved.
+            </small>
+        </footer>
+    </body>
+</html>
