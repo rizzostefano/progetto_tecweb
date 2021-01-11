@@ -10,8 +10,7 @@ DROP TABLE IF EXISTS Images;
 
 CREATE TABLE IF NOT EXISTS Administrators
 (
-    Id       int PRIMARY KEY AUTO_INCREMENT,
-    Username varchar(40) NOT NULL UNIQUE,
+    Username varchar(40) NOT NULL PRIMARY KEY,
     Email    varchar(40) NOT NULL UNIQUE,
     Password varchar(64) NOT NULL
 );
