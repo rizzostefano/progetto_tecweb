@@ -19,7 +19,7 @@ if(isset($_GET["article_id"])) {
     $repoArticle->deleteArticle($idArticolo);
     $repoImage->deleteImage($idImmagine);
 
-    echo "Articolo eliminato\n";
+    header('Location: articleList.php');
 
     $repoArticle->disconnect();
     $repoImage->disconnect();
