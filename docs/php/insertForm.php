@@ -105,7 +105,7 @@ function validateKeywords($keywords) {
 
 function validateContent($contenuto) {
 	$errorMessageContenuto = "Il corpo dell'articolo deve essere lungo almeno 30 caratteri e scritto secondo le regole del markdown";
-	$valid = validateTextField($contenuto, 30, NULL, true, true, false);
+	$valid = validateTextField($contenuto, 30, NULL, false, true, true);
 	handleField($valid, "%error-contenuto%", errorElement($errorMessageContenuto), "%value-contenuto%", $contenuto);
 	return $valid;
 }
@@ -113,21 +113,21 @@ function validateContent($contenuto) {
 function validateTitle($titolo) {
 	// TODO: permettere di inserire markdown lingua nel titolo
 	$errorMessageTitolo = "Il titolo dell'articolo è: obbligatorio, al massimo 30 caratteri e va scritto senza markdown";
-	$valid = validateTextField($titolo, NULL, 30, false, true, false);
+	$valid = validateTextField($titolo, NULL, 30, false, false, true);
 	handleField($valid, "%error-titolo%", errorElement($errorMessageTitolo), "%value-titolo%", $titolo);
 	return $valid;
 }
 
 function validateSummary($sommario) {
 	$errorMessageSommario = "Il sommario dell'articolo è: obbligatorio, al massimo 200 caratteri e scritto secondo le regole del markdown";
-	$valid = validateTextField($sommario, NULL, 200, true, true, false);
+	$valid = validateTextField($sommario, NULL, 200, false, true, true);
 	handleField($valid, "%error-sommario%", errorElement($errorMessageSommario), "%value-sommario%", $sommario);
 	return $valid;
 }
 
 function validateImageAlt($altImmagine) {
 	$errorMessageAlt = "Il testo alternativo non può superare i 70 caratteri o contenere markup";
-	$valid = validateTextField($altImmagine, NULL, 70, false, false, false);
+	$valid = validateTextField($altImmagine, NULL, 70, true, false, false);
 	handleField($valid, "%error-alt%", errorElement($errorMessageAlt), "%value-alt%", $altImmagine);
 	return $valid; 
 }
