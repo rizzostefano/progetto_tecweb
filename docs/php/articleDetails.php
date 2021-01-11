@@ -39,7 +39,7 @@ $DOM = str_replace('<cs_meta_keyword/>', "<meta name=\"keywords\" content=\"$art
 $article = "<section>
                 <h1>$title</h1>
                 $content
-                <div class=\"square-image-cropper-large centered\">
+                <div class=\"rectangle-image-cropper-large centered\">
                     <img src=\"$articleImage->url\" alt=\"$articleImage->alt\" />
                 </div>
             </section>";
