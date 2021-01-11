@@ -34,7 +34,6 @@ if(isset($_POST["submit"])){
 	$validateSummary = validateSummary($_POST["sommario-articolo"]);
 	$validateKeywords = validateKeywords($_POST["keywords-articolo"]);
 	$isImageNotChanging = $isEditing && $_FILES["file-immagine"]["error"] !== 0 ;
-	echo !isset($_FILES["file-immagine"]["name"]);
 	$validateImage =  $isImageNotChanging ? true : validateImage($_FILES["file-immagine"]);
 	if ($validateTitle && $validateContent && $validateImage && $validateImageAlt && $validateSummary && $validateKeywords){
 		$imageId = $isImageNotChanging ? $_SESSION["article"]->image : $repoImage->addImage($_FILES["file-immagine"], $_POST["alt-immagine"])->id; 
