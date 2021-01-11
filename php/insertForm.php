@@ -99,7 +99,7 @@ function validateTextField($field, $minlen, $maxlen, $isNotRequired, $hasMarkdow
 function validateKeywords($keywords) {
 	$errorMessageKeywords = "Le parole chiave sono obbligatorie, devono essere lunghe al massimo 50 caratteri e scritte senza markdown, separate da una virgola e senza spazi";
 	$valid = validateTextField($keywords, NULL, 50, false, false, false) && preg_match("/^(?:\w+,)*\w+$/", $keywords); // regex per il controllo delle keyword inserite
-	handleField($valid, "error-keywords", errorElement($errorMessageKeywords), "%value-keywords", $keywords);
+	handleField($valid, "%error-keywords%", errorElement($errorMessageKeywords), "%value-keywords%", $keywords);
 	return $valid;
 }
 
