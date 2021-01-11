@@ -343,12 +343,6 @@ div .flex-container, .gallery ul {
     opacity: 1;
 }
 
-
-
-
-
-
-
 .text-right {
     display: inline-grid;
     grid-template-columns: 1fr 2fr;
@@ -359,4 +353,15 @@ div .flex-container, .gallery ul {
     display: inline-grid;
     grid-template-columns: 2fr 1fr;
     grid-gap: 1em;
+}
+
+form {
+    max-width: 20em;
+}
+
+fieldset {
+    border: none;
+}
+label {
+    font-weight: bold;
 }
