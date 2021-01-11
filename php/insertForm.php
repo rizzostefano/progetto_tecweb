@@ -39,7 +39,8 @@ if(isset($_POST["submit"])){
 	if ($validateTitle && $validateContent && $validateImage && $validateImageAlt && $validateSummary && $validateKeywords){
 		$imageId = $isImageNotChanging ? $_SESSION["article"]->image : $repoImage->addImage($_FILES["file-immagine"], $_POST["alt-immagine"])->id; 
 		$articleId = $isEditing ? $_SESSION["article"]->id : -1;
-		$article = new Article($articleId, $_POST["titolo-articolo"], $_POST["contenuto-articolo"], $_POST["sommario-articolo"], $imageId, $_POST["keywords-articolo"]);
+		//è brutto ma come pezza per il momento ci sta, buonanotte
+		$article = new Article($articleId, trimHtmlCode($_POST["titolo-articolo"]), trimHtmlCode($_POST["contenuto-articolo"]), trimHtmlCode($_POST["sommario-articolo"]), $imageId, trimHtmlCode($_POST["keywords-articolo"]));
 		$_SESSION["article"] = $article;
 		$result = $isEditing ? $repoArticle->editArticle($article) : $repoArticle->addArticle($article->title,$article->content,$article->summary,$article->image, $article->keywords);
 		if ($isEditing && !$isImageNotChanging){
@@ -88,6 +89,10 @@ function handleField($validity, $error_substitution, $error_message, $value_subs
 	global $html;
 	$html = substituteError($validity, $error_substitution, errorElement($error_message), $html);
 	$html = str_replace($value_substitution, $field, $html);
+}
+
+function trimHtmlCode($field){
+	return trim(htmlentities(strip_tags($field)));
 }
 
 function validateTextField($field, $minlen, $maxlen, $isNotRequired, $hasMarkdown, $hasLanguage){
