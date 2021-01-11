@@ -172,7 +172,15 @@ iframe {
     border-radius: 3px;
 }
 
-.rectangle-image-cropper img {
+.rectangle-image-cropper-large {
+    width: 70%;
+    height auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.rectangle-image-cropper img, .rectangle-image-cropper-large img {
     display: inline;
     margin: 0 auto;
     height: auto;
@@ -200,6 +208,7 @@ iframe {
     overflow: hidden;
     border-radius: 3px;
 }
+
 .square-image-cropper img{
     display: inline;
     margin: auto;
@@ -216,7 +225,7 @@ main section p{
 }
 
 input[type=text], input[type=email], input[type=password], textarea{
-    width: 100%;
+    width: 90%;
     padding: 0.5em;
     margin: auto;
     border: thin solid #aeaeae;
@@ -238,7 +247,8 @@ input[type=button].remove {
 	background-color: #d01110;
 }
 
-input[type=file], input[type=submit], input[type=button], .button {
+/*input[type=file], */
+input[type=submit], input[type=button], .button {
     color: #f9f9f9;
     background-color: #303030;
     border: thin solid #aeaeae;
