@@ -1,11 +1,11 @@
-var formChecks = [ {
+var sumbitFormChecks = [{
 					"query": "input[type=text]",
 					"validators": [validateRequired, validateLength, validateNoMarkdownButLanguage]
 				   }, {
 					"query": "input[type=file]",
 					"validators": [validateRequired, validateImageFile]
 				   }, {
-					"query": "textarea, input[type=password]",
+					"query": "textarea",
 					"validators": [validateRequired, validateLength]
 				   },{
 					"query": "#keywords-articolo",
@@ -14,6 +14,12 @@ var formChecks = [ {
 					"query": "#alt-immagine",
 					"validators": [validateNoLanguage]
 				   }]
+
+var loginFormChecks = [{
+						"query": "input[type=text], input[type=password]",
+						"validators": [validateRequired, validateLength]
+					}]
+
 var regexes = [/(#+)(.*)/,                  // headers
 				/\[([^\[]+)\]\(([^\)]+)\)/, // links
 				/(\*\*|__)(.*?)\1/,         // bold
@@ -38,12 +44,15 @@ ready(function(){document.onsubmit = validateForm;})
 
 function validateForm (event){
 	deleteErrorMessages();
-	return formChecks.map((check) => executeCheck(check))
-					 .reduce((previous, current) => previous && current);
+	var form, checks, isLogin = document.getElementById('login') !== null;
+	form = isLogin ? document.forms['login'] : document.forms['invio'];
+	checks = isLogin ? loginFormChecks : sumbitFormChecks;
+	return checks.map((check) => executeCheck(check, form)).reduce((previous, current) => previous && current);
+	 
 }
 
-function executeCheck(check){
-	const inputs = Array.from(document.forms['invio'].querySelectorAll(check.query));
+function executeCheck(check, form){
+	const inputs = Array.from(form.querySelectorAll(check.query));
 	const wrong_inputs = inputs.filter((input) => !checkInput(input, check.validators));
 	wrong_inputs.forEach(input => showErrorMessage(input));
 	return wrong_inputs.length === 0;
