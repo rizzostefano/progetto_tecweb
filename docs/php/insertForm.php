@@ -89,23 +89,23 @@ function handleField($validity, $error_substitution, $error_message, $value_subs
 	$html = str_replace($value_substitution, $field, $html);
 }
 
-function validateTextField($field, $minlen, $maxlen, $hasMarkdown, $isNotRequired){
+function validateTextField($field, $minlen, $maxlen, $isNotRequired, $hasMarkdown, $hasLanguage){
 	$field  = isset($field) ? $field : "";
-	return ($hasMarkdown || validateNoMarkdown($field))
+	return (validateNoMarkdown($field, $hasMarkdown, $hasLanguage))
 			&& validateLength($field, $minlen, $maxlen)
 			&& ($isNotRequired || (validateRequired($field)));
 }
 
 function validateKeywords($keywords) {
 	$errorMessageKeywords = "Le parole chiave sono obbligatorie, devono essere lunghe al massimo 50 caratteri e scritte senza markdown, separate da una virgola e senza spazi";
-	$valid = validateTextField($keywords, NULL, 50, false, false) && preg_match("/^(?:\w+,)*\w+$/", $keywords); // regex per il controllo delle keyword inserite
+	$valid = validateTextField($keywords, NULL, 50, false, false, false) && preg_match("/^(?:\w+,)*\w+$/", $keywords); // regex per il controllo delle keyword inserite
 	handleField($valid, "error-keywords", errorElement($errorMessageKeywords), "%value-keywords", $keywords);
 	return $valid;
 }
 
 function validateContent($contenuto) {
 	$errorMessageContenuto = "Il corpo dell'articolo deve essere lungo almeno 30 caratteri e scritto secondo le regole del markdown";
-	$valid = validateTextField($contenuto, 30, NULL, true, false);
+	$valid = validateTextField($contenuto, 30, NULL, false, true, true);
 	handleField($valid, "%error-contenuto%", errorElement($errorMessageContenuto), "%value-contenuto%", $contenuto);
 	return $valid;
 }
@@ -113,21 +113,21 @@ function validateContent($contenuto) {
 function validateTitle($titolo) {
 	// TODO: permettere di inserire markdown lingua nel titolo
 	$errorMessageTitolo = "Il titolo dell'articolo è: obbligatorio, al massimo 30 caratteri e va scritto senza markdown";
-	$valid = validateTextField($titolo, NULL, 30, false, false);
+	$valid = validateTextField($titolo, NULL, 30, false, false, true);
 	handleField($valid, "%error-titolo%", errorElement($errorMessageTitolo), "%value-titolo%", $titolo);
 	return $valid;
 }
 
 function validateSummary($sommario) {
 	$errorMessageSommario = "Il sommario dell'articolo è: obbligatorio, al massimo 200 caratteri e scritto secondo le regole del markdown";
-	$valid = validateTextField($sommario, NULL, 200, true, false);
+	$valid = validateTextField($sommario, NULL, 200, false, true, true);
 	handleField($valid, "%error-sommario%", errorElement($errorMessageSommario), "%value-sommario%", $sommario);
 	return $valid;
 }
 
 function validateImageAlt($altImmagine) {
 	$errorMessageAlt = "Il testo alternativo non può superare i 70 caratteri o contenere markup";
-	$valid = validateTextField($altImmagine, NULL, 70, false, true);
+	$valid = validateTextField($altImmagine, NULL, 70, true, false, false);
 	handleField($valid, "%error-alt%", errorElement($errorMessageAlt), "%value-alt%", $altImmagine);
 	return $valid; 
 }
@@ -153,10 +153,18 @@ function validateImage($file) {
 	return $valid;
 }
 
-function validateNoMarkdown($input){
+function validateNoMarkdown($input, $hasMarkdown, $hasLanguage){
 	$valid = true;
-	foreach (array_keys(MarkdownConverter::$standardRules) as $regex){
-		 $valid = $valid && !preg_match($regex, $input);
+	if($hasMarkdown === false) {
+		foreach (array_keys(MarkdownConverter::$standardRules) as $regex){
+			$valid = $valid && !preg_match($regex, $input);
+		}
+	}
+
+	if($hasLanguage === false) {
+		foreach(array_keys(MarkdownConverter::$customRules) as $regex) {
+			$valid = $valid && !preg_match($regex, $input);
+		}
 	}
 	return $valid;
 }

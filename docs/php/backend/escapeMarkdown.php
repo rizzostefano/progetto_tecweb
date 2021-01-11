@@ -25,7 +25,6 @@ class MarkdownConverter {
   );
 
   public static $customRules = array (
-      '/(\(!)(.+)(\))/' => 'self::image',                     // immagine
       '/(\(?)(.+)(\))/' => 'self::language'                   // lang
   );
 
