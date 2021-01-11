@@ -27,14 +27,14 @@
 			<!-- TODO: INSERIRE ACTION AGGIUNTA ARTICOLO -->
             <form method="POST" action="insertForm.php" id="invio" name="nuovo-articolo" enctype="multipart/form-data" class="centered">
 				<fieldset>
-					<legend>Corpo dell'articolo</legend>
-					<label for="titolo-articolo" data-error-msg="il titolo dell'articolo è: obbligatorio, al massimo 30 caratteri e va scritto senza markdown">Titolo %error-titolo%</label>
+					<legend>Corpo dell'articolo</legend>	
+					<label for="titolo-articolo" data-error-msg="il titolo dell'articolo è: obbligatorio, al massimo 30 caratteri l'unica regola di markdown che si può applicare è quella della lingua">Titolo %error-titolo%</label>
                     <input type="text" id="titolo-articolo" name="titolo-articolo"
                            value="%value-titolo%"
                            maxlength="30"
-						   placeholder="Inserisci qui il titolo dell'articolo che vuoi pubblicare"
-						   required="required"
-						   aria-required="true"
+			   placeholder="Inserisci qui il titolo dell'articolo che vuoi pubblicare"
+			   required="required"
+			   aria-required="true"
                            aria-label="Campo per l'inserimento del titolo"/>
                     <label for="keywords-articolo" data-error-msg="le parole chiave dell'articolo sono: obbligatorie, al massimo 50 caratteri e senza markdown, separate da una virgola senza spazi">Parole chiave %error-keywords%</label>
                     <input type="text" id="keywords-articolo" name="keywords-articolo"
