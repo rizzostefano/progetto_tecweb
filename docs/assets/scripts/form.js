@@ -7,6 +7,9 @@ var formChecks = [ {
 				   }, {
 					"query": "textarea, input[type=password]",
 					"validators": [validateRequired, validateLength]
+				   },{
+					"query": "#keywords-articolo",
+					"validators": [validateKeywords]
 				   }]
 
 var regexes = [/(#+)(.*)/,                  // headers
@@ -88,4 +91,6 @@ function validateRequired(input) {
 	return input.hasAttribute("required")? input.value != "" : true;
 }
 
-
+function validateKeywords(input){
+	return  /^(?:\w+,)*\w+$/.test(input.value);
+}
