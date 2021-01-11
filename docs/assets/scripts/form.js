@@ -9,9 +9,11 @@ var formChecks = [ {
 					"validators": [validateRequired, validateLength]
 				   },{
 					"query": "#keywords-articolo",
-					"validators": [validateKeywords]
+					"validators": [validateKeywords, validateNoLanguage]
+				   },{
+					"query": "#alt-immagine",
+					"validators": [validateNoLanguage]
 				   }]
-
 var regexes = [/(#+)(.*)/,                  // headers
 				/\[([^\[]+)\]\(([^\)]+)\)/, // links
 				/(\*\*|__)(.*?)\1/,         // bold
@@ -93,4 +95,8 @@ function validateRequired(input) {
 
 function validateKeywords(input){
 	return  /^(?:\w+,)*\w+$/.test(input.value);
+}
+
+function validateNoLanguage(input){
+	return !/(\(?)(.+)(\))/.test(input.value);
 }
