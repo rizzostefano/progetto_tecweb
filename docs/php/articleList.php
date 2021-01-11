@@ -3,7 +3,7 @@
 require_once('backend/article/repoArticle.php');
 require_once('backend/escapeMarkdown.php');
 
-$DOM = file_get_contents('../template.html');
+$DOM = file_get_contents('../listaArticoli.html');
 
 //TODO fare chiamata a db per prendere titolo dell'articolo
 $DOM = str_replace('<cs_page_title/>', "Lista articoli", $DOM);
