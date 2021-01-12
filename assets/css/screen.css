@@ -372,6 +372,24 @@ form {
 fieldset {
     border: none;
 }
-label {
+label, legend {
     font-weight: bold;
+}
+.floating-btn {
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    width: 56px;
+    height: 56px;
+    border-radius: 100%;
+    background-color: #484848;
+    text-align: center;
+    -webkit-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.38);
+    -moz-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.38);
+    box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.38);
+}
+
+.material-icons.fab {
+    color: #ffffff;
+    margin-top: 0.5em
 }
