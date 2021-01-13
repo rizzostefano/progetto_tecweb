@@ -354,10 +354,6 @@ div .flex-container, .gallery ul {
     grid-gap: 1em;
 }
 
-form {
-    max-width: 20em;
-}
-
 fieldset {
     border: none;
 }
@@ -413,4 +409,14 @@ label, legend {
     background-size: cover;
     background-position: center;
     opacity: 0.7
+}
+
+.laboratorio {
+    text-indent: -99999px;
+    width: 100%;
+    height: 10em;
+    background-image: url(../images/lab-low-res.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
