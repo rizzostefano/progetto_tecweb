@@ -59,3 +59,8 @@ div .flex-container, .gallery li:hover {
 .text-right, .text-left{
     display: block;
 }
+
+.logo {
+    margin: auto;
+    background-image: url(../images/logo-no-bg-low-res-small.png);
+}
