@@ -18,8 +18,8 @@
             <nav>
                 <ul>
                     <li>%add-or-modify%</li>
-                    <li><a href="editArticles.php">Modifica articoli</a></li>
-                    <li><a href="logout.php" lang="en">Logout</a></li>
+                    <li><a href="editArticles.php" tabindex="0">Modifica articoli</a></li>
+                    <li><a href="logout.php" lang="en"tabindex="0">Logout</a></li>
                 </ul>
             </nav>
         </header>
@@ -30,6 +30,7 @@
 					<legend>Corpo dell'articolo</legend>	
 					<label for="titolo-articolo" data-error-msg="il titolo dell'articolo è: obbligatorio, al massimo 30 caratteri l'unica regola di markdown che si può applicare è quella della lingua">Titolo %error-titolo%</label>
                     <input type="text" id="titolo-articolo" name="titolo-articolo"
+    			   tabindex="1"
                            value="%value-titolo%"
                            maxlength="30"
 			   placeholder="Inserisci qui il titolo dell'articolo che vuoi pubblicare"
@@ -38,6 +39,7 @@
                            aria-label="Campo per l'inserimento del titolo"/>
                     <label for="keywords-articolo" data-error-msg="le parole chiave dell'articolo sono: obbligatorie, al massimo 50 caratteri e senza markdown, separate da una virgola senza spazi">Parole chiave %error-keywords%</label>
                     <input type="text" id="keywords-articolo" name="keywords-articolo"
+    			   tabindex="2"
                            value = "%value-keywords%"
                            maxlength="50"
                            placeholder="Inserisci qui le parole chiave dell'articolo che vuoi pubblicare"
@@ -47,6 +49,7 @@
                     <label for="sommario-articolo" data-error-msg="Il sommario dell'articolo è: obbligatorio, al massimo 200 caratteri e scritto secondo le regole del markdown">Sommario %error-sommario%</label>
                     <textarea id="sommario-articolo" name="sommario-articolo"
                                   rows="5" cols="100"
+    			   	  tabindex="3"
                                   maxlength="200"
                                   placeholder="Inserisci qui il sommario dell'articolo che vuoi pubblicare"
                                   required="required"
@@ -55,7 +58,8 @@
 					<label for="contenuto-articolo" data-error-msg="il corpo dell'articolo deve essere lungo almeno 30 caratteri e scritto secondo le regole del markdown">Contenuto %error-contenuto%</label>
 					<textarea id="contenuto-articolo" name="contenuto-articolo"
 						   rows="30" cols="100"
-                           minlength="30"
+                           			   minlength="30"
+    			   			   tabindex="4"
 						   placeholder="Inserisci qui il corpo dell'articolo"
 						   required="required"
 						   aria-required="true"
@@ -65,17 +69,19 @@
                     <legend>Immagine Articolo</legend>
                     <label for="file-immagine" data-error-msg="Il file va inserito obbligatoriamente e deve essere un immagine inferiore al megabyte.">File immagine %error-file% %edit-file-msg%</label>
                     <input type="file" id="file-immagine"
+    			    tabindex="5"
                             accept="image/*"
                             name="file-immagine"
                             %image-required%/>
                     <label for="alt-immagine" data-error-msg="Il testo alternativo non può superare i 70 caratteri o contenere markup">Testo alternativo immagine %error-alt%</label>
                     <input type="text" id="alt-immagine" name="alt-immagine"
+    			   tabindex="6"
                            value="%value-alt%"
                            maxlength="70"
                            placeholder="Inserisci qui il testo alternativo per l'immagine"
                            aria-label="Campo per l'inserimento per il testo alternativo per l'immagine"/>
                 </fieldset>
-				<input name="submit" type="submit" value="submit"/>
+				<input name="submit" type="submit" value="submit" tabindex="7"/>
             </form>
         </main>
         <footer>
