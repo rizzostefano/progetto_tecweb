@@ -28,10 +28,7 @@ class DbConnection
 
     public function prepareQuery($query) {
         $stmt = mysqli_stmt_init($this->current_connection);
-        if(!mysqli_stmt_prepare($stmt, $query))
-        {
-            print "Failed to prepare statement\n";
-        }
+        mysqli_stmt_prepare($stmt, $query);
         return $stmt;
     }
 

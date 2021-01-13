@@ -17,7 +17,7 @@
 			<span>Amministrazione</span>
             <nav>
                 <ul>
-                    <li><a href="../index.html" lang="en">Home</a></li>
+                    <li><a href="../index.html" tabindex="0" lang="en">Home</a></li>
                 	<li>login</li>
                 </ul>
             </nav>
@@ -30,19 +30,21 @@
                     <strong class="error">%error-login%</strong>
     				<label for="username-admin" data-error-msg="Per favore, inserisci l'username dell'admin è necessario">Username</label>
     				<input type="text" id="username-admin" name="username-admin"
-    					   placeholder="admin"
+    					   tabindex="1"
+					   placeholder="Username"
     					   required="required"
     					   aria-required="true"
     					   aria-label="Campo per l'inserimento dello username dell'admin"/>
     				<label for="password-admin" data-error-msg="Per favore, inserisci la password è necessaria">Password</label>
     				<input type="password" id="password-admin" name="password-admin"
-                           minlength="1"
-    					   placeholder="admin"
+ 					   minlength="1"
+    					   tabindex="2"
+    					   placeholder="Password"
     					   required="required"
     					   aria-required="true"
     					   aria-label="Campo per l'inserimento della password di amministrazione" />
                     <div class="btn-container">
-                        <input name="submit" type="submit"/>
+                        <input name="submit" type="submit" tabindex="3"/>
                     </div>
     			</form>
             </section>
