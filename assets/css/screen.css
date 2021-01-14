@@ -39,25 +39,6 @@ header a:hover {
     transition: 0.2s ease-in;
 }
 
-
-
-/*header a::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background: #000;
-    transition: width .3s;
-}
-
-//header a:hover::after {
-    width: 100%;
-    //transition: width .3s;
-}*/
-
-
-
-
 a:active {
     border: 2px #101010 solid;
     border-radius: 3px;
@@ -84,20 +65,6 @@ form label {
 
 header img {
     width: 8em;
-}
-
-.background-image-cropper {
-    width: 100%;
-    max-height: 15em;
-    position: relative;
-    overflow: hidden;
-}
-
-.background-image-cropper img {
-    display: inline;
-    margin: auto;
-    opacity: 0.75;
-    width: 100%;
 }
 
 main {
@@ -173,8 +140,8 @@ iframe {
 }
 
 .rectangle-image-cropper-large {
-    width: 70%;
-    height auto;
+    width: 100%;
+    max-height: 10em;
     position: relative;
     overflow: hidden;
     border-radius: 3px;
@@ -182,7 +149,7 @@ iframe {
 
 .rectangle-image-cropper img, .rectangle-image-cropper-large img {
     display: inline;
-    margin: 0 auto;
+    margin: auto auto;
     height: auto;
     width: 100%;
 }

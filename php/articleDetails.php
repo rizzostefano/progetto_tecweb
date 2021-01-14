@@ -1,6 +1,6 @@
 <?php
 
-if (!isset($_GET['article_id'])) 
+if (!isset($_GET['article_id']))
 {
     header('Location: fallback.php');
 }
@@ -38,10 +38,10 @@ $DOM = str_replace('<cs_meta_keyword/>', "<meta name=\"keywords\" content=\"$art
 
 $article = "<section>
                 <h1>$title</h1>
-                $content
                 <div class=\"rectangle-image-cropper-large centered\">
                     <img src=\"$articleImage->url\" alt=\"$articleImage->alt\" />
                 </div>
+                $content
             </section>";
 
 $DOM = str_replace('<cs_main_content/>', $article, $DOM);
