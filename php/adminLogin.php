@@ -16,7 +16,7 @@ if(isset($_POST['submit'])){
             session_set_cookie_params(3600);
             session_start();
             $_SESSION['admin'] = true;
-            header('Location: insertForm.php?new=1');
+            header('Location: editArticles.php');
         }
     } else {
         echo str_replace("%error-login%", "<strong class=\"error\" role=\"alert\"> Credenziali non valide</strong>", $html);
