@@ -397,3 +397,10 @@ label, legend {
 .insert-form {
     max-width: 60%;
 }
+
+pre.markdown-code{
+    margin: 1em;
+    padding-top: 1em;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}

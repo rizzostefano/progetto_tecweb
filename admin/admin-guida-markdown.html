@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <title> Guida markdown | Rizzo Guitars</title>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Guida markdown">
+        <meta name="language" content="italian it" />
+        <meta name="author" content="Stefano Rizzo, Leonardo Tredese, Samuele Vanini, Michele Veronesi" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" type="text/css" href="../assets/css/screen.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../assets/css/print.css" media="print" />
+        <link rel="stylesheet" type="text/css" href="../assets/css/mobile.css" media="only screen and (max-width:640px)" />
+    </head>
+    <body>
+        <header>
+            <div class="logo">Rizzo</div>
+            <nav>
+                <ul>
+                    <li><a href="../php/insertForm.php?new=1">Nuovo Articolo</a></li>
+                    <li><a href="../php/editArticles.php">Modifica articoli</a></li>
+                    <li><a href="../php/logout.php" lang="en">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Guida <span lang="en">markdown</span></h1>
+            <p>Quando si inserisce un articolo è possibile utilizzare il markdown per dare struttura al testo.</p>
+            Puoi scaricare <a href="markdown.pdf" download="markdown">questa guida</a>.
+
+            <h2 lang="en">Header</h2>
+            <p>Per inserire degli header è necessario inserire un numero di cancelletti pari al livello di <span lang="en">header</span> che si vuole inserire (es. 2 asterischi per h2) seguiti da uno spazio.</p>
+            <pre class="markdown-code">
+                # This is an &lt;h1> tag
+                ## This is an &lt;h2> tag
+                ###### This is an &lt;h6> tag
+            </pre>
+
+            <h2 lang="en">Link</h2>
+            <p>Per inserire un link è necessario inserire prima il testo che si vuole visualizzare contenuto in parentesi quadre, successivamente il link effettivo contenuto tra parentesi tonde.</p>
+            <pre class="markdown-code">
+                [testo del link visibile](https://www.google.com)
+            </pre>
+
+            <h2>Grassetto</h2>
+            <p>Per inserire testo in grassetto bisogna apporre due asterischi o due <span lang="en">underscore</span> all'inizio e alla fine del testo da modificare.</p>
+            <pre class="markdown-code" aria-hidden="true">
+                **This text will be bold**
+                __This will also be bold__
+            </pre>
+
+            <h2>Enfasi</h2>
+            <p>Per dare enfasi ad una porzione di testo inserire un carattere asterisco o un carattere underscore all'inizio e alla fine.</p>
+            <pre class="markdown-code" aria-hidden="true">
+                *This text will have emphasis*
+                _This text will have emphasis_
+            </pre>
+
+            <h2>Liste</h2>
+            <p>
+                Per inserire una lista non ordinata inserire gli elementi uno per ogni riga, inserendo un asterisco all'inizio di ognuna seguito da uno spazio.
+                Per inserire una lista ordinata inserire invece il numero seguito da un punto e uno spazio all'inizio di ogni riga.
+            </p>
+            <pre class="markdown-code" aria-hidden="true">
+                Lista non ordinata:
+                * elemento
+                * elemento
+                Lista ordinata:
+                1. elemento 1
+                2. elemento 2
+            </pre>
+
+            <h2>Citazioni</h2>
+            <p>Per inserire una citazione è necessario scriverla su una riga senza altro contenuto, usare il carattere di maggiore seguito di uno spazio ed inserire la citazione.</p>
+            <pre class="markdown-code" aria-hidden="true">
+                > questa è una citazione
+            </pre>
+
+            <h2>Lingua inglese</h2>
+            <p>Per inserire una o più parole in lingua inglese aprire la parentesi tonda seguita da un punto interrogativo, inserire le parole inglesi, chiudere la parentesi.</p>
+            <pre class="markdown-code" aria-hidden="true">
+                Benvenuto su Rizzo (?Guitars)!
+            </pre>
+
+        </main>
+        <footer>
+            <section>
+                <h2>Segui Rizzo <span lang="en">Guitars</span> sui <span lang="en">social</span></h2>
+                <ul>
+                    <li><a href="https://www.facebook.com/rizzoguitars" target="_blank" rel="noopener" lang="en"><span class="material-icons">facebook</span> Facebook</a></li>
+                    <li><a href="https://www.instagram.com/rizzoguitars" target="_blank" rel="noopener" lang="en"><span class="material-icons">photo</span>Instagram</a></li>
+                    <li>telefono: <a href="tel:+393427819582">+39 342 781 9582</a></li>
+                    <li><span lang="en">e-mail</span>: <a href="mailto:rstefano99@gmail.com">rstefano99@gmail.com</a></li>
+                    <li>indirizzo: via Campana 13/a, Terrassa Padovana (PD).</li>
+                </ul>
+            </section>
+            <small lang="en">
+                &copy; Rizzo Guitars. All rights reserved.
+            </small>
+        </footer>
+    </body>
+</html>

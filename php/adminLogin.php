@@ -1,5 +1,10 @@
 <?php
 require_once("dbConnection.php");
+session_start();
+
+if(isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+	header('Location: editArticles.php');
+}
 
 $conn = new DbConnection();
 $html = file_get_contents("../admin/admin-login.html");
@@ -14,7 +19,6 @@ if(isset($_POST['submit'])){
         if(strcmp(hash('sha256', $_POST['password-admin']), $result['Password']) === 0){
             ini_set('session.gc_maxlifetime', 3600);
             session_set_cookie_params(3600);
-            session_start();
             $_SESSION['admin'] = true;
             header('Location: editArticles.php');
         }
