@@ -5,9 +5,9 @@ if (!isset($_GET['article_id']))
     header('Location: fallback.php');
 }
 
-require_once('backend/escapeMarkdown.php');
-require_once('backend/article/repoArticle.php');
-require_once('backend/image/repoImage.php');
+require_once('escapeMarkdown.php');
+require_once('repoArticle.php');
+require_once('repoImage.php');
 
 $repoArticle = new RepoArticle();
 $repoImage = new RepoImage();

@@ -1,33 +1,14 @@
 <?php
 
-require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "dbConnection.php";
+require_once("dbConnection.php");
 
 class RepoImage{
 
     private $conn;
-    private $path = "../assets/images/";
+    private $path = "../assets/images/uploaded/";
     
     public function __construct() {
         $this->conn = new DbConnection();
-    }
-
-    /**
-     * esegue il fetch di tutte le chitarre con tutti i loro dettagli dal db
-     * ritornando un array con oggetti di tipo Guitars
-     */
-    public function getImages()
-    {
-        $query = "SELECT * FROM Images";
-        $stmt = $this->conn->prepareQuery($query);
-        $result = $this->conn->executePreparedQuery($stmt);
-        $images = mysql_fetch_all($result, MYSQLI_ASSOC);
-        $result = array();
-        foreach ($images as $image)
-        {
-            $tmp = new Image($image["Id"], $image["FileName"], $image["Alt"], $image["Url"]);
-            array_push($result, $tmp);
-        }
-        return $result;
     }
 
     public function findImageById($imageId)
@@ -91,14 +72,6 @@ class RepoImage{
         $query = "DELETE FROM Images WHERE Id = ?";
         $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "s", $imageId); 
-        return $this->conn->executePreparedQueryDML($stmt);
-    }
-
-    public function addArticleImage($articleId, $imageId)
-    {
-        $query = "INSERT INTO ArticleImages (IdArticle, IdImage) VALUES (?, ?)";
-        $stmt = $this->conn->prepareQuery($query);
-        mysqli_stmt_bind_param($stmt, "ss", $articleId, $imageId); 
         return $this->conn->executePreparedQueryDML($stmt);
     }
 

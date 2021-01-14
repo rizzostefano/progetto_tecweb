@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . DIRECTORY_SEPARATOR . "article.php";
-require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "dbConnection.php";
-require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "image" . DIRECTORY_SEPARATOR . "image.php";
+require_once("article.php");
+require_once("dbConnection.php");
+require_once("image.php");
 
 class RepoArticle{
 

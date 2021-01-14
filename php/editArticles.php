@@ -1,7 +1,7 @@
 <?php
-require_once("backend/escapeMarkdown.php");
-require_once("backend/article/repoArticle.php");
-require_once("backend/image/repoImage.php");
+require_once("escapeMarkdown.php");
+require_once("repoArticle.php");
+require_once("repoImage.php");
 header('Content-type: text/html; charset=utf-8');
 session_start();
 if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === true)) {
@@ -17,18 +17,23 @@ $articles = $repoArticle->getArticles();
 
 $content = '<div class="flex-container">';
 
-foreach($articles as $article)
-{
-	$article->title = MarkdownConverter::renderOnlyLanguage($article->title);
-	$article->summary = MarkdownConverter::render($article->summary);
-	$content .= "<article class=\"column\">
-						<h2>{$article->title}</h2>
-						<p>{$article->summary}</p>
-						<div class=\"btn-container\">
-							<a href=\"insertForm.php?article_id={$article->id}\" class=\"button\">Modifica</a>
-							<a href=\"deleteArticle.php?article_id={$article->id}\" class=\"button\">Elimina</a>
-						</div>
-					</article>";
+if(empty($articles)){
+	$content = "<p>Nessun articolo presente.</p>";
+}
+else {
+	foreach($articles as $article)
+	{
+		$article->title = MarkdownConverter::renderOnlyLanguage($article->title);
+		$article->summary = MarkdownConverter::render($article->summary);
+		$content .= "<article class=\"column\">
+							<h2>{$article->title}</h2>
+							<p>{$article->summary}</p>
+							<div class=\"btn-container\">
+								<a href=\"insertForm.php?article_id={$article->id}\" class=\"button\">Modifica</a>
+								<a href=\"deleteArticle.php?article_id={$article->id}\" class=\"button\">Elimina</a>
+							</div>
+						</article>";
+	}
 }
 
 $content .= "</div>";

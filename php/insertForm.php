@@ -1,9 +1,9 @@
 <?php
 
-require_once("backend/escapeMarkdown.php");
-require_once("backend/article/repoArticle.php");
-require_once("backend/article/article.php");
-require_once("backend/image/repoImage.php");
+require_once("escapeMarkdown.php");
+require_once("repoArticle.php");
+require_once("article.php");
+require_once("repoImage.php");
 header('Content-type: text/html; charset=utf-8');
 session_start();
 if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === true)) {

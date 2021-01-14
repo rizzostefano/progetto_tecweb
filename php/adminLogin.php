@@ -1,5 +1,5 @@
 <?php
-require_once("backend/dbConnection.php");
+require_once("dbConnection.php");
 
 $conn = new DbConnection();
 $html = file_get_contents("../admin/admin-login.html");

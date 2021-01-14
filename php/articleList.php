@@ -1,7 +1,7 @@
 <?php
 
-require_once('backend/article/repoArticle.php');
-require_once('backend/escapeMarkdown.php');
+require_once('repoArticle.php');
+require_once('escapeMarkdown.php');
 
 $DOM = file_get_contents('../listaArticoli.html');
 
@@ -14,19 +14,24 @@ $content = '<section>
             </section>
             <div class="flex-container">';
 
-foreach($articles as $article)
-{
-    $article->title = MarkdownConverter::renderOnlyLanguage($article->title);
-    $article->summary = MarkdownConverter::render($article->summary);
-    $content .= "<div class='flex-container'>
-                    <article class='column'>
-                        <h2>{$article->title}</h2>
-                        <p>{$article->summary}</p>
-                        <div class='btn-container'>
-                            <a href='articleDetails.php?article_id={$article->id}' class='button'>Leggi!</a>
-                        </div>
-                    </article>
-                </div>";
+if(empty($articles)){
+    $content = "<p>Nessun articolo presente.</p>";
+}
+else {
+    foreach($articles as $article)
+    {
+        $article->title = MarkdownConverter::renderOnlyLanguage($article->title);
+        $article->summary = MarkdownConverter::render($article->summary);
+        $content .= "<div class='flex-container'>
+                        <article class='column'>
+                            <h2>{$article->title}</h2>
+                            <p>{$article->summary}</p>
+                            <div class='btn-container'>
+                                <a href='articleDetails.php?article_id={$article->id}' class='button'>Leggi!</a>
+                            </div>
+                        </article>
+                    </div>";
+    }
 }
 
 $content .= "</div>";
