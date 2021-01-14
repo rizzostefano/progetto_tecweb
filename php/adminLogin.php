@@ -19,16 +19,11 @@ if(isset($_POST['submit'])){
             header('Location: insertForm.php?new=1');
         }
     } else {
-        echo str_replace("%error-login%", "Credenziali non valide", $html);
+        echo str_replace("%error-login%", "<strong class=\"error\" role=\"alert\"> Credenziali non valide</strong>", $html);
     }
 
 } else {
     echo str_replace("%error-login%", "", $html);
     // TODO: errore apertura connessione
 }
-
-
-
-
-
 ?>

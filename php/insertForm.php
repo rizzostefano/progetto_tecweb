@@ -195,5 +195,5 @@ function substituteError($valid, $pattern, $error, $context){
 }
 
 function errorElement($message){
-	return '<strong class="error"> - ' . $message . '</strong>';
+	return '<strong class="error" role="alert"> - ' . $message . '</strong>';
 }
