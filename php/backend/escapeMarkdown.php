@@ -25,7 +25,7 @@ class MarkdownConverter {
   );
 
   public static $customRules = array (
-      '/(\(?)(.+)(\))/' => 'self::language'                   // lang
+      '/(\(\?)(.+?)(\))/' => 'self::language'                   // lang
   );
 
   /**
