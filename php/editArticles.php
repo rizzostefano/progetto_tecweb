@@ -2,27 +2,35 @@
 require_once("escapeMarkdown.php");
 require_once("repoArticle.php");
 require_once("repoImage.php");
-header('Content-type: text/html; charset=utf-8');
 session_start();
+
 if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === true)) {
 	header('Location: adminLogin.php');
+}
+
+if(isset($_GET["limit"])){
+    $limit = $_GET["limit"];
+}
+else {
+    $limit = 5;
 }
 
 $html = file_get_contents("../admin/admin-lista-articoli.html");
 
 $repoArticle = new RepoArticle();
-$repoImage = new RepoImage();
-
 $articles = $repoArticle->getArticles();
+$repoArticle->disconnect();
+$tot = count($articles);
 
 $content = '<div class="flex-container">';
 
 if(empty($articles)){
-	$content = "<p>Nessun articolo presente.</p>";
+	$content .= "<p>Nessun articolo presente.</p>";
 }
 else {
-	foreach($articles as $article)
+	for($i=0; $i < $tot && $i < $limit; ++$i)
 	{
+		$article = $articles[$i];
 		$article->title = MarkdownConverter::renderOnlyLanguage($article->title);
 		$article->summary = MarkdownConverter::render($article->summary);
 		$content .= "<article class=\"column\">
@@ -38,10 +46,12 @@ else {
 
 $content .= "</div>";
 
+if($tot > $limit){
+	$limit += 5;
+	$content .= "<div><a href=\"articleList.php?limit={$limit}\">Carica altro</a></div>";
+}
+
 $html = str_replace("<cs_main_content/>", $content, $html);
 echo $html;
-
-$repoArticle->disconnect();
-$repoImage->disconnect();
 
 ?>

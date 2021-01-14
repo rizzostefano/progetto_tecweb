@@ -31,6 +31,21 @@ class RepoArticle{
         return $result;
     }
 
+    public function getArticlesWithLimit($limit){
+        $query = "SELECT * FROM Articles ORDER BY InsertDate LIMIT ?";
+        $stmt = $this->conn->prepareQuery($query);
+        mysqli_stmt_bind_param($stmt, "s", $limit);
+        $result = $this->conn->executePreparedQuery($stmt);
+        $articles = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $result = array();
+        foreach ($articles as $article)
+        {
+            $tmp = new Article($article["Id"], $article["Title"], $article["ArticleTextContent"], $article["Summary"], $article["Image"], $article["Keywords"]);
+            array_push($result, $tmp);
+        }
+        return $result;
+    }
+
     public function findArticleById($articleId)
     {
         $query = "SELECT * FROM Articles WHERE Id = ?";
