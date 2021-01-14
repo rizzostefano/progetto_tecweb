@@ -23,7 +23,7 @@ if(isset($_GET["article_id"])){
 	$article = $repoArticle->findArticleById($_GET["article_id"]);
 	if($article !== false){
 		$_SESSION["article"] = $article;
-	} 
+	}
 }
 
 $isEditing = isset($_SESSION["article"]);
@@ -36,7 +36,7 @@ if(isset($_POST["submit"])){
 	$isImageNotChanging = $isEditing && $_FILES["file-immagine"]["error"] !== 0 ;
 	$validateImage =  $isImageNotChanging ? true : validateImage($_FILES["file-immagine"]);
 	if ($validateTitle && $validateContent && $validateImage && $validateImageAlt && $validateSummary && $validateKeywords){
-		$imageId = $isImageNotChanging ? $_SESSION["article"]->image : $repoImage->addImage($_FILES["file-immagine"], $_POST["alt-immagine"])->id; 
+		$imageId = $isImageNotChanging ? $_SESSION["article"]->image : $repoImage->addImage($_FILES["file-immagine"], $_POST["alt-immagine"])->id;
 		$articleId = $isEditing ? $_SESSION["article"]->id : -1;
 		//è brutto ma come pezza per il momento ci sta, buonanotte
 		$article = new Article($articleId, trimHtmlCode($_POST["titolo-articolo"]), trimHtmlCode($_POST["contenuto-articolo"]), trimHtmlCode($_POST["sommario-articolo"]), $imageId, trimHtmlCode($_POST["keywords-articolo"]));
@@ -51,16 +51,16 @@ if(isset($_POST["submit"])){
 		}
 	}
 
-} 
+}
 
 $html = preg_replace("/%error-\w*%/", "", $html);
 
 if($isEditing){
 	$article = $_SESSION["article"];
 	$image = $repoImage->findImageById($article->image);
-	$html = str_replace("%add-or-modify%", "Modifica di :" . $article->title , $html);
+	$html = str_replace("%add-or-modify%", "Modifica di " . $article->title , $html);
 	$html = str_replace("%image-required%", "", $html);
-	$html = str_replace("%edit-file-msg%", "Se non si inserisce l'immagine, rimarrà quella inserita precedentemente.", $html);
+	$html = str_replace("%edit-file-msg%", "Se non si inserisce una nuova immagine, rimarrà quella inserita precedentemente.", $html);
 	$html = str_replace("%value-titolo%",$article->title, $html);
 	$html = str_replace("%value-contenuto%",$article->content, $html);
 	$html = str_replace("%value-sommario%",$article->summary, $html);
@@ -134,7 +134,7 @@ function validateImageAlt($altImmagine) {
 	$errorMessageAlt = "Il testo alternativo non può superare i 70 caratteri o contenere markup";
 	$valid = validateTextField($altImmagine, NULL, 70, true, false, false);
 	handleField($valid, "%error-alt%", errorElement($errorMessageAlt), "%value-alt%", $altImmagine);
-	return $valid; 
+	return $valid;
 }
 
 function validateImage($file) {
@@ -179,7 +179,7 @@ function validateLength($input, $min, $max){
 	$length = strlen($input);
 	return (($min === NULL) || ($min <= $length))
 	&& (($max === NULL) || ($length <= $max));
-	
+
 }
 
 function validateRequired($input){
