@@ -8,12 +8,10 @@ var sumbitFormChecks = [{
 					"query": "textarea",
 					"validators": [validateRequired, validateLength]
 				   },{
-					"query": "#keywords-articolo",
-					"validators": [validateKeywords, validateNoLanguage]
-				   },{
-					"query": "#alt-immagine",
+					"query": "#keywords-articolo, #alt-immagine",
 					"validators": [validateNoLanguage]
 				   }]
+				  
 
 var loginFormChecks = [{
 						"query": "input[type=text], input[type=password]",
@@ -149,15 +147,6 @@ function validateImageFile(input) {
  */
 function validateRequired(input) {
 	return input.hasAttribute("required")? input.value != "" : true;
-}
-
-/**
- * @param input campo da controllare
- * @return indicazione se $input è una stringa di parole separate da virgola senza spazi 
- *         oppure no
- */
-function validateKeywords(input){
-	return  /^(?:\w+,)*\w+$/.test(input.value);
 }
 
 /**
