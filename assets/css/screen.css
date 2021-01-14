@@ -221,7 +221,7 @@ input[type=submit], input[type=button], .button {
     background-color: #303030;
     border: thin solid #aeaeae;
     border-radius: 3px;
-    min-width: 50px;
+    min-width: 56px;
     width: 20%;
     padding: 0.5em;
     margin: auto;
