@@ -86,6 +86,7 @@ function showErrorMessage(input){
 	if(label !== null && label.getElementsByClassName("error").length === 0) {
 		var error = document.createElement("strong");
 		error.className = "error";
+		error.setAttribute("role", "alert");
 		error.appendChild(document.createTextNode(" - " +label.getAttribute("data-error-msg")));
 		label.appendChild(error);
 	}
