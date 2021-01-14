@@ -225,7 +225,7 @@ main section p{
 }
 
 input[type=text], input[type=email], input[type=password], textarea{
-    width: 90%;
+    width: 100%;
     padding: 0.5em;
     margin: auto;
     border: thin solid #aeaeae;
@@ -398,6 +398,7 @@ label, legend {
     background-image: url(../images/logo-no-bg-low-res.png);
     background-repeat: no-repeat;
     background-size: 7.3em 3.5em;
+    padding-bottom: 0.2em;
 }
 
 
@@ -419,4 +420,12 @@ label, legend {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+}
+
+.login-form {
+    max-width: 20%;
+}
+
+.insert-form {
+    max-width: 60%;
 }

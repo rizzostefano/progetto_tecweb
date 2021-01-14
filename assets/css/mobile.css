@@ -68,3 +68,11 @@ div .flex-container, .gallery li:hover {
 .index-widescreen {
     background-image: url(../images/widescreen-small-min.jpg);
 }
+
+.login-form {
+    max-width: 100%;
+}
+
+.insert-form {
+    max-width: 100%;
+}
