@@ -37,10 +37,10 @@ else {
         $article = $articles[$i];
         $article->title = MarkdownConverter::renderOnlyLanguage($article->title);
         $article->summary = MarkdownConverter::render($article->summary);
-        $content .="<article class='column'>" .
+        $content .="<article class='flex-article'>" .
                             ($last === true ? "<h2 id=\"article-anchor\">" : "<h2>") . "{$article->title}</h2>".
-                            "<p>{$article->summary}</p>".
-                            "<div class='btn-container'>".
+                            "{$article->summary}".
+                            "<div class=\"btn-container\">".
                                 "<a href='articleDetails.php?article_id={$article->id}' class='button'>Leggi!</a>".
                             "</div>".
                         "</article>";
@@ -52,6 +52,9 @@ if($tot > $limit){
     $limit += 5;
     $content .= "<div class=\"load-more\"><a href=\"articleList.php?limit={$limit}#article-anchor\">Carica altro</a></div></section>";
 }
+
+
+
 
 $DOM = str_replace('<cs_main_content/>', $content, $DOM);
 

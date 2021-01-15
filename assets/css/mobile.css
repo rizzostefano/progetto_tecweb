@@ -76,3 +76,11 @@ div .flex-container, .gallery li:hover {
 .insert-form {
     max-width: 100%;
 }
+
+.flex-container {
+    display: block;
+}
+
+.flex-article {
+    width: auto;
+}
