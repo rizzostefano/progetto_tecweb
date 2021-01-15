@@ -32,15 +32,13 @@ else {
         $article = $articles[$i];
         $article->title = MarkdownConverter::renderOnlyLanguage($article->title);
         $article->summary = MarkdownConverter::render($article->summary);
-        $content .= "<div class='flex-container'>
-                        <article class='column'>
+        $content .= "<article class='column'>
                             <h2>{$article->title}</h2>
                             <p>{$article->summary}</p>
                             <div class='btn-container'>
                                 <a href='articleDetails.php?article_id={$article->id}' class='button'>Leggi!</a>
                             </div>
-                        </article>
-                    </div>";
+                        </article>";
     }
 }
 
