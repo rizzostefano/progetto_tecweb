@@ -1,5 +1,10 @@
 <?php
-require_once("backend/dbConnection.php");
+require_once("dbConnection.php");
+session_start();
+
+if(isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+	header('Location: editArticles.php');
+}
 
 $conn = new DbConnection();
 $html = file_get_contents("../admin/admin-login.html");
@@ -14,9 +19,8 @@ if(isset($_POST['submit'])){
         if(strcmp(hash('sha256', $_POST['password-admin']), $result['Password']) === 0){
             ini_set('session.gc_maxlifetime', 3600);
             session_set_cookie_params(3600);
-            session_start();
             $_SESSION['admin'] = true;
-            header('Location: insertForm.php?new=1');
+            header('Location: editArticles.php');
         }
     } else {
         echo str_replace("%error-login%", "<strong class=\"error\" role=\"alert\"> Credenziali non valide</strong>", $html);

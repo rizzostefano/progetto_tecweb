@@ -23,8 +23,6 @@
                 </ul>
             </nav>
         </header>
-        <main>
-			<!-- TODO: INSERIRE ACTION AGGIUNTA ARTICOLO -->
             <section class="insert-form centered">
                 <h2>Form per l'inserimento di articoli</h2>
                 <form method="POST" action="insertForm.php" id="invio" name="nuovo-articolo" enctype="multipart/form-data" class="centered">
@@ -36,18 +34,17 @@
     			   required="required"
     			   aria-required="true"
                                aria-label="Campo per l'inserimento del titolo"/>
-                        <label for="keywords-articolo" data-error-msg="Inserire massimo 50 caratteri senza markdown. Ricordati di separarle con una virgola e senza spazi">Parole chiave* %error-keywords%</label>
+                        <label for="keywords-articolo" data-error-msg="le parole chiave dell'articolo sono: obbligatorie e senza markdown">Parole chiave %error-keywords%</label>
                         <input type="text" id="keywords-articolo" name="keywords-articolo"
                                value = "%value-keywords%"
-                               maxlength="50"
                                placeholder="chitarre,stratocaster,etc"
                                required="required"
                                aria-required="true"
                                aria-label="Campo per l'inserimento delle parole chiave"/>
-                        <label for="sommario-articolo" data-error-msg="al massimo 200 caratteri e scritto secondo le regole del markdown">Sommario* %error-sommario%</label>
+                        <label for="sommario-articolo" data-error-msg="al massimo 90 caratteri e scritto secondo le regole del markdown">Sommario* %error-sommario%</label>
                         <textarea id="sommario-articolo" name="sommario-articolo"
                                       rows="5" cols="100"
-                                      maxlength="200"
+                                      maxlength="90"
                                       placeholder="Ricordati che verrà mostrato nella sezione articoli."
                                       required="required"
                                       aria-required="true"
@@ -74,8 +71,8 @@
                     <div class="btn-container">
                         <input name="submit" type="submit" value="submit"/>
                     </div>
-                    <small>I campi contrassegnati da * sono obbligatori</small>
-
+                    <p><small>I campi contrassegnati da * sono obbligatori.</small></p>
+                    <p><small><a href="../admin/admin-guida-markdown.html">Guida all'uso del markdown.</a></small></p>
                 </form>
             </section>
 

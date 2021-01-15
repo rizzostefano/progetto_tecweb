@@ -1,8 +1,8 @@
 <?php
 
-require_once("backend/article/repoArticle.php");
-require_once("backend/image/repoImage.php");
-require_once("backend/article/article.php");
+require_once("repoArticle.php");
+require_once("repoImage.php");
+require_once("article.php");
 session_start();
 if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === true)) {
 	header('Location: adminLogin.php');

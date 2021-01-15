@@ -1,9 +1,9 @@
 <?php
 
-require_once("backend/escapeMarkdown.php");
-require_once("backend/article/repoArticle.php");
-require_once("backend/article/article.php");
-require_once("backend/image/repoImage.php");
+require_once("escapeMarkdown.php");
+require_once("repoArticle.php");
+require_once("article.php");
+require_once("repoImage.php");
 header('Content-type: text/html; charset=utf-8');
 session_start();
 if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === true)) {
@@ -78,11 +78,11 @@ $repoImage->disconnect();
 $repoArticle->disconnect();
 
 /**
- * @field: valore del campo
- * @validity: booleano che indica la validità del contenuto del campo
- * @error_substitution: valore da cercare in html da sostituire con il messaggio di errore
- * @error_message: messaggio di errore da visualizzare
- * @value_content: contenuto da inserire nel campo
+ * @param field valore del campo
+ * @param validity booleano che indica la validità del contenuto del campo
+ * @param error_substitution valore da cercare in html da sostituire con il messaggio di errore
+ * @param error_message messaggio di errore da visualizzare se $valid è falso
+ * @param value_content contenuto da inserire nel campo
  */
 function handleField($validity, $error_substitution, $error_message, $value_substitution, $field){
 	global $html;
@@ -90,24 +90,46 @@ function handleField($validity, $error_substitution, $error_message, $value_subs
 	$html = str_replace($value_substitution, $field, $html);
 }
 
+/**
+ * @param field stringa con del testo
+ * @return stringa con spazi eccessivi eleiminati, tags html rimossi e caratteri ambigui sostituiti.
+ */
 function trimHtmlCode($field){
 	return trim(htmlentities(strip_tags($field)));
 }
 
+/**
+ * @param field stringa contentente il valore del campo di testo
+ * @param minlen lunghezza minima di $field, può essere NULL se non ce l'ha
+ * @param maxlen lunghezza massima di $field, può essere NULL se non ce l'ha
+ * @param isNotRequired booleano che indica se $field può essere vuoto oppure no
+ * @param hasMarkdown booleano che indica se $field può contenere il markdown strutturale
+ * @param hasLanguage booleano che indica se $field può contenere il markdown per la lingua
+ * @return indicazione se $field rispetta le indicazioni fornite attraveso i parametri
+ */
 function validateTextField($field, $minlen, $maxlen, $isNotRequired, $hasMarkdown, $hasLanguage){
 	$field  = isset($field) ? $field : "";
 	return (validateNoMarkdown($field, $hasMarkdown, $hasLanguage))
 			&& validateLength($field, $minlen, $maxlen)
 			&& ($isNotRequired || (validateRequired($field)));
 }
-
+/**
+ * @param keywords input del campo keywords
+ * @return indicazione se $keywords è valido
+ * Eventualmente in caso $keywords non fosse valido viene stampato un errore
+ */
 function validateKeywords($keywords) {
-	$errorMessageKeywords = "Le parole chiave sono obbligatorie, devono essere lunghe al massimo 50 caratteri e scritte senza markdown, separate da una virgola e senza spazi";
-	$valid = validateTextField($keywords, NULL, 50, false, false, false) && preg_match("/^(?:\w+,)*\w+$/", $keywords); // regex per il controllo delle keyword inserite
+	$errorMessageKeywords = "Le parole chiave sono obbligatorie e scritte senza markdown";
+	$valid = validateTextField($keywords, NULL, NULL, false, false, false);
 	handleField($valid, "%error-keywords%", errorElement($errorMessageKeywords), "%value-keywords%", $keywords);
 	return $valid;
 }
 
+/**
+ * @param contenuto input del campo contenuto
+ * @return indicazione se $contenuto è valido
+ * Eventualmente in caso $contenuto non fosse valido viene stampato un errore
+ */
 function validateContent($contenuto) {
 	$errorMessageContenuto = "Il corpo dell'articolo deve essere lungo almeno 30 caratteri e scritto secondo le regole del markdown";
 	$valid = validateTextField($contenuto, 30, NULL, false, true, true);
@@ -115,21 +137,35 @@ function validateContent($contenuto) {
 	return $valid;
 }
 
+/**
+ * @param titolo input del campo titolo
+ * @return indicazione se $titolo è valido
+ * Eventualmente in caso $titolo non fosse valido viene stampato un errore
+ */
 function validateTitle($titolo) {
-	// TODO: permettere di inserire markdown lingua nel titolo
 	$errorMessageTitolo = "Il titolo dell'articolo è: obbligatorio, al massimo 30 caratteri e va scritto senza markdown";
 	$valid = validateTextField($titolo, NULL, 30, false, false, true);
 	handleField($valid, "%error-titolo%", errorElement($errorMessageTitolo), "%value-titolo%", $titolo);
 	return $valid;
 }
 
+/**
+ * @param sommario input del campo sommario
+ * @return indicazione se $sommario è valido
+ * Eventualmente in caso $sommario non fosse valido viene stampato un errore
+ */
 function validateSummary($sommario) {
-	$errorMessageSommario = "Il sommario dell'articolo è: obbligatorio, al massimo 200 caratteri e scritto secondo le regole del markdown";
-	$valid = validateTextField($sommario, NULL, 200, false, true, true);
+	$errorMessageSommario = "Il sommario dell'articolo è: obbligatorio, al massimo 90 caratteri e scritto secondo le regole del markdown";
+	$valid = validateTextField($sommario, NULL, 90, false, true, true);
 	handleField($valid, "%error-sommario%", errorElement($errorMessageSommario), "%value-sommario%", $sommario);
 	return $valid;
 }
 
+/**
+ * @param altImmagine input del campo altImmagine
+ * @return indicazione se $altImmagine è valido
+ * Eventualmente in caso $altImmagine non fosse valido viene stampato un errore
+ */
 function validateImageAlt($altImmagine) {
 	$errorMessageAlt = "Il testo alternativo non può superare i 70 caratteri o contenere markup";
 	$valid = validateTextField($altImmagine, NULL, 70, true, false, false);
@@ -137,6 +173,11 @@ function validateImageAlt($altImmagine) {
 	return $valid;
 }
 
+/**
+ * @param file input del campo file
+ * @return indicazione se $file è valido
+ * Eventualmente in caso $file non fosse valido viene stampato un errore
+ */
 function validateImage($file) {
 	global $html;
 	global $repoImage;
@@ -158,6 +199,12 @@ function validateImage($file) {
 	return $valid;
 }
 
+/**
+ * @param input stringa da valutare
+ * @param hasMarkdown booleano che indica se $input può contenere il markdown strutturale
+ * @param hasLanguage booleano che indica se $input può contenere il markdown per la lingua
+ * @return indicazione se $input rispetta le indicazioni fornite attraveso i parametri
+ */
 function validateNoMarkdown($input, $hasMarkdown, $hasLanguage){
 	$valid = true;
 	if($hasMarkdown === false) {
@@ -174,6 +221,12 @@ function validateNoMarkdown($input, $hasMarkdown, $hasLanguage){
 	return $valid;
 }
 
+/**
+ * @param input stringa da valutare
+ * @param hasMarkdown booleano che indica se $input può contenere il markdown strutturale
+ * @param hasLanguage booleano che indica se $inpu può contenere il markdown per la lingua
+ * @return indicazione se $input rispetta le indicazioni fornite attraveso i parametri
+ */
 function validateLength($input, $min, $max){
 	$input = utf8_decode($input);
 	$length = strlen($input);
@@ -182,10 +235,23 @@ function validateLength($input, $min, $max){
 
 }
 
+/**
+ * @param input stringa da valutare
+ * @return indicazione se $input esiste e non è vuota
+ */
 function validateRequired($input){
 	return isset($input) && strlen($input) > 0;
 }
 
+/**
+ * @summary se $valid è vero sostituisce $pattern con $error
+ *          dentro $context, altrimenti elimina $pattern
+ * @param valid booleano che indica se fare la sostituzione
+ * @param pattern stringa da sostiuire
+ * @param error stringa con il messagio d'errore
+ * @param context stringa in cui far avvenire la sostituzione
+ * @return stringa dov'è avvenuta la sostituzione
+ */
 function substituteError($valid, $pattern, $error, $context){
 	if($valid===true){
 		return str_replace($pattern, "", $context);
@@ -194,6 +260,10 @@ function substituteError($valid, $pattern, $error, $context){
 	}
 }
 
+/**
+ * @param message stringa con il messaggio d'errore
+ * @return stringa contenente l'elemento d'errore con $message
+ */
 function errorElement($message){
 	return '<strong class="error" role="alert"> - ' . $message . '</strong>';
 }

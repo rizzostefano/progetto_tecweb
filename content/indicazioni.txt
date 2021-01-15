@@ -1,2 +1,0 @@
-TODO
-inserire indicazioni alternative alla mappa nell'iframe
