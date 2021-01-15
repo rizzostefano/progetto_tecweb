@@ -404,3 +404,8 @@ pre.markdown-code{
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
 }
+
+.load-more {
+    margin: 1.5em 0em 0.5em 0em;
+    text-align: center;
+}
