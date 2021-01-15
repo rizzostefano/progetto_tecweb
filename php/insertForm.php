@@ -155,8 +155,8 @@ function validateTitle($titolo) {
  * Eventualmente in caso $sommario non fosse valido viene stampato un errore
  */
 function validateSummary($sommario) {
-	$errorMessageSommario = "Il sommario dell'articolo è: obbligatorio, al massimo 200 caratteri e scritto secondo le regole del markdown";
-	$valid = validateTextField($sommario, NULL, 200, false, true, true);
+	$errorMessageSommario = "Il sommario dell'articolo è: obbligatorio, al massimo 90 caratteri e scritto secondo le regole del markdown";
+	$valid = validateTextField($sommario, NULL, 90, false, true, true);
 	handleField($valid, "%error-sommario%", errorElement($errorMessageSommario), "%value-sommario%", $sommario);
 	return $valid;
 }
