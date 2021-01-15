@@ -113,9 +113,9 @@ class MarkdownConverter {
 
 	/**
 	 * @summary: aggiunge una nuova regola alla classe
-   * @param: $regex nuova regex che si vuole aggiungere
-   * @param: $replacement nuovo replacement per la regex sopra indicata
-   * @return: void
+	 * @param: $regex nuova regex che si vuole aggiungere
+	 * @param: $replacement nuovo replacement per la regex sopra indicata
+	 * @return: void
 	 */
   public static function add_rule ($regex, $replacement)
   {
@@ -124,9 +124,9 @@ class MarkdownConverter {
 
 	/**
 	 * @summary: trasforma l'input dato in markdown in codice html
-   * @param: stringa contente codice markdown
-   * @return: stringa con codice html 
-	*/
+	 * @param: stringa contente codice markdown
+	 * @return: stringa con codice html 
+	 */
   public static function render ($input)
   {
 		$input = "\n" . $input . "\n";
@@ -155,12 +155,12 @@ class MarkdownConverter {
 		return trim ($input);
   }
   
-  /**
+	/**
 	 * @summary: trasforma l'input dato in markdown in codice html usando solo la regola
-   * per la lingue
-   * @param: stringa contente codice markdown
-   * @return: stringa con codice html 
-	*/
+	 * per la lingue
+	 * @param: stringa contente codice markdown
+	 * @return: stringa con codice html 
+	 */
   public static function renderOnlyLanguage($input)
   {
     $input = "\n" . $input . "\n";
