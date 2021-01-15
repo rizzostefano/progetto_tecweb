@@ -415,11 +415,12 @@ pre.markdown-code{
 }
 
 .flex-article {
+    position: relative;
     flex-wrap: wrap;
     width: 30%;
     height: 15em;
     padding: 1em;
-    margin: 2em auto 2em auto;
+    margin: 1em auto 1em auto;
     border: 1px solid #CACACA;
     border-radius: 3px;
     -webkit-box-shadow: 13px 10px 35px -22px rgba(0,0,0,0.3);
@@ -430,4 +431,11 @@ pre.markdown-code{
 .flex-article p {
     max-height: 5em;
     overflow: hidden;
+}
+
+.flex-article .btn-container{
+    position: absolute;
+    bottom: 2em;
+    left: 40%;
+    text-align: center;
 }
