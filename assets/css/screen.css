@@ -44,10 +44,11 @@ a:active {
     border-radius: 3px;
 }
 
-nav a:visited {
-    color: #8a8a8a;
+header a:visited:hover, header a:hover {
+    color: #f9f9f9;
 }
-a:visited {
+
+a:visited, nav a:visited {
     color:#609;
 }
 
