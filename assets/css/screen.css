@@ -438,6 +438,10 @@ pre.markdown-code{
     padding: 0.5em;
 }
 
+article > p:first-of-type {
+    padding: 2em 0em 1em 0em;
+}
+
 .flex-article .btn-container{
     position: absolute;
     bottom: 2em;
