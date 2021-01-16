@@ -170,6 +170,7 @@ iframe {
     position: relative;
     overflow: hidden;
     border-radius: 50%;
+    margin: 0em auto 4em auto;
 }
 .circle-image-cropper img{
     display: inline;
@@ -422,7 +423,7 @@ pre.markdown-code{
     position: relative;
     flex-wrap: wrap;
     width: 40%;
-    height: 14em;
+    min-height: 14em;
     padding: 1em;
     margin: 1em auto 1em auto;
     border: 1px solid #CACACA;
