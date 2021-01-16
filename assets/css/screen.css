@@ -421,8 +421,8 @@ pre.markdown-code{
 .flex-article {
     position: relative;
     flex-wrap: wrap;
-    width: 30%;
-    height: 15em;
+    width: 40%;
+    height: 14em;
     padding: 1em;
     margin: 1em auto 1em auto;
     border: 1px solid #CACACA;
@@ -435,6 +435,7 @@ pre.markdown-code{
 .flex-article p {
     max-height: 5em;
     overflow: hidden;
+    padding: 0.5em;
 }
 
 .flex-article .btn-container{
