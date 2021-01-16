@@ -407,11 +407,15 @@ label, legend {
     max-width: 60%;
 }
 
-pre.markdown-code{
-    margin: 1em;
-    padding-top: 1em;
+.markdown-code{
+    margin: 1em auto 0 auto;
+    padding: 1em;
     font-family: 'Courier New', Courier, monospace;
-    text-align: center;
+    border: 1px solid #858585;
+    border-radius: 5px;
+    background-color: #eeeeee;
+    align-content: left;
+    width: auto;
 }
 
 .load-more {

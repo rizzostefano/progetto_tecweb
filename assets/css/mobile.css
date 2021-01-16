@@ -84,3 +84,7 @@ div .flex-container, .gallery li:hover {
 .flex-article {
     width: auto;
 }
+
+.markdown-code{
+    width: 100%;
+}
