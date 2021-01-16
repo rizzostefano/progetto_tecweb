@@ -39,7 +39,7 @@ else {
 		$article->summary = MarkdownConverter::render($article->summary);
 		$content .= "<article class=\"column\">".
 							($last === true ? "<h2 id=\"article-anchor\">" : "<h2>") . "{$article->title}</h2>".
-							"<p>{$article->summary}</p>".
+							"{$article->summary}".
 							"<div class=\"btn-container\">".
 								"<a href=\"insertForm.php?article_id={$article->id}\" class=\"button\">Modifica</a>".
 								"<a href=\"deleteArticle.php?article_id={$article->id}\" class=\"button\">Elimina</a>".
