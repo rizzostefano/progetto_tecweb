@@ -36,13 +36,13 @@ $DOM = str_replace('<cs_meta_description/>', "<meta name=\"description\" content
 $DOM = str_replace('<cs_meta_keyword/>', "<meta name=\"keywords\" content=\"$article->keywords\" />", $DOM);
 
 
-$article = "<section>
+$article = "<article>
                 <h1>$title</h1>
                 <div class=\"rectangle-image-cropper-large centered\">
                     <img src=\"$articleImage->url\" alt=\"$articleImage->alt\" />
                 </div>
                 $content
-            </section>";
+            </article>";
 
 $DOM = str_replace('<cs_main_content/>', $article, $DOM);
 
