@@ -40,11 +40,11 @@ if(isset($_POST["submit"])){
 		$articleId = $isEditing ? $_SESSION["article"]->id : -1;
 		//è brutto ma come pezza per il momento ci sta, buonanotte
 		$article = new Article($articleId, trimHtmlCode($_POST["titolo-articolo"]), trimHtmlCode($_POST["contenuto-articolo"]), trimHtmlCode($_POST["sommario-articolo"]), $imageId, trimHtmlCode($_POST["keywords-articolo"]));
-		$_SESSION["article"] = $article;
 		$result = $isEditing ? $repoArticle->editArticle($article) : $repoArticle->addArticle($article->title,$article->content,$article->summary,$article->image, $article->keywords);
 		if ($isEditing && !$isImageNotChanging){
 			$repoImage->deleteImage($_SESSION["article"]->image);
 		}
+		$_SESSION["article"] = $article;
 		if($result !== false){
 			unset($_SESSION["article"]);
 			header('Location: editArticles.php');
