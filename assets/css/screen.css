@@ -170,6 +170,7 @@ iframe {
     position: relative;
     overflow: hidden;
     border-radius: 50%;
+    margin: 0em auto 4em auto;
 }
 .circle-image-cropper img{
     display: inline;
@@ -406,11 +407,15 @@ label, legend {
     max-width: 60%;
 }
 
-pre.markdown-code{
-    margin: 1em;
-    padding-top: 1em;
+.markdown-code{
+    margin: 1em auto 0 auto;
+    padding: 1em;
     font-family: 'Courier New', Courier, monospace;
-    text-align: center;
+    border: 1px solid #858585;
+    border-radius: 5px;
+    background-color: #eeeeee;
+    align-content: left;
+    width: auto;
 }
 
 .load-more {
@@ -422,7 +427,7 @@ pre.markdown-code{
     position: relative;
     flex-wrap: wrap;
     width: 40%;
-    height: 14em;
+    min-height: 14em;
     padding: 1em;
     margin: 1em auto 1em auto;
     border: 1px solid #CACACA;
@@ -436,6 +441,10 @@ pre.markdown-code{
     max-height: 5em;
     overflow: hidden;
     padding: 0.5em;
+}
+
+article > p:first-of-type {
+    padding: 2em 0em 1em 0em;
 }
 
 .flex-article .btn-container{

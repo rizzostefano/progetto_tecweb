@@ -17,6 +17,7 @@
             <div class="logo">Rizzo</div>
             <nav>
                 <ul>
+                    <li lang="en"><a href="../index.html">Home</a></li>
                     <li><a href="../php/insertForm.php?new=1">Nuovo Articolo</a></li>
                     <li><a href="../php/editArticles.php">Modifica articoli</a></li>
                     <li><a href="../php/logout.php" lang="en">Logout</a></li>
@@ -24,64 +25,42 @@
             </nav>
         </header>
         <main>
-            <h1>Guida <span lang="en">markdown</span></h1>
-            <p>Quando si inserisce un articolo è possibile utilizzare il markdown per dare struttura al testo.</p>
-            Puoi scaricare <a href="markdown.pdf" download="markdown">questa guida</a>.
+            <section>
+                <h1>Guida <span lang="en">markdown</span></h1>
+                <p>Quando si inserisce un articolo è possibile utilizzare il markdown per dare struttura al testo.</p>
+                Puoi scaricare <a href="markdown.pdf" download="markdown">questa guida</a>.
 
-            <h2 lang="en">Header</h2>
-            <p>Per inserire degli header è necessario inserire un numero di cancelletti pari al livello di <span lang="en">header</span> che si vuole inserire (es. 2 asterischi per h2) seguiti da uno spazio.</p>
-            <pre class="markdown-code">
-                # This is an &lt;h1> tag
-                ## This is an &lt;h2> tag
-                ###### This is an &lt;h6> tag
-            </pre>
+                <h2 lang="en">Header</h2>
+                <p>Per inserire degli header è necessario inserire un numero di cancelletti pari al livello di <span lang="en">header</span> che si vuole inserire (es. 2 asterischi per h2) seguiti da uno spazio.</p>
+                <div class="markdown-code"><b>#</b> This is an <b>&lt;h1></b> tag<br /><b>##</b> This is an <b>&lt;h2></b> tag<br /><b>######</b> This is an <b>&lt;h6></b> tag<br /></div>
 
-            <h2 lang="en">Link</h2>
-            <p>Per inserire un link è necessario inserire prima il testo che si vuole visualizzare contenuto in parentesi quadre, successivamente il link effettivo contenuto tra parentesi tonde.</p>
-            <pre class="markdown-code">
-                [testo del link visibile](https://www.google.com)
-            </pre>
+                <h2 lang="en">Link</h2>
+                <p>Per inserire un link è necessario inserire prima il testo che si vuole visualizzare contenuto in parentesi quadre, successivamente il link effettivo contenuto tra parentesi tonde.</p>
+                <div class="markdown-code"><b>[testo del link visibile](</b>https://www.google.com<b>)</b></div>
 
-            <h2>Grassetto</h2>
-            <p>Per inserire testo in grassetto bisogna apporre due asterischi o due <span lang="en">underscore</span> all'inizio e alla fine del testo da modificare.</p>
-            <pre class="markdown-code" aria-hidden="true">
-                **This text will be bold**
-                __This will also be bold__
-            </pre>
+                <h2>Grassetto</h2>
+                <p>Per inserire testo in grassetto bisogna apporre due asterischi o due <span lang="en">underscore</span> all'inizio e alla fine del testo da modificare.</p>
+                <div class="markdown-code" aria-hidden="true"><b>**</b>This text will be bold<b>**</b><br/ ><b>__</b>This will also be bold<b>__</b></div>
 
-            <h2>Enfasi</h2>
-            <p>Per dare enfasi ad una porzione di testo inserire un carattere asterisco o un carattere underscore all'inizio e alla fine.</p>
-            <pre class="markdown-code" aria-hidden="true">
-                *This text will have emphasis*
-                _This text will have emphasis_
-            </pre>
+                <h2>Enfasi</h2>
+                <p>Per dare enfasi ad una porzione di testo inserire un carattere asterisco o un carattere underscore all'inizio e alla fine.</p>
+                <div class="markdown-code" aria-hidden="true"><b>*</b>This text will have emphasis<b>*</b><br /><b>_</b>This text will have emphasis<b>_</b></div>
 
-            <h2>Liste</h2>
-            <p>
-                Per inserire una lista non ordinata inserire gli elementi uno per ogni riga, inserendo un asterisco all'inizio di ognuna seguito da uno spazio.
-                Per inserire una lista ordinata inserire invece il numero seguito da un punto e uno spazio all'inizio di ogni riga.
-            </p>
-            <pre class="markdown-code" aria-hidden="true">
-                Lista non ordinata:
-                * elemento
-                * elemento
-                Lista ordinata:
-                1. elemento 1
-                2. elemento 2
-            </pre>
+                <h2>Liste</h2>
+                <p>
+                    Per inserire una lista non ordinata inserire gli elementi uno per ogni riga, inserendo un asterisco all'inizio di ognuna seguito da uno spazio.
+                    Per inserire una lista ordinata inserire invece il numero seguito da un punto e uno spazio all'inizio di ogni riga.
+                </p>
+                <div class="markdown-code" aria-hidden="true">Lista non ordinata:<br /><b>*</b> elemento<br /><b>*</b> elemento<br />Lista ordinata:<br /><b>1.</b> elemento <b>1</b><br /><b>2.</b> elemento <b>2</b></div>
 
-            <h2>Citazioni</h2>
-            <p>Per inserire una citazione è necessario scriverla su una riga senza altro contenuto, usare il carattere di maggiore seguito di uno spazio ed inserire la citazione.</p>
-            <pre class="markdown-code" aria-hidden="true">
-                > questa è una citazione
-            </pre>
+                <h2>Citazioni</h2>
+                <p>Per inserire una citazione è necessario scriverla su una riga senza altro contenuto, usare il carattere di maggiore seguito di uno spazio ed inserire la citazione.</p>
+                <div class="markdown-code" aria-hidden="true"><b>></b> questa è una citazione</div>
 
-            <h2>Lingua inglese</h2>
-            <p>Per inserire una o più parole in lingua inglese aprire la parentesi tonda seguita da un punto interrogativo, inserire le parole inglesi, chiudere la parentesi.</p>
-            <pre class="markdown-code" aria-hidden="true">
-                Benvenuto su Rizzo (?Guitars)!
-            </pre>
-
+                <h2>Lingua inglese</h2>
+                <p>Per inserire una o più parole in lingua inglese aprire la parentesi tonda seguita da un punto interrogativo, inserire le parole inglesi, chiudere la parentesi.</p>
+                <div class="markdown-code" aria-hidden="true">Benvenuto su Rizzo <b>(?</b>Guitars<b>)</b>!</div>
+            </section>
         </main>
         <footer>
             <section>
