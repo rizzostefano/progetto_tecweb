@@ -351,7 +351,7 @@ label, legend {
     font-weight: bold;
 }
 #floating-btn {
-	display: hidden;
+	display: none;
 }
 
 .material-icons.fab {
