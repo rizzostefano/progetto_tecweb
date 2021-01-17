@@ -23,7 +23,7 @@ ul {
     list-style-type: none;
 }
 
-a{
+a {
     color: #303030;
 }
 
@@ -77,6 +77,8 @@ header img {
 
 main {
     min-height: 500px;
+	margin: auto;
+    max-width: 1024px;
     padding: 1em 2em 1em 2em;
 }
 
@@ -337,19 +339,8 @@ fieldset {
 label, legend {
     font-weight: bold;
 }
-.floating-btn {
-    z-index: 5;
-    position: fixed;
-    bottom: 2em;
-    right: 2em;
-    width: 56px;
-    height: 56px;
-    border-radius: 100%;
-    background-color: #484848;
-    text-align: center;
-    -webkit-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.38);
-    -moz-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.38);
-    box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.38);
+#floating-btn {
+	display: hidden;
 }
 
 .material-icons.fab {
