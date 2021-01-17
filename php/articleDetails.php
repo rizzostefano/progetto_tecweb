@@ -15,6 +15,16 @@ $repoImage = new RepoImage();
 $article = $repoArticle->findArticleById($_GET["article_id"]);
 $title = $article->title;
 $title = MarkdownConverter::renderOnlyLanguage($title);
+
+$tag_title = $article->title;
+$tag_title = MarkdownConverter::removeLanguage($tag_title);
+
+$tag_summary = $article->summary;
+$tag_summary = MarkdownConverter::removeLanguage($tag_summary);
+
+$tag_keywords = $article->keywords;
+$tag_keywords = MarkdownConverter::removeLanguage($tag_keywords);
+
 $content = $article->content;
 $content = MarkdownConverter::render($content);
 
@@ -26,23 +36,23 @@ $repoImage->disconnect();
 $DOM = file_get_contents('../visualizzaArticolo.html');
 
 //TODO fare chiamata a db per prendere titolo dell'articolo
-$DOM = str_replace('<cs_page_title/>', $title, $DOM);
+$DOM = str_replace('<cs_page_title/>', $tag_title, $DOM);
 
 //TODO chiedere che meta title inserire
-$DOM = str_replace('<cs_meta_title/>', "<meta name=\"title\" content=\"$title | Rizzo Guitars\"/>", $DOM);
+$DOM = str_replace('<cs_meta_title/>', "<meta name=\"title\" content=\"$tag_title | Rizzo Guitars\"/>", $DOM);
 
-$DOM = str_replace('<cs_meta_description/>', "<meta name=\"description\" content=\"$article->summary\">", $DOM);
+$DOM = str_replace('<cs_meta_description/>', "<meta name=\"description\" content=\"$tag_summary\">", $DOM);
 
-$DOM = str_replace('<cs_meta_keyword/>', "<meta name=\"keywords\" content=\"$article->keywords\" />", $DOM);
+$DOM = str_replace('<cs_meta_keyword/>', "<meta name=\"keywords\" content=\"$tag_keywords\" />", $DOM);
 
 
-$article = "<section>
+$article = "<article>
                 <h1>$title</h1>
                 <div class=\"rectangle-image-cropper-large centered\">
                     <img src=\"$articleImage->url\" alt=\"$articleImage->alt\" />
                 </div>
                 $content
-            </section>";
+            </article>";
 
 $DOM = str_replace('<cs_main_content/>', $article, $DOM);
 

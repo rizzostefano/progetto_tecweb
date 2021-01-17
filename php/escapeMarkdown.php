@@ -25,7 +25,7 @@ class MarkdownConverter {
   );
 
   public static $customRules = array (
-      '/(\(?)(.+)(\))/' => 'self::language'                   // lang
+      '/(\(\?)(.+?)(\))/' => 'self::language'                   // lang
   );
 
   /**
@@ -40,7 +40,7 @@ class MarkdownConverter {
   }
 
   /**
-   * @summary: callback per la conversione di parole in lungua inglese
+   * @summary: callback per la conversione di parole in lingua inglese
    * @param: $regs array di componenti della regex
    * @return: stringa con il nuovo contenuto convertito
    */
@@ -48,6 +48,16 @@ class MarkdownConverter {
   {
     $langValue = $regs[2];
     return sprintf("<span lang='en'>%s</span>", $langValue);
+  }
+
+  /**
+   * @summary: callback per rimuove il tag indicante la inglese
+   * @param: $regs array di componenti della regex
+   * @return: stringa con il contenuto convertito
+   */
+  private static function removeLanguageTag($regs)
+  {
+    return $regs[2];
   }
     
   /**
@@ -166,6 +176,14 @@ class MarkdownConverter {
     $input = "\n" . $input . "\n";
     $regex = array_search("self::language", self::$customRules);
     $input = preg_replace_callback ($regex, "self::language", $input);
+    return trim ($input);
+  }
+
+  public static function removeLanguage($input)
+  {
+    $input = "\n" . $input . "\n";
+    $regex = array_search("self::language", self::$customRules);
+    $input = preg_replace_callback ($regex, "self::removeLanguageTag", $input);
     return trim ($input);
   }
 }
