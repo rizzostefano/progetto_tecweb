@@ -17,8 +17,8 @@ class MarkdownConverter {
     '/\n\*(.*)/' => 'self::ulList',                           // ul lists
     '/\n[0-9]+\.(.*)/' => 'self::olList',                     // ol lists
     '/\n(&gt;|\>)(.*)/' => 'self::blockquote ',               // blockquotes
-    '/\n-{5,}/' => "\n<hr />",                                // horizontal rule
     '/\n([^\n]+)\n/' => 'self::addParagraph',                 // add paragraphs
+    '/\n-{5,}/' => "\n<hr />",                                // horizontal rule
     '/<\/ul>\s?<ul>/' => '',                                  // fix extra ul
     '/<\/ol>\s?<ol>/' => '',                                  // fix extra ol
     '/<\/blockquote><blockquote>/' => "\n"                    // fix extra blockquote
@@ -47,7 +47,7 @@ class MarkdownConverter {
   private static function language($regs)
   {
     $langValue = $regs[2];
-    return sprintf("<span lang='en'>%s</span>", $langValue);
+    return sprintf("<span lang='en'>%s</span>", trim($langValue));
   }
 
   /**
