@@ -5,7 +5,7 @@
 }
 
 nav > ul li{
-    display: inline;
+    display: none;
 }
 
 section {
@@ -16,21 +16,50 @@ article {
     margin-top: 0.5cm;
 }
 
-a[href="https://www.facebook.com/rizzoguitars"]:after,
-a[href="https://www.instagram.com/rizzoguitars"]:after{
-    content: ' (' attr(href) ')';
+a:after{
+    content: "( http://rizzoguitars.it" attr(href) ")";
+    color: black;
 }
 
-a {
+a[href^="http"]:after{
+    content: '[' attr(href) ']';
     color: black;
+}
+
+a[href^="mailto"], a[href^="tel"]{
+    text-decoration:none;
+    color: black;
+}
+
+a[href^="mailto"]:after, a[href^="tel"]:after{
+    content: "";
+    color: black;
+}
+
+#help, #floating-btn{
+   display: none;
 }
 
 h2 {
     margin-top: 0.3cm;
 }
 
-img, .button, .material-icons, nav, footer, form, iframe, .print-remove {
+#current-page:before {
+    display: inline;
+    content: "Pagina: ";
+    font-size: 0.7; 
+}
+#current-page {
+    display: block;
+    font-size: 0.7; 
+}
+img, .button, .material-icons, footer, form, iframe, .print-remove {
     display: none;
+}
+
+div.logo {
+    font-weight: bold;
+    font-size: 1cm;
 }
 
 dt {

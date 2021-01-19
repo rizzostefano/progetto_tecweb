@@ -13,17 +13,17 @@
 		<script src="../assets/scripts/form.js"></script>
         <script src="https://kit.fontawesome.com/d831db26b7.js" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body><a id="help" href="#content">Salta la navigazione</a>
         <header>
             <div class="logo">Rizzo</div>
             <nav>
                 <ul>
                     <li><a href="../index.html" lang="en">Home</a></li>
-                	<li>login</li>
+                	<li id="current-page" aria-current="page">login</li>
                 </ul>
             </nav>
         </header>
-        <main>
+        <main id="content">
             <section>
                 <h2>Effettua l'accesso a Rizzo Guitars</h2>
                 <form method="POST" action="adminLogin.php" autocomplete="autocomplete" id="login" name="admin-login" class="login-form centered">

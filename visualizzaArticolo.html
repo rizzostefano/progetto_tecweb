@@ -26,7 +26,7 @@
         <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
         <script src="https://kit.fontawesome.com/d831db26b7.js" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body><a id="help" href="#content">Salta la navigazione</a>
         <header id="head">
             <div class="logo">Rizzo</div>
             <nav>
@@ -41,7 +41,7 @@
             </nav>
         </header>
 
-        <main>
+        <main id="content">
             <cs_main_content/>
         </main>
         <footer>
@@ -63,9 +63,10 @@
                 &copy; Rizzo Guitars. All rights reserved.
             </small>
         </footer>
-        <div class="floating-btn">
+        <div id="floating-btn">
             <a href="#head">
-                <i class="fas fa-angle-up"></i>
+                <span class="fas fa-angle-up"></span>
+                <span class="offscreen">Clicca per tornare al menù</span>
             </a>
         </div>
     </body>

@@ -26,7 +26,7 @@
         <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
         <script src="https://kit.fontawesome.com/d831db26b7.js" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body><a id="help" href="#content">Salta la navigazione</a>
         <header id="head">
             <div class="logo">Rizzo</div>
             <nav>
@@ -34,13 +34,13 @@
                     <li><a href="index.html" lang="en">Home</a></li>
                     <li><a href="servizi.html">Servizi</a></li>
                     <li><a href="php/articleList.php">Articoli</a></li>
-                    <li>Su di me</li>
+                    <li id="current-page" aria-current="page">Su di me</li>
                     <li><a href="strumenti.html">Strumenti</a></li>
                     <li><a href="contatti.html">Contatti</a></li>
                 </ul>
             </nav>
         </header>
-        <main>
+        <main id="content">
             <h1>Conosciamoci meglio:</h1>
                 <section>
                     <h2>Cos'è Rizzo <span lang="en">Guitars</span>?</h2>
@@ -87,9 +87,10 @@
                 &copy; Rizzo Guitars. All rights reserved.
             </small>
         </footer>
-        <div class="floating-btn">
+        <div id="floating-btn">
             <a href="#head">
-                <i class="fas fa-angle-up"></i>
+                <span class="fas fa-angle-up"></span>
+                <span class="offscreen">Clicca per tornare al menù</span>
             </a>
         </div>
     </body>

@@ -13,19 +13,19 @@
         <link rel="stylesheet" type="text/css" href="../assets/css/mobile.css" media="only screen and (max-width:640px)" />
         <script src="https://kit.fontawesome.com/d831db26b7.js" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body><a id="help" href="#content">Salta la navigazione</a>
         <header>
             <div class="logo">Rizzo</div>
             <nav>
                 <ul>
                     <li lang="en"><a href="../index.html">Home</a></li>
                     <li><a href="insertForm.php?new=1">Nuovo Articolo</a></li>
-                    <li>Modifica articoli</li>
+                    <li id="current-page" aria-current="page">Modifica articoli</li>
                     <li><a href="logout.php" lang="en">Logout</a></li>
                 </ul>
             </nav>
         </header>
-        <main>
+        <main id="content">
             <cs_main_content/>
         </main>
         <footer>

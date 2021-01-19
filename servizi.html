@@ -25,13 +25,13 @@
         <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
         <script src="https://kit.fontawesome.com/d831db26b7.js" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body><a id="help" href="#content">Salta la navigazione</a>
         <header id="head">
             <div class="logo">Rizzo</div>
             <nav>
                 <ul>
                     <li><a href="index.html" lang="en">Home</a></li>
-                    <li>Servizi</li>
+                    <li id="current-page" aria-current="page">Servizi</li>
                     <li><a href="php/articleList.php">Articoli</a></li>
                     <li><a href="about.html">Su di me</a></li>
                     <li><a href="strumenti.html">Strumenti</a></li>
@@ -39,7 +39,7 @@
                 </ul>
             </nav>
         </header>
-        <main>
+        <main id="content">
             <section>
                 <h1>La tua chitarra ha deciso di abbandonarti? Non ti preoccupare, io non lo farò.</h1>
                 <p>Che ti serva una <em>riparazione</em>, un nuovo <em>strumento</em> o un semplice <em lang="en">set-up</em>, non ti preoccupare: qui c'è la soluzione giusta che fa per te.</p>
@@ -105,9 +105,10 @@
                 &copy; Rizzo Guitars. All rights reserved.
             </small>
         </footer>
-        <div class="floating-btn">
+        <div id="floating-btn">
             <a href="#head">
-                <i class="fas fa-angle-up"></i>
+                <span class="fas fa-angle-up"></span>
+                <span class="offscreen">Clicca per tornare al menù</span>
             </a>
         </div>
     </body>
