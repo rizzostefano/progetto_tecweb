@@ -36,7 +36,7 @@ a[href^="mailto"]:after, a[href^="tel"]:after{
     color: black;
 }
 
-#help, #floating-btn{
+.help, #floating-btn{
    display: none;
 }
 
