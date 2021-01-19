@@ -354,9 +354,9 @@ label, legend {
 	display: none;
 }
 
-.material-icons.fab {
+.fas {
     color: #ffffff;
-    margin-top: 0.5em
+    margin-top: 1.1em;
 }
 
 @media (prefers-reduced-motion) {
