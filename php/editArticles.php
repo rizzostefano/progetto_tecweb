@@ -41,6 +41,7 @@ else {
 							($last === true ? "<h2 id=\"article-anchor\">" : "<h2>") . "{$article->title}</h2>".
 							"{$article->summary}".
 							"<div class=\"btn-container\">".
+								"<a href='articleDetailsAdmin.php?article_id={$article->id}' class='button'>Leggi!</a>".
 								"<a href=\"insertForm.php?article_id={$article->id}\" class=\"button\">Modifica</a>".
 								"<a href=\"deleteArticle.php?article_id={$article->id}\" class=\"button\">Elimina</a>".
 							"</div>".
