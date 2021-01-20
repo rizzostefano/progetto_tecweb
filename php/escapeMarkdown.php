@@ -16,7 +16,7 @@ class MarkdownConverter {
     '/`(.*?)`/' => '<code>\1</code>',                         // inline code
     '/\n\*(.*)/' => 'self::ulList',                           // ul lists
     '/\n[0-9]+\.(.*)/' => 'self::olList',                     // ol lists
-    '/\n(&gt;|\>)(.*)/' => 'self::blockquote ',               // blockquotes
+    '/\n(&gt;|\>)(.*)/' => 'self::blockquote',               // blockquotes
     '/\n([^\n]+)\n/' => 'self::addParagraph',                 // add paragraphs
     '/\n-{5,}/' => "\n<hr />",                                // horizontal rule
     '/<\/ul>\s?<ul>/' => '',                                  // fix extra ul
