@@ -37,10 +37,10 @@ else {
 		$article = $articles[$i];
 		$article->title = MarkdownConverter::renderOnlyLanguage($article->title);
 		$article->summary = MarkdownConverter::render($article->summary);
-		$content .= "<article class=\"column\">".
+		$content .= "<article class=\"flex-article\">".
 							($last === true ? "<h2 id=\"article-anchor\">" : "<h2>") . "{$article->title}</h2>".
 							"{$article->summary}".
-							"<div class=\"btn-container\">".
+							"<div class=\"btn-container three-btn\">".
 								"<a href='articleDetailsAdmin.php?article_id={$article->id}' class='button'>Leggi!</a>".
 								"<a href=\"insertForm.php?article_id={$article->id}\" class=\"button\">Modifica</a>".
 								"<a href=\"deleteArticle.php?article_id={$article->id}\" class=\"button\">Elimina</a>".
