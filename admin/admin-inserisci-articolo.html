@@ -28,6 +28,7 @@
             <section class="insert-form centered">
                 <h2>Form per l'inserimento di articoli</h2>
                 <form method="POST" action="insertForm.php" id="invio" name="nuovo-articolo" enctype="multipart/form-data" class="centered">
+                    <fieldset>
     					<label for="titolo-articolo" data-error-msg="Al massimo 30 caratteri l'unica regola di markdown che si può applicare è quella della lingua">Titolo* %error-titolo%</label>
                         <input type="text" id="titolo-articolo" name="titolo-articolo"
                                value="%value-titolo%"
@@ -75,6 +76,7 @@
                     </div>
                     <p><small>I campi contrassegnati da * sono obbligatori.</small></p>
                     <p><small><a href="../admin/admin-guida-markdown.html" target="_blank">Guida all'uso del markdown.</a></small></p>
+                    <fieldset>
                 </form>
             </section>
 
