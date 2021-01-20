@@ -11,21 +11,23 @@
         <link rel="stylesheet" type="text/css" href="../assets/css/mobile.css" media="only screen and (max-width:640px)" />
         <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
 		<script src="../assets/scripts/form.js"></script>
+        <script src="https://kit.fontawesome.com/d831db26b7.js" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body><a class="help" href="#content">Salta la navigazione</a>
         <header>
             <div class="logo">Rizzo</div>
             <nav>
                 <ul>
                     <li><a href="../index.html" lang="en">Home</a></li>
-                	<li>login</li>
+                	<li id="current-page" aria-current="page">login</li>
                 </ul>
             </nav>
         </header>
-        <main>
+        <main id="content">
             <section>
                 <h2>Effettua l'accesso a Rizzo Guitars</h2>
                 <form method="POST" action="adminLogin.php" autocomplete="autocomplete" id="login" name="admin-login" class="login-form centered">
+                    <fieldset>
                     %error-login%
     				<label for="username-admin" data-error-msg="Per favore, inserisci l'username dell'admin è necessario">Username</label>
     				<input type="text" id="username-admin" name="username-admin"
@@ -43,23 +45,31 @@
                     <div class="btn-container">
                         <input name="submit" type="submit" value="accedi"/>
                     </div>
+                    <fieldset>
     			</form>
             </section>
         </main>
         <footer>
             <section>
-                <h2>Segui Rizzo <span lang="en">Guitars</span> sui <span lang="en">social</span></h2>
-                <ul>
-                    <li><a href="https://www.facebook.com/rizzoguitars" target="_blank" rel="noopener" lang="en"><span class="material-icons">facebook</span> Facebook</a></li>
-                    <li><a href="https://www.instagram.com/rizzoguitars" target="_blank" rel="noopener" lang="en"><span class="material-icons">photo</span>Instagram</a></li>
-                    <li>telefono: <a href="tel:+393427819582">+39 342 781 9582</a></li>
-                    <li><span lang="en">e-mail</span>: <a href="mailto:rstefano99@gmail.com">rstefano99@gmail.com</a></li>
-                    <li>indirizzo: via Campana 13/a, Terrassa Padovana (PD).</li>
+                <h2>Rizzo <span lang="en">Guitars</span> laboratorio di liuteria</h2>
+                <ul class="vcard">
+                    <li class="fn">Stefano Rizzo</li>
+                    <li><a href="https://www.facebook.com/rizzoguitars" target="_blank" rel="noopener" lang="en"><span class="fab fa-facebook-f"></span><span class="help">Facebook</span></a></li>
+                    <li><a href="https://www.instagram.com/rizzoguitars" target="_blank" rel="noopener" lang="en"><span class="fab fa-instagram"></span><span class="help">Instagram</span></a></li>
+                    <li class="tel"><a href="tel:+393427819582">+39 342 781 9582</a></li>
+                    <li class="email"><a href="mailto:rstefano99@gmail.com">rstefano99@gmail.com</a></li>
+                    <li class="adr"><span class="street-address">via Campana 13/a</span>, <span class="locality">Terrassa Padovana</span> (<abbr class="region" title="Padova">PD</abbr>)</li>
                 </ul>
             </section>
             <small lang="en">
                 &copy; Rizzo Guitars. All rights reserved.
             </small>
         </footer>
+        <div id="floating-btn">
+            <a href="#head">
+                <span class="fas fa-angle-up"></span>
+                <span class="help">Clicca per tornare al menù</span>
+            </a>
+        </div>
     </body>
 </html>

@@ -23,7 +23,7 @@ ul {
     list-style-type: none;
 }
 
-a{
+a {
     color: #303030;
 }
 
@@ -56,6 +56,10 @@ a:visited, nav a:visited {
     color:#609;
 }
 
+nav {
+    padding: 0.5em;
+}
+
 nav > ul li{
     display: inline;
     padding: 0.4em;
@@ -77,6 +81,8 @@ header img {
 
 main {
     min-height: 500px;
+	margin: auto;
+    max-width: 1024px;
     padding: 1em 2em 1em 2em;
 }
 
@@ -287,6 +293,13 @@ div .flex-container, .gallery ul {
     max-width: 80%;
 }
 
+#current-page{
+    border: 1px solid #CACACA;
+    border-radius: 3px;
+    -webkit-box-shadow: 13px 10px 35px 22px rgba(0,0,0,1);
+    box-shadow: 7px 10px 25px -12px rgba(0,0,0,0.3);
+}
+
 .gallery li {
     width: 15em;
     height: 15em;
@@ -337,24 +350,8 @@ fieldset {
 label, legend {
     font-weight: bold;
 }
-.floating-btn {
-    z-index: 5;
-    position: fixed;
-    bottom: 2em;
-    right: 2em;
-    width: 56px;
-    height: 56px;
-    border-radius: 100%;
-    background-color: #484848;
-    text-align: center;
-    -webkit-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.38);
-    -moz-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.38);
-    box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.38);
-}
-
-.material-icons.fab {
-    color: #ffffff;
-    margin-top: 0.5em
+#floating-btn {
+	display: none;
 }
 
 @media (prefers-reduced-motion) {
@@ -452,4 +449,12 @@ article > p:first-of-type {
     bottom: 2em;
     left: 40%;
     text-align: center;
+}
+
+.help{
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
 }

@@ -11,14 +11,15 @@
         <link rel="stylesheet" type="text/css" href="../assets/css/mobile.css" media="only screen and (max-width:640px)" />
         <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
 		<script src="../assets/scripts/form.js"></script>
+        <script src="https://kit.fontawesome.com/d831db26b7.js" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body><a class="help" href="#content">Salta la navigazione</a>
         <header>
             <div class="logo">Rizzo</div>
             <nav>
                 <ul>
                     <li lang="en"><a href="../index.html">Home</a></li>
-                    <li>%add-or-modify%</li>
+                    <li id="current-page" aria-current="page">%add-or-modify%</li>
                     <li><a href="editArticles.php">Modifica articoli</a></li>
                     <li><a href="logout.php" lang="en">Logout</a></li>
                 </ul>
@@ -27,6 +28,7 @@
             <section class="insert-form centered">
                 <h2>Form per l'inserimento di articoli</h2>
                 <form method="POST" action="insertForm.php" id="invio" name="nuovo-articolo" enctype="multipart/form-data" class="centered">
+                    <fieldset>
     					<label for="titolo-articolo" data-error-msg="Al massimo 30 caratteri l'unica regola di markdown che si può applicare è quella della lingua">Titolo* %error-titolo%</label>
                         <input type="text" id="titolo-articolo" name="titolo-articolo"
                                value="%value-titolo%"
@@ -74,14 +76,32 @@
                     </div>
                     <p><small>I campi contrassegnati da * sono obbligatori.</small></p>
                     <p><small><a href="../admin/admin-guida-markdown.html" target="_blank">Guida all'uso del markdown.</a></small></p>
+                    <fieldset>
                 </form>
             </section>
 
         </main>
         <footer>
+            <section>
+                <h2>Rizzo <span lang="en">Guitars</span> laboratorio di liuteria</h2>
+                <ul class="vcard">
+                    <li class="fn">Stefano Rizzo</li>
+                    <li><a href="https://www.facebook.com/rizzoguitars" target="_blank" rel="noopener" lang="en"><span class="fab fa-facebook-f"></span><span class="help">Facebook</span></a></li>
+                    <li><a href="https://www.instagram.com/rizzoguitars" target="_blank" rel="noopener" lang="en"><span class="fab fa-instagram"></span><span class="help">Instagram</span></a></li>
+                    <li class="tel"><a href="tel:+393427819582">+39 342 781 9582</a></li>
+                    <li class="email"><a href="mailto:rstefano99@gmail.com">rstefano99@gmail.com</a></li>
+                    <li class="adr"><span class="street-address">via Campana 13/a</span>, <span class="locality">Terrassa Padovana</span> (<abbr class="region" title="Padova">PD</abbr>)</li>
+                </ul>
+            </section>
             <small lang="en">
                 &copy; Rizzo Guitars. All rights reserved.
             </small>
         </footer>
+        <div id="floating-btn">
+            <a href="#head">
+                <span class="fas fa-angle-up"></span>
+                <span class="help">Clicca per tornare al menù</span>
+            </a>
+        </div>
     </body>
 </html>
