@@ -58,7 +58,7 @@ $html = preg_replace("/%error-\w*%/", "", $html);
 if($isEditing){
 	$article = $_SESSION["article"];
 	$image = $repoImage->findImageById($article->image);
-	$html = str_replace("%add-or-modify%", "Modifica di " . $article->title , $html);
+	$html = str_replace("%add-or-modify%", "Modifica di " . MarkdownConverter::removeLanguage($article->title) , $html);
 	$html = str_replace("%image-required%", "", $html);
 	$html = str_replace("%edit-file-msg%", "Se non si inserisce una nuova immagine, rimarrà quella inserita precedentemente.", $html);
 	$html = str_replace("%value-titolo%",$article->title, $html);
