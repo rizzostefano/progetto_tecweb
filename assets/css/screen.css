@@ -233,6 +233,10 @@ input[type=button].remove {
 	background-color: #d01110;
 }
 
+.button:focus {
+	border: 3px solid #BA934D;
+}
+
 /*input[type=file], */
 input[type=submit], input[type=button], .button {
     color: #f9f9f9;
