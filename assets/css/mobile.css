@@ -107,5 +107,10 @@ div .flex-container, .gallery li:hover {
 #floating-btn a {
     color: white;
     text-decoration:none;
-    margin: 0 auto;    
+    margin: 0 auto;
+}
+
+.grid-content {
+    display: block;
+    padding-bottom: 2em;
 }
