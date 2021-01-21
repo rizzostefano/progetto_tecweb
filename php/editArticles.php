@@ -33,6 +33,7 @@ if(empty($articles)){
 	$content .= "<p>Nessun articolo presente.</p>";
 }
 else {
+	$tabindex = 0;
 	for($i=0; $i < $tot && $i < $limit; ++$i)
 	{
 		$last = false;
@@ -42,13 +43,18 @@ else {
 		$article = $articles[$i];
 		$article->title = MarkdownConverter::renderOnlyLanguage($article->title);
 		$article->summary = MarkdownConverter::render($article->summary);
+		$tabindex++;
 		$content .= "<article class=\"flex-article\">".
-							($last === true ? "<h2 id=\"article-anchor\">" : "<h2>") . "{$article->title}</h2>".
-							"{$article->summary}".
-							"<div class=\"btn-container three-btn\">".
-								"<a href='articleDetailsAdmin.php?article_id={$article->id}' class='button'>Leggi!</a>".
-								"<a href=\"insertForm.php?article_id={$article->id}\" class=\"button\">Modifica</a>".
-								"<a href=\"deleteArticle.php?article_id={$article->id}\" class=\"button\">Elimina</a>".
+							($last === true ? "<h2 id=\"article-anchor\"" : "<h2") . " tabindex=\"$tabindex\">" . "{$article->title}</h2>";
+		$tabindex++;
+		$content .= "<section tabindex=\"$tabindex\">{$article->summary}</section>".
+							"<div class=\"btn-container three-btn\">";
+		$tabindex++;
+		$content .= "<a href=\"articleDetailsAdmin.php?article_id={$article->id}\" class=\"button\" tabindex=\"$tabindex\">Leggi!</a>";
+		$tabindex++;
+		$content .= "<a href=\"insertForm.php?article_id={$article->id}\" class=\"button\" tabindex=\"$tabindex\">Modifica</a>";
+		$tabindex++;
+		$content .= "<a href=\"deleteArticle.php?article_id={$article->id}\" class=\"button\" tabindex=\"$tabindex\">Elimina</a>".
 							"</div>".
 						"</article>";
 	}
