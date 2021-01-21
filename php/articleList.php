@@ -32,7 +32,6 @@ if(empty($articles)){
     $content .= "<p>Nessun articolo presente.</p>";
 }
 else {
-    $tabindex = 0;
     for($i=0; $i < $limit && $i < $tot; ++$i)
     {
         $last = false;
@@ -42,14 +41,11 @@ else {
         $article = $articles[$i];
         $article->title = MarkdownConverter::renderOnlyLanguage($article->title);
         $article->summary = MarkdownConverter::render($article->summary);
-        $tabindex++;
         $content .="<article class=\"flex-article\">" .
-                            ($last === true ? "<h2 id=\"article-anchor\"" : "<h2") . " tabindex=\"$tabindex\">" . "{$article->title}</h2>";
-        $tabindex++;
-        $content .= "<section tabindex=\"$tabindex\">{$article->summary}</section>".
-                            "<div class=\"btn-container\">";
-        $tabindex++;
-        $content .= "<a href=\"articleDetails.php?article_id={$article->id}\" class=\"button\" tabindex=\"$tabindex\">Leggi!</a>".
+                            ($last === true ? "<h2 id=\"article-anchor\"" : "<h2") . " tabindex=\"0\">" . "{$article->title}</h2>".
+                        "<section tabindex=\"0\">{$article->summary}</section>".
+                            "<div class=\"btn-container\">".
+                                "<a href=\"articleDetails.php?article_id={$article->id}\" class=\"button\" tabindex=\"0\">Leggi!</a>".
                             "</div>".
                         "</article>";
     }
