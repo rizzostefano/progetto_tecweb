@@ -37,15 +37,15 @@
     			                required="required"
     			                aria-required="true"
                                 aria-label="Campo per l'inserimento del titolo"
-                                tabindex="1"/>
+                                tabindex="0"/>
                         <label for="keywords-articolo" data-error-msg="le parole chiave dell'articolo sono: obbligatorie e senza markdown">Parole chiave %error-keywords%</label>
                         <input type="text" id="keywords-articolo" name="keywords-articolo"
                                value = "%value-keywords%"
-                               placeholder="chitarre,stratocaster,etc"
+                               placeholder="chitarre, stratocaster, etc"
                                required="required"
                                aria-required="true"
                                aria-label="Campo per l'inserimento delle parole chiave"
-                               tabindex="2"/>
+                               tabindex="0"/>
                         <label for="sommario-articolo" data-error-msg="al massimo 90 caratteri e scritto secondo le regole del markdown">Sommario* %error-sommario%</label>
                         <textarea id="sommario-articolo" name="sommario-articolo"
                                       rows="5" cols="100"
@@ -54,31 +54,34 @@
                                       required="required"
                                       aria-required="true"
                                       aria-label="Campo per l'inserimento del sommario"
-                                      tabindex="3">%value-sommario%</textarea>
+                                      tabindex="0">
+                                      %value-sommario%
+                        </textarea>
     					<label for="contenuto-articolo" data-error-msg="il corpo dell'articolo deve essere lungo almeno 30 caratteri e scritto secondo le regole del markdown">Contenuto* %error-contenuto%</label>
     					<textarea id="contenuto-articolo" name="contenuto-articolo"
-    						   rows="30" cols="100"
-                               			   minlength="30"
+    						   rows="30" cols="100" minlength="30"
     						   placeholder="Inserisci qui il corpo dell'articolo"
     						   required="required"
     						   aria-required="true"
                                aria-label="Campo per l'inserimento del corpo dell'articolo  puoi utilizzare il markdown"
-                               tabindex="4">%value-contenuto%</textarea>
+                               tabindex="0">
+                               %value-contenuto%
+                        </textarea>
                         <label for="file-immagine" data-error-msg="Il file deve essere un immagine inferiore al megabyte.">File immagine* %error-file% %edit-file-msg%</label>
                         <input type="file" id="file-immagine"
                                 accept="image/*"
                                 name="file-immagine"
                                 %image-required%
-                                tabindex="5"/>
+                                tabindex="0"/>
                         <label for="alt-immagine" data-error-msg="Il testo alternativo non può superare i 70 caratteri o contenere markup">Testo alternativo immagine %error-alt%</label>
                         <input type="text" id="alt-immagine" name="alt-immagine"
                                value="%value-alt%"
                                maxlength="70"
                                placeholder="Inserisci qui il testo alternativo per l'immagine"
                                aria-label="Campo per l'inserimento per il testo alternativo per l'immagine"
-                               tabindex="6"/>
+                               tabindex="0"/>
                     <div class="btn-container">
-                        <input name="submit" type="submit" value="submit" tabindex="7"/>
+                        <input name="submit" type="submit" value="submit" tabindex="0"/>
                     </div>
                     <p><small>I campi contrassegnati da * sono obbligatori.</small></p>
                     <p><small><a href="../admin/admin-guida-markdown.html" target="_blank">Guida all'uso del markdown.</a></small></p>

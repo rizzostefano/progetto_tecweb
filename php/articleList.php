@@ -1,7 +1,7 @@
 <?php
 
-require_once('repoArticle.php');
-require_once('escapeMarkdown.php');
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'repoArticle.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'escapeMarkdown.php';
 
 if(isset($_GET["limit"])){
     $limit = $_GET["limit"];
@@ -10,12 +10,12 @@ else {
     $limit = 5;
 }
 
-$DOM = file_get_contents('../listaArticoli.html');
+$DOM = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'listaArticoli.html');
 
 $repoArticle = new RepoArticle();
 if($repoArticle->getConnectionLastError() !== '')
 {
-	header('Location: ../500.html');
+	header('Location: ..' . DIRECTORY_SEPARATOR . '500.html');
 }
 $articles = $repoArticle->getArticles();
 $repoArticle->disconnect();

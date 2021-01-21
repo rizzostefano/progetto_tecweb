@@ -1,11 +1,12 @@
 <?php
 
-require_once("dbConnection.php");
+require_once __DIR__ . DIRECTORY_SEPARATOR . "dbConnection.php";
 
 class RepoImage{
 
     private $conn;
-    private $path = "../assets/images/uploaded/";
+    private $path = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "assets" . 
+                    DIRECTORY_SEPARATOR . "images" . DIRECTORY_SEPARATOR . "uploaded" . DIRECTORY_SEPARATOR;
     
     public function __construct() {
         $this->conn = new DbConnection();

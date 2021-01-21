@@ -1,7 +1,7 @@
 <?php
-require_once("escapeMarkdown.php");
-require_once("repoArticle.php");
-require_once("repoImage.php");
+require_once __DIR__ . DIRECTORY_SEPARATOR . "escapeMarkdown.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR . "repoArticle.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR . "repoImage.php";
 session_start();
 
 if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === true)) {
@@ -15,12 +15,12 @@ else {
     $limit = 5;
 }
 
-$html = file_get_contents("../admin/admin-lista-articoli.html");
+$html = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR .".." . DIRECTORY_SEPARATOR . "admin" . DIRECTORY_SEPARATOR . "admin-lista-articoli.html");
 
 $repoArticle = new RepoArticle();
 if($repoArticle->getConnectionLastError() !== '')
 {
-	header('Location: ../500.html');
+	header('Location: ..' . DIRECTORY_SEPARATOR . '500.html');
 }
 
 $articles = $repoArticle->getArticles();

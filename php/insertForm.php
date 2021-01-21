@@ -1,23 +1,23 @@
 <?php
 
-require_once("escapeMarkdown.php");
-require_once("repoArticle.php");
-require_once("article.php");
-require_once("repoImage.php");
+require_once __DIR__ . DIRECTORY_SEPARATOR . "escapeMarkdown.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR . "repoArticle.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR . "article.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR . "repoImage.php";
 header('Content-type: text/html; charset=utf-8');
 session_start();
 if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === true)) {
 	header('Location: adminLogin.php');
 }
 
-$html = file_get_contents("../admin/admin-inserisci-articolo.html");
+$html = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "admin" . DIRECTORY_SEPARATOR . "admin-inserisci-articolo.html");
 
 $repoImage = new RepoImage();
 $repoArticle = new RepoArticle();
 
 if($repoArticle->getConnectionLastError() !== '' || $repoImage->getConnectionLastError() !== '')
 {
-	header('Location: ../500.html');
+	header('Location: ..' . DIRECTORY_SEPARATOR . '500.html');
 }
 
 if(isset($_GET["new"])){

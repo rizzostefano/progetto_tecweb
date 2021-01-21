@@ -1,5 +1,5 @@
 <?php
-require_once("dbConnection.php");
+require_once __DIR__ . DIRECTORY_SEPARATOR . "dbConnection.php";
 session_start();
 
 if(isset($_SESSION['admin']) && $_SESSION['admin'] === true) 
@@ -8,10 +8,10 @@ if(isset($_SESSION['admin']) && $_SESSION['admin'] === true)
 }
 
 $conn = new DbConnection();
-$html = file_get_contents("../admin/admin-login.html");
+$html = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "admin" . DIRECTORY_SEPARATOR . "admin-login.html");
 if($conn->getLastError() !== '')
 {
-    echo str_replace("%error-login%", "<strong class=\"error\" role=\"alert\"> Ci scusiamo per il disaglio ma il servizio non è al momento disponibile</strong>", $html);
+    echo str_replace("%error-login%", "<strong class=\"error\" role=\"alert\"> Ci scusiamo per il disagio ma il servizio non è al momento disponibile</strong>", $html);
 }
 else if(isset($_POST['submit']))
 {

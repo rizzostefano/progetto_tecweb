@@ -5,16 +5,16 @@ if (!isset($_GET['article_id']))
     header('Location: fallback.php');
 }
 
-require_once('escapeMarkdown.php');
-require_once('repoArticle.php');
-require_once('repoImage.php');
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'escapeMarkdown.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'repoArticle.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'repoImage.php';
 
 $repoArticle = new RepoArticle();
 $repoImage = new RepoImage();
 
 if($repoArticle->getConnectionLastError() !== '' || $repoImage->getConnectionLastError() !== '')
 {
-	header('Location: ../500.html');
+	header('Location: ..' . DIRECTORY_SEPARATOR . '500.html');
 }
 
 $article = $repoArticle->findArticleById($_GET["article_id"]);
@@ -38,7 +38,7 @@ $articleImage = $repoImage->findImageById($article->image);
 $repoArticle->disconnect();
 $repoImage->disconnect();
 
-$DOM = file_get_contents('../admin/admin-visualizza-articolo.html');
+$DOM = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR . 'admin-visualizza-articolo.html');
 
 //TODO fare chiamata a db per prendere titolo dell'articolo
 $DOM = str_replace('<cs_page_title/>', $tag_title, $DOM);

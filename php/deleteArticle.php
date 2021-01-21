@@ -1,8 +1,8 @@
 <?php
 
-require_once("repoArticle.php");
-require_once("repoImage.php");
-require_once("article.php");
+require_once __DIR__ . DIRECTORY_SEPARATOR . "repoArticle.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR . "repoImage.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR . "article.php";
 session_start();
 if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === true)) {
 	header('Location: adminLogin.php');
@@ -14,7 +14,7 @@ if(isset($_GET["article_id"])) {
 
     if($repoArticle->getConnectionLastError() !== '' || $repoImage->getConnectionLastError() !== '')
     {
-	    header('Location: ../500.html');
+	    header('Location: ..' . DIRECTORY_SEPARATOR . '500.html');
     }
 
     $idArticolo = $_GET["article_id"];
