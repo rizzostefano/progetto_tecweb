@@ -13,6 +13,10 @@ else {
 $DOM = file_get_contents('../listaArticoli.html');
 
 $repoArticle = new RepoArticle();
+if($repoArticle->getConnectionLastError() !== '')
+{
+	header('Location: ../500.html');
+}
 $articles = $repoArticle->getArticles();
 $repoArticle->disconnect();
 

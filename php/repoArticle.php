@@ -13,6 +13,15 @@ class RepoArticle{
     }
 
     /**
+     * @summary Ritorna l'ultimo errore loggato avvenuto nella connessione al db. 
+     * @return stringa contenente una descrizione dell'errore avvenuto
+     */
+    public function getConnectionLastError()
+    {
+        return $this->conn->getLastError();
+    }
+
+    /**
      * esegue il fetch di tutte le chitarre con tutti i loro dettagli dal db
      * ritornando un array con oggetti di tipo Guitars
      */

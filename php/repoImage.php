@@ -11,6 +11,15 @@ class RepoImage{
         $this->conn = new DbConnection();
     }
 
+    /**
+     * @summary Ritorna l'ultimo errore loggato avvenuto nella connessione al db. 
+     * @return stringa contenente una descrizione dell'errore avvenuto
+     */
+    public function getConnectionLastError()
+    {
+        return $this->conn->getLastError();
+    }
+
     public function findImageById($imageId)
     {
         $query = "SELECT * FROM Images WHERE Id = ?";
