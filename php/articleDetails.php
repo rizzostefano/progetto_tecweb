@@ -13,6 +13,14 @@ $repoArticle = new RepoArticle();
 $repoImage = new RepoImage();
 
 $article = $repoArticle->findArticleById($_GET["article_id"]);
+
+if($article === false)
+{
+    $repoArticle->disconnect();
+    $repoImage->disconnect();
+    header('Location: ../404.html');
+}
+
 $title = $article->title;
 $title = MarkdownConverter::renderOnlyLanguage($title);
 
