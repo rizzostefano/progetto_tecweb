@@ -12,6 +12,11 @@ require_once('repoImage.php');
 $repoArticle = new RepoArticle();
 $repoImage = new RepoImage();
 
+if($repoArticle->getConnectionLastError() !== '' || $repoImage->getConnectionLastError() !== '')
+{
+	header('Location: ../500.html');
+}
+
 $article = $repoArticle->findArticleById($_GET["article_id"]);
 
 if($article === false)

@@ -15,6 +15,11 @@ $html = file_get_contents("../admin/admin-inserisci-articolo.html");
 $repoImage = new RepoImage();
 $repoArticle = new RepoArticle();
 
+if($repoArticle->getConnectionLastError() !== '' || $repoImage->getConnectionLastError() !== '')
+{
+	header('Location: ../500.html');
+}
+
 if(isset($_GET["new"])){
 	unset($_SESSION["article"]);
 }
