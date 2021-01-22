@@ -88,7 +88,7 @@ main {
     padding: 1em 2em 1em 2em;
 }
 
-main h1{
+main h1, .last-action{
     font-size: 2.3em;
     padding-bottom: 0.5em;
 }
@@ -420,7 +420,7 @@ label, legend {
     max-width: 60%;
 }
 
-.markdown-code{
+.markdown-code, blockquote {
     margin: 1em auto 0 auto;
     padding: 1em;
     font-family: 'Courier New', Courier, monospace;
@@ -476,7 +476,7 @@ article > p:first-of-type {
 }
 
 .btn-container.three-btn {
-    left: 20%;
+    left: 20px;
 }
 
 .no-show {
