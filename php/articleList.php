@@ -43,7 +43,7 @@ else {
         $article->summary = MarkdownConverter::render($article->summary);
         $content .="<article class=\"flex-article\">" .
                             ($last === true ? "<h2 id=\"article-anchor\"" : "<h2") . " tabindex=\"0\">" . "{$article->title}</h2>".
-                        "<section tabindex=\"0\">{$article->summary}</section>".
+                        "<div tabindex=\"0\">{$article->summary}</div>".
                             "<div class=\"btn-container\">".
                                 "<a href=\"articleDetails.php?article_id={$article->id}\" class=\"button\" tabindex=\"0\">Leggi!</a>".
                             "</div>".
