@@ -24,7 +24,6 @@ $content = '<section>
                 <h1>Sei un musicista interessato alla liuteria?</h1>
                 <p>Sei nel posto giusto. Qui puoi trovare articoli che troverai sicuramente interessanti.</p>
             </section>
-            <section>
             <div class="flex-container">';
 
 $tot = count($articles);
@@ -54,7 +53,7 @@ else {
 $content .= "</div>";
 if($tot > $limit){
     $limit += 5;
-    $content .= "<div class=\"load-more\"><a href=\"articleList.php?limit={$limit}#article-anchor\">Carica altro</a></div></section>";
+    $content .= "<div class=\"load-more\"><a href=\"articleList.php?limit={$limit}#article-anchor\">Carica altro</a></div>";
 }
 
 
