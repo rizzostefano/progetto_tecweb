@@ -58,7 +58,7 @@ if(isset($_POST["submit"])){
 
 }
 
-$html = preg_replace("/%error-\w*%/", "", $html);
+$html = preg_replace("/%error-(.*)%/", "", $html);
 
 if($isEditing){
 	$article = $_SESSION["article"];
@@ -75,7 +75,7 @@ if($isEditing){
 	$html = str_replace("%add-or-modify%", "Nuovo articolo", $html);
 	$html = str_replace("%image-required%", 'required="required"', $html);
 	$html = str_replace("%edit-file-msg%", "", $html);
-	$html = preg_replace("/%value-\w*%/", "", $html);
+	$html = preg_replace("/%value-(.*)%/", "", $html);
 }
 
 echo $html;
