@@ -43,7 +43,6 @@ if(isset($_POST["submit"])){
 	if ($validateTitle && $validateContent && $validateImage && $validateImageAlt && $validateSummary && $validateKeywords){
 		$imageId = $isImageNotChanging ? $_SESSION["article"]->image : $repoImage->addImage($_FILES["file-immagine"], $_POST["alt-immagine"])->id;
 		$articleId = $isEditing ? $_SESSION["article"]->id : -1;
-		//è brutto ma come pezza per il momento ci sta, buonanotte
 		$article = new Article($articleId, trimHtmlCode($_POST["titolo-articolo"]), trimHtmlCode($_POST["contenuto-articolo"]), trimHtmlCode($_POST["sommario-articolo"]), $imageId, trimHtmlCode($_POST["keywords-articolo"]));
 		$result = $isEditing ? $repoArticle->editArticle($article) : $repoArticle->addArticle($article->title,$article->content,$article->summary,$article->image, $article->keywords);
 		if ($isEditing && !$isImageNotChanging){
@@ -52,7 +51,7 @@ if(isset($_POST["submit"])){
 		$_SESSION["article"] = $article;
 		if($result !== false){
 			unset($_SESSION["article"]);
-			header('Location: editArticles.php');
+			header('Location: editArticles.php?modify={true}');
 		}
 	}
 

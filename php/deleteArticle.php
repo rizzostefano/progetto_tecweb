@@ -23,8 +23,8 @@ if(isset($_GET["article_id"])) {
     $idImmagine = $articolo->image;
     $repoArticle->deleteArticle($idArticolo);
     $repoImage->deleteImage($idImmagine);
-    $limit = isset($_GET["limit"]) ? $_GET["limit"] : 5;
-    header("Location: editArticles.php?limit={$limit}#article-anchor");
+    $limit = (isset($_GET["limit"]) && is_numeric($_GET["limit"])) ? $_GET["limit"] : 5;
+    header("Location: editArticles.php?limit={$limit}&delete={true}#article-anchor");
 
     $repoArticle->disconnect();
     $repoImage->disconnect();

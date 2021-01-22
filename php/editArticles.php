@@ -8,12 +8,7 @@ if(!(isset($_SESSION['admin']) && $_SESSION['admin'] === true)) {
 	header('Location: adminLogin.php');
 }
 
-if(isset($_GET["limit"])){
-    $limit = $_GET["limit"];
-}
-else {
-    $limit = 5;
-}
+$limit = (isset($_GET["limit"]) && is_numeric($_GET["limit"])) ? $_GET["limit"] : 5;
 
 $html = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR .".." . DIRECTORY_SEPARATOR . "admin" . DIRECTORY_SEPARATOR . "admin-lista-articoli.html");
 
@@ -26,8 +21,18 @@ if($repoArticle->getConnectionLastError() !== '')
 $articles = $repoArticle->getArticles();
 $repoArticle->disconnect();
 $tot = count($articles);
+$content = "";
+if(isset($_GET["modify"]))
+{
+	$content .= "<p class=\"last-action\">Articolo inserito o modificato con successo</p>";
+}
+else 
+	if(isset($_GET["delete"]))
+	{
+		$content .= "<p class=\"last-action\">Articolo eliminato con successo</p>";
+	}
 
-$content = '<div class="flex-container">';
+$content .= '<div class="flex-container">';
 
 if(empty($articles)){
 	$content .= "<p>Nessun articolo presente.</p>";
@@ -46,9 +51,9 @@ else {
 							($last === true ? "<h2 id=\"article-anchor\"" : "<h2") . " tabindex=\"0\">" . "{$article->title}</h2>".
 						"<div tabindex=\"0\">{$article->summary}</div>".
 							"<div class=\"btn-container three-btn\">".
-								"<a href=\"articleDetailsAdmin.php?article_id={$article->id}limit={$limit}\" class=\"button\" tabindex=\"0\">Leggi!</a>".
+								"<a href=\"articleDetailsAdmin.php?article_id={$article->id}\" class=\"button\" tabindex=\"0\">Leggi!</a>".
 								"<a href=\"insertForm.php?article_id={$article->id}\" class=\"button\" tabindex=\"0\">Modifica</a>".
-								"<a href=\"deleteArticle.php?article_id={$article->id}\" class=\"button\" tabindex=\"0\">Elimina</a>".
+								"<a href=\"confirmDelete.php?article_id={$article->id}limit={$limit}\" class=\"button\" tabindex=\"0\">Elimina</a>".
 							"</div>".
 						"</article>";
 	}
