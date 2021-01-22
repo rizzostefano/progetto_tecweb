@@ -58,7 +58,7 @@ $content .= "</div>";
 
 if($tot > $limit){
 	$limit += 5;
-    $content .= "<div class=\"load-more\"><a href=\"editArticles.php?limit={$limit}#article-anchor\">Carica altro</a></div></section>";
+    $content .= "<div class=\"load-more\"><a href=\"editArticles.php?limit={$limit}#article-anchor\">Carica altro</a></div>";
 }
 
 $html = str_replace("<cs_main_content/>", $content, $html);
