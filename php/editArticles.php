@@ -22,15 +22,16 @@ $articles = $repoArticle->getArticles();
 $repoArticle->disconnect();
 $tot = count($articles);
 $content = "";
+
 if(isset($_GET["modify"]))
 {
 	$content .= "<p class=\"last-action\">Articolo inserito o modificato con successo</p>";
 }
-else 
-	if(isset($_GET["delete"]))
-	{
-		$content .= "<p class=\"last-action\">Articolo eliminato con successo</p>";
-	}
+
+if(isset($_GET["delete"]))
+{
+	$content .= "<p class=\"last-action\">Articolo eliminato con successo</p>";
+}
 
 $content .= '<div class="flex-container">';
 
