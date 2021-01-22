@@ -497,3 +497,14 @@ article > p:first-of-type {
     background-size: cover;
     background-position: center;
 }
+
+.internal-error {
+    margin: 2em 0 2em 0;
+    text-indent: -99999px;
+    width: 100%;
+    height: 350px;
+    background-image: url(../images/500.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
