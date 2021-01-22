@@ -27,7 +27,7 @@ class RepoArticle{
      */
     public function getArticles()
     {
-        $query = "SELECT * FROM Articles ORDER BY InsertDate";
+        $query = "SELECT * FROM Articles ORDER BY InsertDate DESC";
         $stmt = $this->conn->prepareQuery($query);
         $result = $this->conn->executePreparedQuery($stmt);
         $articles = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -41,7 +41,7 @@ class RepoArticle{
     }
 
     public function getArticlesWithLimit($limit){
-        $query = "SELECT * FROM Articles ORDER BY InsertDate LIMIT ?";
+        $query = "SELECT * FROM Articles ORDER BY InsertDate DESC LIMIT ?";
         $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "s", $limit);
         $result = $this->conn->executePreparedQuery($stmt);

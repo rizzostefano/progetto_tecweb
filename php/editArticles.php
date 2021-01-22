@@ -46,7 +46,7 @@ else {
 							($last === true ? "<h2 id=\"article-anchor\"" : "<h2") . " tabindex=\"0\">" . "{$article->title}</h2>".
 						"<div tabindex=\"0\">{$article->summary}</div>".
 							"<div class=\"btn-container three-btn\">".
-								"<a href=\"articleDetailsAdmin.php?article_id={$article->id}\" class=\"button\" tabindex=\"0\">Leggi!</a>".
+								"<a href=\"articleDetailsAdmin.php?article_id={$article->id}limit={$limit}\" class=\"button\" tabindex=\"0\">Leggi!</a>".
 								"<a href=\"insertForm.php?article_id={$article->id}\" class=\"button\" tabindex=\"0\">Modifica</a>".
 								"<a href=\"deleteArticle.php?article_id={$article->id}\" class=\"button\" tabindex=\"0\">Elimina</a>".
 							"</div>".

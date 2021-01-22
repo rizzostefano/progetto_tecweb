@@ -5,7 +5,7 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "dbConnection.php";
 class RepoImage{
 
     private $conn;
-    private $path = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "assets" . 
+    private $path = ".." . DIRECTORY_SEPARATOR . "assets" . 
                     DIRECTORY_SEPARATOR . "images" . DIRECTORY_SEPARATOR . "uploaded" . DIRECTORY_SEPARATOR;
     
     public function __construct() {

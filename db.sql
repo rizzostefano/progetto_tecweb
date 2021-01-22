@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS Images
     Id   int PRIMARY KEY AUTO_INCREMENT,
     FileName varchar(64) NOT NULL UNIQUE,
     Alt text,
-    Url  varchar(128) NOT NULL UNIQUE
+    Url varchar(128) NOT NULL UNIQUE
 );
 
 -- ************************************** Articles
