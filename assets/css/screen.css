@@ -58,6 +58,10 @@ nav {
     padding: 0.5em;
 }
 
+#content > article > ul {
+    list-style: initial;
+}
+
 nav > ul li{
     display: inline;
     padding: 0.4em;
