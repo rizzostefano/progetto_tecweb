@@ -87,7 +87,7 @@ class RepoArticle{
 
     public function addArticle($title, $content, $summary, $image, $keywords)
     {
-        $query = "INSERT INTO Articles (Title, ArticleTextContent, Summary, Image, InsertDate, Keywords) VALUES (?, ?, ?, ?, CURDATE(), ?)";
+        $query = "INSERT INTO Articles (Title, ArticleTextContent, Summary, Image, InsertDate, Keywords) VALUES (?, ?, ?, ?, NOW(), ?)";
         $stmt = $this->conn->prepareQuery($query);
         mysqli_stmt_bind_param($stmt, "sssis", $title, $content, $summary, $image, $keywords); 
         return $this->conn->executePreparedQueryDML($stmt);
