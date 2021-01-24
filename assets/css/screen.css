@@ -58,8 +58,12 @@ nav {
     padding: 0.5em;
 }
 
-#content > article > ul, #content > article > ol {
-    list-style: initial;
+#content > article > ul {
+    list-style: disc;
+    margin-left: 3em;
+}
+
+#content > article > ol {
     margin-left: 3em;
 }
 
